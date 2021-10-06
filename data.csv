@@ -1,4 +1,4 @@
-ISO_code,year,countries,region,hf_score,hf_rank,pf_ss_disappearances_violent,pf_ss,pf_ss_women,ef_legal_police
+ISO_code,year,country,region,hf_score,hf_rank,pf_ss_disappearances_violent,pf_ss,pf_ss_women,ef_legal_police
 ALB,2018,Albania,Eastern Europe,7.81,43.0,10.0,9.3,8.8,5.6
 ALB,2017,Albania,Eastern Europe,7.78,44.0,10.0,9.3,8.8,6.8
 ALB,2016,Albania,Eastern Europe,7.63,50.0,10.0,8.7,7.5,6.9
