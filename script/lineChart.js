@@ -113,6 +113,8 @@ function createLineChart(data, update) {
     .attr("fill", "none")
     .attr("stroke", "blue")
     .attr("stroke-width", 1.5)
+    .attr("stroke-linejoin", "round")
+    .attr("stroke-linecap", "round")
     .attr("d", lineA2);
 
   // Drwaing line for country 2, attribute 1
@@ -139,9 +141,7 @@ function createLineChart(data, update) {
   svg
     .select("g.line")
     .selectAll("circle")
-    .data(dataC1, function (d) {
-      return d.year;
-    })
+    .data(dataC1)
     .join(
       (enter) => {
         return enter
@@ -171,26 +171,6 @@ function createLineChart(data, update) {
             .attr("cy", (d) => y(d.hf_score))
             .attr("r", 2)
             .style("fill", "steelblue");*/
-      },
-      (exit) => {
-        exit.remove();
-      }
-    );
-
-  svg
-    .select("g.line1")
-    .selectAll("circle")
-    .data(dataC1, function (d) {
-      return d.year;
-    })
-    .join(
-      (enter) => {
-        return enter
-          .append("circle")
-          .attr("cx", (d) => x(d.year))
-          .attr("cy", (d) => y(d.pf_ss))
-          .attr("r", 2)
-          .style("fill", "steelblue");
       },
       (exit) => {
         exit.remove();
