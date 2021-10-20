@@ -1,22 +1,34 @@
-/*function init() {
-  d3.json("data/data.csv")
+var xAttribute = "pf_religion_freedom";
+var yAttribute = "pf_ss";
+var selectedYear = 2018;
+
+function init() {
+  d3.csv("data/data.csv")
     .then((data) => {
-      createScatterPlot(data);
+      createScatterPlot(data, xAttribute, yAttribute, selectedYear);
     })
     .catch((error) => {
       console.log(error);
     });
 }
 
-function createScatterPlot(data) {
+function createScatterPlot(data, xAttribute, yAttribute, selectedYear) {
   const width = 400;
   const height = 400;
 
+  // TODO: endre til dynamisk bredde og høyde. Også i transform!
+
   const margin = { left: 20, top: 20, right: 20, bottom: 40 };
 
+  var data = data.filter(function (d) {
+    if (d.year == selectedYear) {
+      return d;
+    }
+  });
+
   x = d3
-    .scaleLog() //logarithmic scale
-    .domain([0.1, d3.max(data, (d) => d.budget)])
+    .scaleLinear()
+    .domain([0, 10])
     .nice()
     .range([margin.left, width - margin.right]);
 
@@ -32,7 +44,7 @@ function createScatterPlot(data) {
         d3
           .axisBottom(x)
           .tickFormat((x) => x)
-          .ticks(5)
+          .ticks(10)
       )
       .call((g) => g.select(".domain").remove());
 
@@ -76,11 +88,25 @@ function createScatterPlot(data) {
     .attr("height", height);
 
   svg.append("g").call(xAxis);
-
   svg.append("g").call(yAxis);
-
   svg.append("g").call(grid);
 
+  // Add dots
+  svg
+    .append("g")
+    .selectAll("dot")
+    .data(data)
+    .enter()
+    .append("circle")
+    .attr("cx", function (d) {
+      return x(d.pf_religion_freedom);
+    })
+    .attr("cy", function (d) {
+      return y(d.pf_ss);
+    })
+    .attr("r", 2.5)
+    .style("fill", "blue");
+  /*
   svg
     .append("g")
     .style("stroke", "steelblue")
@@ -89,7 +115,7 @@ function createScatterPlot(data) {
     .selectAll("circle")
     .data(data)
     .join("circle")
-    .attr("cx", (d) => x(d.budget))
-    .attr("cy", (d) => y(d.rating))
-    .attr("r", 3); //radius for each circle
-}*/
+    .attr("cx", (d) => x(d.pf_religion_freedom))
+    .attr("cy", (d) => y(d.pf_ss))
+    .attr("r", 3); //radius for each circle*/
+}
