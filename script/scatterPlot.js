@@ -2,17 +2,17 @@ var xAttribute = "pf_religion_freedom";
 var yAttribute = "pf_ss";
 var selectedYear = 2018;
 
-function init() {
-  d3.csv("data/data.csv")
-    .then((data) => {
-      createScatterPlot(data, xAttribute, yAttribute, selectedYear);
-    })
-    .catch((error) => {
-      console.log(error);
-    });
-}
+// function init() {
+//   d3.csv("data/data.csv")
+//     .then((data) => {
+//       createScatterPlot(data, xAttribute, yAttribute, selectedYear);
+//     })
+//     .catch((error) => {
+//       console.log(error);
+//     });
+// }
 
-function createScatterPlot(data, xAttribute, yAttribute, selectedYear) {
+function createScatterPlot(data) {
   const width = 400;
   const height = 400;
 

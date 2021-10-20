@@ -1,11 +1,11 @@
-function init() {
-    d3.csv("data/data.csv").then((data) => {
-        createBarChart(data);
-    })
-    .catch((error) => {
-        console.log(error);
-    });
-}
+// function init() {
+//     d3.csv("data/data.csv").then((data) => {
+//         createBarChart(data);
+//     })
+//     .catch((error) => {
+//         console.log(error);
+//     });
+// }
 
 function createBarChart(data) {
     width = 800;
