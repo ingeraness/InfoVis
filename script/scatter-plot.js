@@ -91,6 +91,20 @@ function createScatterPlot(data, xAttribute, yAttribute, selectedYear) {
   svg.append("g").call(yAxis);
   svg.append("g").call(grid);
 
+  svg
+    .append("text") // text label for the x axis
+    .attr("x", width - 40)
+    .attr("y", height)
+    .style("text-anchor", "middle")
+    .text(xAttribute);
+
+  svg
+    .append("text") // text label for the y axis
+    .attr("x", 20)
+    .attr("y", 15)
+    .style("text-anchor", "middle")
+    .text(yAttribute);
+
   // Add dots
   svg
     .append("g")
@@ -106,16 +120,4 @@ function createScatterPlot(data, xAttribute, yAttribute, selectedYear) {
     })
     .attr("r", 2.5)
     .style("fill", "blue");
-  /*
-  svg
-    .append("g")
-    .style("stroke", "steelblue")
-    .style("stroke-width", 1.5)
-    .attr("fill", "none")
-    .selectAll("circle")
-    .data(data)
-    .join("circle")
-    .attr("cx", (d) => x(d.pf_religion_freedom))
-    .attr("cy", (d) => y(d.pf_ss))
-    .attr("r", 3); //radius for each circle*/
 }
