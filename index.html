@@ -20,7 +20,28 @@
     <script
       language="JavaScript"
       type="text/javascript"
-      src="/script/line-chart.js"
+      src="script/main.js"
+
+    ></script>
+    <script
+      language="JavaScript"
+      type="text/javascript"
+      src="script/map.js"
+    ></script>
+    <script
+      language="JavaScript"
+      type="text/javascript"
+      src="script/scatterPlot.js"    
+    ></script>
+    <script
+      language="JavaScript"
+      type="text/javascript"
+      src="script/barChart.js"    
+    ></script>
+    <script
+      language="JavaScript"
+      type="text/javascript"
+      src="script/lineChart.js"    
     ></script>
 
     <!-- CSS -->
@@ -28,8 +49,29 @@
   </head>
 
   <body onload="init()">
-    <div id="xxx"><p>HELLO</p></div>
+    <div id="title"><h1>Freedom Index Europe</h1></div>
+
+    <form id="selected_country">
+      <label>Selected country:
+        <select id="dropdown_country1" onchange="saveDropdownCountry(1)">
+          <option value="">No country selected</option>
+        
+        </select>
+      </label>
+    </form>
+
+    <form id="selected_country">
+      <label>Selected country:
+        <select id="dropdown_country2" onchange="saveDropdownCountry(2)">
+          <option value="">No country selected</option>
+        
+        </select>
+      </label>
+    </form>
+
+
     <div id="scatterPlot"></div>
+    <div id="barChart"></div>
     <div id="lineChart"></div>
     <svg id="choroplethMap" width="400" height="300"></svg>
     <svg id="choroplethMap"></svg>

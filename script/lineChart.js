@@ -4,16 +4,16 @@ var selectedCountry1 = "Ukraine";
 var selectedCountry2 = "Norway";
 var selectedAttribute = pf_ss;
 
-function init() {
-  d3.csv("data/data.csv")
-    .then((data) => {
-      dataSet = data;
-      createLineChart(data, false);
-    })
-    .catch((error) => {
-      console.log(error);
-    });
-}
+// function init() {
+//     d3.csv("data/data.csv")
+//       .then((data) => {
+//         dataSet = data;
+//         createLineChart(data, false);
+//       })
+//       .catch((error) => {
+//         console.log(error);
+//       });
+//   }
 
 function createLineChart(data, update) {
   margin = { top: 20, right: 20, bottom: 20, left: 40 };
