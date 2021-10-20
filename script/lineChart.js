@@ -2,16 +2,16 @@ var country;
 var dataSet;
 var  selectedCountry = "Ukraine"
 
-function init() {
-    d3.csv("data/data.csv")
-      .then((data) => {
-        dataSet = data;
-        createLineChart(data, false);
-      })
-      .catch((error) => {
-        console.log(error);
-      });
-  }
+// function init() {
+//     d3.csv("data/data.csv")
+//       .then((data) => {
+//         dataSet = data;
+//         createLineChart(data, false);
+//       })
+//       .catch((error) => {
+//         console.log(error);
+//       });
+//   }
 
 
 function createLineChart(data, update) {
