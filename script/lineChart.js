@@ -122,7 +122,7 @@ function createLineChart(data, update) {
     .join("circle")
     .attr("cx", (d) => x(d.year))
     .attr("cy", (d) => y(d.hf_score))
-    .attr("r", 2);
+    .attr("r", 3);
 
 
   // Drwaing line for country 1, attribute 2
@@ -147,7 +147,7 @@ function createLineChart(data, update) {
     .join("circle")
     .attr("cx", (d) => x(d.year))
     .attr("cy", (d) => y(d.pf_ss))
-    .attr("r", 2);
+    .attr("r", 3);
 
 
   // Drwaing line for country 2, attribute 1
@@ -170,7 +170,7 @@ function createLineChart(data, update) {
     .join("circle")
     .attr("cx", (d) => x(d.year))
     .attr("cy", (d) => y(d.hf_score))
-    .attr("r", 2);
+    .attr("r", 3);
 
 
   // Drwaing line for country 2, attribute 2
@@ -195,9 +195,16 @@ function createLineChart(data, update) {
     .join("circle")
     .attr("cx", (d) => x(d.year))
     .attr("cy", (d) => y(d.pf_ss))
-    .attr("r", 2);
+    .attr("r", 3);
   
 
+    svg.selectAll('circle')
+    .on('click', function(d, i) {
+      console.log("click on", this);
+      d3.select(this)
+        .transition()
+        .attr('fill', '#ff0000');
+    })
 
  
   // svg
