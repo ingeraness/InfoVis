@@ -96,6 +96,20 @@ function createLineChart(data, update) {
     .attr("stroke", "steelblue")
     .attr("stroke-width", 1.5)
     .attr("d", lineA1);
+  
+    // dots for line for country 1, attribute 1
+  svg
+    .append("g")
+    .attr("fill", "steelblue")
+    .selectAll("circle")
+    .data(dataC1, function (d) {
+        return d;
+    })
+    .join("circle")
+    .attr("cx", (d) => x(d.year))
+    .attr("cy", (d) => y(d.hf_score))
+    .attr("r", 2);
+
 
   // Drwaing line for country 1, attribute 2
   svg
@@ -108,6 +122,20 @@ function createLineChart(data, update) {
     // .attr("stroke-linecap", "round")
     .attr("d", lineA2);
 
+  // dots for line for country 1, attribute 2
+  svg
+    .append("g")
+    .attr("fill", "blue")
+    .selectAll("circle")
+    .data(dataC1, function (d) {
+        return d;
+    })
+    .join("circle")
+    .attr("cx", (d) => x(d.year))
+    .attr("cy", (d) => y(d.pf_ss))
+    .attr("r", 2);
+
+
   // Drwaing line for country 2, attribute 1
   svg
     .append("path")
@@ -116,6 +144,20 @@ function createLineChart(data, update) {
     .attr("stroke", "red")
     .attr("stroke-width", 1.5)
     .attr("d", lineA1);
+  
+  // dots for line for country 1, attribute 1
+  svg
+    .append("g")
+    .attr("fill", "red")
+    .selectAll("circle")
+    .data(dataC2, function (d) {
+        return d;
+    })
+    .join("circle")
+    .attr("cx", (d) => x(d.year))
+    .attr("cy", (d) => y(d.hf_score))
+    .attr("r", 2);
+
 
   // Drwaing line for country 2, attribute 2
   svg
@@ -128,22 +170,39 @@ function createLineChart(data, update) {
     // .attr("stroke-linecap", "round")
     .attr("d", lineA2);
 
-  // dots for line for country 1, attribute 1
-  svg
-    .select("g.line")
+    // dots for line for country 2, attribute 2
+    svg
+    .append("g")
+    .attr("fill", "pink")
     .selectAll("circle")
-    .data(dataC1)
-    .join(
-      (enter) => {
-        return enter
-          .append("circle")
-          .attr("cx", (d) => x(d.year))
-          .attr("cy", (d) => y(d.hf_score))
-          .attr("r", 2)
-          .style("fill", "steelblue")
-          .text(function (d) {
-            return d.title;
-          });
+    .data(dataC2, function (d) {
+         return d;
+     })
+    .join("circle")
+    .attr("cx", (d) => x(d.year))
+    .attr("cy", (d) => y(d.pf_ss))
+    .attr("r", 2);
+  
+
+
+ 
+  // svg
+  //   .select("g.line")
+  //   .selectAll("circle")
+  //   .dataum(data, function (d) {
+  //     return d;
+  //   })
+  //   .join(
+  //     (enter) => {
+  //       return enter
+  //         .append("circle")
+  //         .attr("cx", (d) => x(d.year))
+  //         .attr("cy", (d) => y(d.hf_score))
+  //         .attr("r", 2)
+  //         .style("fill", "steelblue")
+  //         .text(function (d) {
+  //           return d.year;
+  //         })
   //       /*
   //       //Here comes more code when the user can chose country and year
   //       .on("mouseover", handleMouseOver)
@@ -162,9 +221,9 @@ function createLineChart(data, update) {
   //           .attr("cy", (d) => y(d.hf_score))
   //           .attr("r", 2)
   //           .style("fill", "steelblue");*/
-      },
-      (exit) => {
-        exit.remove();
-      }
-    );
+    //   },
+    //   (exit) => {
+    //      exit.remove();
+    //  }
+    // );
 }
