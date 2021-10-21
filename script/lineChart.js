@@ -8,9 +8,7 @@ function createLineChart(data, update) {
   width = 400;
   height = 400;
 
-  var   svg = d3
-  .select("div#lineChart")
-  .select("svg");
+  var   svg = d3.select("div#lineChart").select("svg");
   svg.selectAll("*").remove();  // Remove the old vis before drawing with new lines
 
   /*var data = data.filter(function (d) {
@@ -131,21 +129,21 @@ function createLineChart(data, update) {
     .attr("d", lineA2);
 
   // dots for line for country 1, attribute 1
-  // svg
-  //   .select("g.line")
-  //   .selectAll("circle")
-  //   .data(dataC1)
-  //   .join(
-  //     (enter) => {
-  //       return enter
-  //         .append("circle")
-  //         .attr("cx", (d) => x(d.year))
-  //         .attr("cy", (d) => y(d.hf_score))
-  //         .attr("r", 2)
-  //         .style("fill", "steelblue")
-  //         .text(function (d) {
-  //           return d.title;
-  //         });
+  svg
+    .select("g.line")
+    .selectAll("circle")
+    .data(dataC1)
+    .join(
+      (enter) => {
+        return enter
+          .append("circle")
+          .attr("cx", (d) => x(d.year))
+          .attr("cy", (d) => y(d.hf_score))
+          .attr("r", 2)
+          .style("fill", "steelblue")
+          .text(function (d) {
+            return d.title;
+          });
   //       /*
   //       //Here comes more code when the user can chose country and year
   //       .on("mouseover", handleMouseOver)
@@ -164,9 +162,9 @@ function createLineChart(data, update) {
   //           .attr("cy", (d) => y(d.hf_score))
   //           .attr("r", 2)
   //           .style("fill", "steelblue");*/
-  //     },
-  //     (exit) => {
-  //       exit.remove();
-  //     }
-  //   );
+      },
+      (exit) => {
+        exit.remove();
+      }
+    );
 }
