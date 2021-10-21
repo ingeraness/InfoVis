@@ -27,9 +27,9 @@ function saveDropdownCountry(i){
 function init() {
     d3.csv("data/data.csv")
       .then((data) => {
-        // createScatterPlot(data);
-        // createBarChart(data);
         createLineChart(data, false);        
+        createScatterPlot(data);
+        createBarChart(data);
       })
       .catch((error) => {
         console.log(error);

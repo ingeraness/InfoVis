@@ -8,7 +8,9 @@ function createLineChart(data, update) {
   width = 400;
   height = 400;
 
-  var svg = d3.select("svg");
+  var   svg = d3
+  .select("div#lineChart")
+  .select("svg");
   svg.selectAll("*").remove();  // Remove the old vis before drawing with new lines
 
   /*var data = data.filter(function (d) {
