@@ -1,24 +1,15 @@
 var country;
 var dataSet;
-var selectedCountry1 = "Ukraine";
-var selectedCountry2 = "Norway";
 var selectedAttribute = pf_ss;
 
-// function init() {
-//     d3.csv("data/data.csv")
-//       .then((data) => {
-//         dataSet = data;
-//         createLineChart(data, false);
-//       })
-//       .catch((error) => {
-//         console.log(error);
-//       });
-//   }
 
 function createLineChart(data, update) {
   margin = { top: 20, right: 20, bottom: 20, left: 40 };
   width = 400;
   height = 400;
+
+  var svg = d3.select("svg");
+  svg.selectAll("*").remove();  // Remove the old vis before drawing with new lines
 
   /*var data = data.filter(function (d) {
     if (d.country == selectedCountry1) {
@@ -27,12 +18,12 @@ function createLineChart(data, update) {
   });*/
 
   var dataC1 = data.filter(function (d) {
-    if (d.country == selectedCountry1) {
+    if (d.country == chosenCountry1) {
       return d;
     }
   });
   var dataC2 = data.filter(function (d) {
-    if (d.country == selectedCountry2) {
+    if (d.country == chosenCountry2) {
       return d;
     }
   });
@@ -81,12 +72,12 @@ function createLineChart(data, update) {
       .attr("class", "line")
       .append("path");
   }
-
-  const svg = d3
+  svg = d3
     .select("div#lineChart")
     .select("svg")
     .attr("width", width)
     .attr("height", height);
+
 
   if (!update) {
     svg.append("g").attr("class", "lineXAxis");
@@ -108,13 +99,13 @@ function createLineChart(data, update) {
 
   // Drwaing line for country 1, attribute 2
   svg
-    .select("path")
+    .append("path")
     .datum(dataC1)
     .attr("fill", "none")
     .attr("stroke", "blue")
     .attr("stroke-width", 1.5)
-    .attr("stroke-linejoin", "round")
-    .attr("stroke-linecap", "round")
+    // .attr("stroke-linejoin", "round")
+    // .attr("stroke-linecap", "round")
     .attr("d", lineA2);
 
   // Drwaing line for country 2, attribute 1
@@ -128,52 +119,52 @@ function createLineChart(data, update) {
 
   // Drwaing line for country 2, attribute 2
   svg
-    .select("path")
+    .append("path")
     .datum(dataC2)
     .attr("fill", "none")
     .attr("stroke", "pink")
     .attr("stroke-width", 1.5)
-    .attr("stroke-linejoin", "round")
-    .attr("stroke-linecap", "round")
+    // .attr("stroke-linejoin", "round")
+    // .attr("stroke-linecap", "round")
     .attr("d", lineA2);
 
   // dots for line for country 1, attribute 1
-  svg
-    .select("g.line")
-    .selectAll("circle")
-    .data(dataC1)
-    .join(
-      (enter) => {
-        return enter
-          .append("circle")
-          .attr("cx", (d) => x(d.year))
-          .attr("cy", (d) => y(d.hf_score))
-          .attr("r", 2)
-          .style("fill", "steelblue")
-          .text(function (d) {
-            return d.title;
-          });
-        /*
-        //Here comes more code when the user can chose country and year
-        .on("mouseover", handleMouseOver)
-          .on("mouseleave", handleMouseLeave)
-          .on("click", handleClick)
-          .transition()
-          .duration(1000)
-          .style("opacity", "100%");
-      },
+  // svg
+  //   .select("g.line")
+  //   .selectAll("circle")
+  //   .data(dataC1)
+  //   .join(
+  //     (enter) => {
+  //       return enter
+  //         .append("circle")
+  //         .attr("cx", (d) => x(d.year))
+  //         .attr("cy", (d) => y(d.hf_score))
+  //         .attr("r", 2)
+  //         .style("fill", "steelblue")
+  //         .text(function (d) {
+  //           return d.title;
+  //         });
+  //       /*
+  //       //Here comes more code when the user can chose country and year
+  //       .on("mouseover", handleMouseOver)
+  //         .on("mouseleave", handleMouseLeave)
+  //         .on("click", handleClick)
+  //         .transition()
+  //         .duration(1000)
+  //         .style("opacity", "100%");
+  //     },
         
-        (update) => {
-          update
-            .transition()
-            .duration(1000)
-            .attr("cx", (d) => x(d.year))
-            .attr("cy", (d) => y(d.hf_score))
-            .attr("r", 2)
-            .style("fill", "steelblue");*/
-      },
-      (exit) => {
-        exit.remove();
-      }
-    );
+  //       (update) => {
+  //         update
+  //           .transition()
+  //           .duration(1000)
+  //           .attr("cx", (d) => x(d.year))
+  //           .attr("cy", (d) => y(d.hf_score))
+  //           .attr("r", 2)
+  //           .style("fill", "steelblue");*/
+  //     },
+  //     (exit) => {
+  //       exit.remove();
+  //     }
+  //   );
 }

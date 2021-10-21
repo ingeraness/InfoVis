@@ -13,6 +13,12 @@ function saveDropdownCountry(i){
         chosenCountry2 = document.getElementById("dropdown_country2").value;
         console.log(chosenCountry2);
     }
+    d3.csv("data/data.csv").then((data) => {
+        createLineChart(data, false);
+    })
+    .catch((error) => {
+        console.log(error);
+      });
     
 }
 
@@ -21,9 +27,8 @@ function saveDropdownCountry(i){
 function init() {
     d3.csv("data/data.csv")
       .then((data) => {
-        dataSet = data;
-        createScatterPlot(data);
-        createBarChart(data);
+        // createScatterPlot(data);
+        // createBarChart(data);
         createLineChart(data, false);        
       })
       .catch((error) => {
@@ -38,12 +43,13 @@ function init() {
           var el1 = document.createElement("option");
           el1.textContent = country;
           el1.value = country;
+          select1.appendChild(el1);
+
+
           var el2 = document.createElement("option");
           el2.textContent = country;
           el2.value = country;
-          select1.appendChild(el1);
           select2.appendChild(el2);
-
 
       }
   }
