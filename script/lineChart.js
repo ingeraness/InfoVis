@@ -48,10 +48,10 @@ function createLineChart(data, update) {
   y = d3
     .scaleLinear()
     .domain([0, 10])
-    .range([height - margin.bottom, margin.top + 100]);
+    .range([height - margin.bottom - 15, margin.top + 100]);
 
   xAxis = (g) =>
-    g.attr("transform", `translate(0,${height - margin.bottom})`).call(
+    g.attr("transform", `translate(0,${height - margin.bottom - 15})`).call(
       d3
         .axisBottom(x)
         .tickFormat((x) => x)
