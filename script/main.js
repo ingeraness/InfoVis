@@ -13,8 +13,17 @@ function saveDropdownCountry(i){
         chosenCountry2 = document.getElementById("dropdown_country2").value;
         console.log(chosenCountry2);
     }
+    // Check if it should draw the lineChart or barChart
     d3.csv("data/data.csv").then((data) => {
-        createLineChart(data, false);
+        if((chosenCountry1 == undefined || chosenCountry1 == "") 
+        && (chosenCountry2 == undefined || chosenCountry2 == "")){
+            d3.select("div#lineChart").select("svg").remove();  //Remove old chart 
+            createBarChart(data);
+        }
+        else{
+            d3.select("div#barChart").select("svg").remove();  //Remove old chart 
+            createLineChart(data, false);        
+        }
     })
     .catch((error) => {
         console.log(error);
@@ -27,9 +36,8 @@ function saveDropdownCountry(i){
 function init() {
     d3.csv("data/data.csv")
       .then((data) => {
-        createLineChart(data, false);        
-        // createScatterPlot(data);
-        // createBarChart(data);
+        createScatterPlot(data);
+        createBarChart(data);
       })
       .catch((error) => {
         console.log(error);

@@ -8,8 +8,8 @@ function createLineChart(data, update) {
   width = 400;
   height = 400;
 
-  var   svg = d3.select("div#lineChart").select("svg");
-  svg.selectAll("*").remove();  // Remove the old vis before drawing with new lines
+  var svg = d3.select("div#lineChart").select("svg");
+  svg.selectAll("*").remove();  // Remove the old vis before drawing the new vis with new countries
 
   /*var data = data.filter(function (d) {
     if (d.country == selectedCountry1) {
