@@ -1,6 +1,6 @@
 var country;
 var dataSet;
-var selectedAttribute = pf_ss;
+var selectedAttribute = "pf_ss";
 
 
 function createLineChart(data, update) {
@@ -87,6 +87,20 @@ function createLineChart(data, update) {
   svg.select("g.lineXAxis").call(xAxis);
 
   svg.select("g.lineYAxis").call(yAxis);
+
+  svg
+  .append("text") // text label for the x axis
+  .attr("x", width - 20)
+  .attr("y", height)
+  .style("text-anchor", "middle")
+  .text("Year");
+
+  svg
+    .append("text") // text label for the y axis
+    .attr("x", 30)
+    .attr("y", 100)
+    .style("text-anchor", "middle")
+    .text(selectedAttribute);
 
   // Drwaing line for country 1, attribute 1
   svg
