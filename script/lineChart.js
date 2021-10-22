@@ -102,6 +102,39 @@ function createLineChart(data, update) {
     .style("text-anchor", "middle")
     .text(selectedAttribute);
 
+    
+  var Tooltip = d3.select("#lineChart")
+    .append("div")
+    .style("opacity", 0)
+    .attr("class", "tooltip")
+    .style("background-color", "white")
+    .style("border", "solid")
+    .style("border-width", "2px")
+    .style("border-radius", "5px")
+    .style("padding", "5px")
+
+  // Three function that change the tooltip when user hover / move / leave a cell
+  var mouseover = function(d) {
+    Tooltip
+      .style("opacity", 1)
+    d3.select(this)
+      .style("stroke", "black")
+      .style("opacity", 1);
+  }
+  var mousemove = function(d) {
+    Tooltip
+      .html("The hf_score for this<br>year is: " )
+      .style("left", (d3.mouse(this)[0]) + "px")
+      .style("top", (d3.mouse(this)[1]) + "px");
+  }
+  var mouseleave = function(d) {
+    Tooltip
+      .style("opacity", 0)
+    d3.select(this)
+      .style("stroke", "none")
+      .style("opacity", 0.8)
+  }
+
   // Drwaing line for country 1, attribute 1
   svg
     .append("path")
@@ -122,7 +155,11 @@ function createLineChart(data, update) {
     .join("circle")
     .attr("cx", (d) => x(d.year))
     .attr("cy", (d) => y(d.hf_score))
-    .attr("r", 3);
+    .attr("r", 3)
+    .on("mouseover", mouseover)
+    .on("mousemove", mousemove)
+    .on("mouseleave", mouseleave);
+
 
 
   // Drwaing line for country 1, attribute 2
@@ -206,7 +243,26 @@ function createLineChart(data, update) {
         .attr('fill', '#ff0000');
     })
 
- 
+    // svg.selectAll('circle')
+    // .on('mouseover', function(d, i) {
+    //   svg
+    //   .append("text") 
+    //   .attr("id", "hoverText")
+    //   .attr("x", 100)
+    //   .attr("y", 200)
+    //   .style("text-anchor", "middle")
+    //   .datum(dataC1, function (d) {
+    //     return d;
+    // })
+    //   .text((d) => ("hf er: " + d[1].hf_score));
+    // })
+
+    // svg.selectAll('circle')
+    // .on('mouseleave', function(d, i) {
+    //   svg.select("#hoverText").remove();
+    // })
+
+
   // svg
   //   .select("g.line")
   //   .selectAll("circle")
