@@ -38,7 +38,6 @@ function init() {
       .then((data) => {
         createScatterPlot(data);
         createBarChart(data);
-        createLineChart(data, false);  
         createDropDownMenus();      
       })
       .catch((error) => {
