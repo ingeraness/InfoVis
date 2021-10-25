@@ -37,7 +37,7 @@ function createLineChart(data, update) {
   lineA2 = d3
     .line()
     .x((d) => x(d.year))
-    .y((d) => y(d.chosenAttribute));
+    .y((d) => y(d.pf_ss));
 
   x = d3
     .scaleLinear()
@@ -99,40 +99,40 @@ function createLineChart(data, update) {
     .attr("x", 30)
     .attr("y", 100)
     .style("text-anchor", "middle")
-    .text(chosenAttribute);
+    .text("pf_ss");
 
     
-  var Tooltip = d3.select("#lineChart")
-    .append("div")
-    .style("opacity", 0)
-    .attr("class", "tooltip")
-    .style("background-color", "white")
-    .style("border", "solid")
-    .style("border-width", "2px")
-    .style("border-radius", "5px")
-    .style("padding", "5px")
+  // var Tooltip = d3.select("#lineChart")
+  //   .append("div")
+  //   .style("opacity", 0)
+  //   .attr("class", "tooltip")
+  //   .style("background-color", "white")
+  //   .style("border", "solid")
+  //   .style("border-width", "2px")
+  //   .style("border-radius", "5px")
+  //   .style("padding", "5px")
 
   // Three function that change the tooltip when user hover / move / leave a cell
-  var mouseover = function(d) {
-    Tooltip
-      .style("opacity", 1)
-    d3.select(this)
-      .style("stroke", "black")
-      .style("opacity", 1);
-  }
-  var mousemove = function(d) {
-    Tooltip
-      .html("The hf_score for this<br>year is: " )
-      .style("left", (d3.mouse(this)[0]) + "px")
-      .style("top", (d3.mouse(this)[1]) + "px");
-  }
-  var mouseleave = function(d) {
-    Tooltip
-      .style("opacity", 0)
-    d3.select(this)
-      .style("stroke", "none")
-      .style("opacity", 0.8)
-  }
+  // var mouseover = function(d) {
+  //   Tooltip
+  //     .style("opacity", 1)
+  //   d3.select(this)
+  //     .style("stroke", "black")
+  //     .style("opacity", 1);
+  // }
+  // var mousemove = function(d) {
+  //   Tooltip
+  //     .html("The hf_score for this<br>year is: " )
+  //     .style("left", (d3.mouse(this)[0]) + "px")
+  //     .style("top", (d3.mouse(this)[1]) + "px");
+  // }
+  // var mouseleave = function(d) {
+  //   Tooltip
+  //     .style("opacity", 0)
+  //   d3.select(this)
+  //     .style("stroke", "none")
+  //     .style("opacity", 0.8)
+  // }
 
   // Drwaing line for country 1, attribute 1
   svg
@@ -154,10 +154,10 @@ function createLineChart(data, update) {
     .join("circle")
     .attr("cx", (d) => x(d.year))
     .attr("cy", (d) => y(d.hf_score))
-    .attr("r", 3)
-    .on("mouseover", mouseover)
-    .on("mousemove", mousemove)
-    .on("mouseleave", mouseleave);
+    .attr("r", 3);
+    // .on("mouseover", mouseover)
+    // .on("mousemove", mousemove)
+    // .on("mouseleave", mouseleave);
 
 
 
@@ -182,7 +182,7 @@ function createLineChart(data, update) {
     })
     .join("circle")
     .attr("cx", (d) => x(d.year))
-    .attr("cy", (d) => y(d.chosenAttribute))
+    .attr("cy", (d) => y(d.pf_ss))
     .attr("r", 3);
 
 
@@ -230,17 +230,17 @@ function createLineChart(data, update) {
      })
     .join("circle")
     .attr("cx", (d) => x(d.year))
-    .attr("cy", (d) => y(d.chosenAttribute))
+    .attr("cy", (d) => y(d.pf_ss))
     .attr("r", 3);
   
 
-    svg.selectAll('circle')
-    .on('click', function(d, i) {
-      console.log("click on", this);
-      d3.select(this)
-        .transition()
-        .attr('fill', '#ff0000');
-    })
+    // svg.selectAll('circle')
+    // .on('click', function(d, i) {
+    //   console.log("click on", this);
+    //   d3.select(this)
+    //     .transition()
+    //     .attr('fill', '#ff0000');
+    // })
 
     // svg.selectAll('circle')
     // .on('mouseover', function(d, i) {
