@@ -1,16 +1,3 @@
-var xAttribute = "pf_religion_freedom";
-var yAttribute = "pf_ss";
-var selectedYear = 2018;
-
-// function init() {
-//   d3.csv("data/data.csv")
-//     .then((data) => {
-//       createScatterPlot(data, xAttribute, yAttribute, selectedYear);
-//     })
-//     .catch((error) => {
-//       console.log(error);
-//     });
-// }
 
 function createScatterPlot(data, update) {
   const width = 400;
@@ -20,11 +7,25 @@ function createScatterPlot(data, update) {
 
   const margin = { left: 20, top: 20, right: 20, bottom: 40 };
 
+  var svg = d3.select("div#scatterPlot").select("svg");
+  svg.selectAll("*").remove(); // Remove the old vis before drawing the new vis with new countries
+
   var data = data.filter(function (d) {
-    if (d.year == selectedYear) {
+    if (d.year == chosenYear) {
       return d;
     }
   });
+
+  const keys = Object.keys(data[0]);
+
+  let attributesDict = {
+    "pf_ss" : keys[8].valueOf(),
+    "pf_ss_women": keys[9].valueOf(),
+    "ef_legal_police": keys[10].valueOf(),
+    "pf_ss_disappearances_violent": keys[6].valueOf(),
+    "pf_religion_freedom": keys[7].valueOf(),
+    "hf_score": keys[4].valueOf()
+  }
 
   x = d3
     .scaleLinear()
@@ -89,7 +90,7 @@ function createScatterPlot(data, update) {
       .style("stroke-width", 1.5);
   }
 
-  const svg = d3
+  svg = d3
     .select("div#scatterPlot")
     .append("svg")
     .attr("width", width)
@@ -100,14 +101,14 @@ function createScatterPlot(data, update) {
     .attr("x", width - 40)
     .attr("y", height)
     .style("text-anchor", "middle")
-    .text(xAttribute);
+    .text(chosenAttributeX);
 
   svg // text label for the y axis
     .append("text")
     .attr("x", 20)
     .attr("y", 15)
     .style("text-anchor", "middle")
-    .text(yAttribute);
+    .text(chosenAttributeY);
 
   // Add dots
   svg
@@ -117,10 +118,10 @@ function createScatterPlot(data, update) {
     .enter()
     .append("circle")
     .attr("cx", function (d) {
-      return x(d.pf_religion_freedom);
+      return x(d[attributesDict[chosenAttributeX]]);
     })
     .attr("cy", function (d) {
-      return y(d.pf_ss);
+      return y(d[attributesDict[chosenAttributeY]]);
     })
     .attr("r", 2.5)
     .style("fill", "blue");

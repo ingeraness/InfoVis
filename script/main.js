@@ -1,8 +1,9 @@
 // const countries = ['Albania', 'Austria', 'Belgium', 'Bosnia and Herzegovina','Bulgaria', 'Croatia','Cyprus', 'Czech Rebublic', 'Denmark', 'Estonia', 'Finland', 'France', 'Germany', 'Greece', 'Hungary', 'Iceland', 'Ireland', 'Italy', 'Latvia', 'Lithuania', 'Luxembourg', 'Malta', 'Moldova', 'Montenegro', 'Netherlands', 'North Macedonia', 'Norway', 'Poland', 'Portugal', 'Romania', 'Russian Federation',  'Serbia', 'Sloavk Rebublic', 'Slovenia', 'Spain', 'Sweden', 'Switzerland', 'Ukraine', 'United Kingdom' ];
 var chosenCountry1;
 var chosenCountry2;
-var chosenYear;
-var chosenAttribute = "pf_ss";
+var chosenYear = 2018;
+var chosenAttributeX = "pf_ss";
+var chosenAttributeY = "pf_religion_freedom";
 var update = false;
 
 function saveDropdownCountry(i) {
@@ -37,7 +38,13 @@ function saveDropdownYear() {
 }
 
 function saveDropdownAttribute() {
-  chosenAttribute = document.getElementById("dropdown_attribute");
+  chosenAttributeX = document.getElementById("dropdown_attribute1").value;
+  console.log("ATTR X: ", chosenAttributeX)
+  d3.csv("data/data.csv")
+    .then((data) => {
+      d3.select("div#scatterPlot").select("svg").remove(); //Remove old chart
+      createScatterPlot(data, update);
+  });
 }
 
 function init() {
