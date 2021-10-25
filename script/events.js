@@ -16,10 +16,20 @@ function handleMouseOver(event, d) {
         .selectAll("circle")
         .filter(function (b) {
             if(d.country == b.country) {
+                console.log("Info om dette landet: " + b.country);
+                console.log("Freedom index: " + b.hf_score);
+                console.log("Freedom rank: " + b.hf_rank);
+                console.log("Women’s Freedom: " + b.pf_ss_women);
+                console.log("Security and Safety: " + b.pf_ss);
+                console.log("Police Reliability: " + b.ef_legal_police);
+                console.log("Criminal trends: " + b.pf_ss_disappearances_violent);
+                console.log("Religious Freedom: " + b.pf_religion_freedom);
                 return b;
             }
         })  
-        .style("fill", "red")  
+        .style("fill", "red");
+
+
 
 }
 

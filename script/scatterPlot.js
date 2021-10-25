@@ -1,4 +1,3 @@
-
 function createScatterPlot(data, update) {
   const width = 400;
   const height = 400;
