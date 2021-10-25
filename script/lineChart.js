@@ -10,17 +10,12 @@ function createLineChart(data, update) {
   var svg = d3.select("div#lineChart").select("svg");
   svg.selectAll("*").remove();  // Remove the old vis before drawing the new vis with new countries
 
-  /*var data = data.filter(function (d) {
-    if (d.country == selectedCountry1) {
-      return d;
-    }
-  });*/
-
   var dataC1 = data.filter(function (d) {
     if (d.country == chosenCountry1) {
       return d;
     }
   });
+
   var dataC2 = data.filter(function (d) {
     if (d.country == chosenCountry2) {
       return d;
@@ -168,8 +163,6 @@ function createLineChart(data, update) {
     .attr("fill", "none")
     .attr("stroke", "blue")
     .attr("stroke-width", 1.5)
-    // .attr("stroke-linejoin", "round")
-    // .attr("stroke-linecap", "round")
     .attr("d", lineA2);
 
   // dots for line for country 1, attribute 2
@@ -216,8 +209,6 @@ function createLineChart(data, update) {
     .attr("fill", "none")
     .attr("stroke", "pink")
     .attr("stroke-width", 1.5)
-    // .attr("stroke-linejoin", "round")
-    // .attr("stroke-linecap", "round")
     .attr("d", lineA2);
 
     // dots for line for country 2, attribute 2
