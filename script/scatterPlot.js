@@ -2,16 +2,6 @@ var xAttribute = "pf_religion_freedom";
 var yAttribute = "pf_ss";
 var selectedYear = 2018;
 
-// function init() {
-//   d3.csv("data/data.csv")
-//     .then((data) => {
-//       createScatterPlot(data, xAttribute, yAttribute, selectedYear);
-//     })
-//     .catch((error) => {
-//       console.log(error);
-//     });
-// }
-
 function createScatterPlot(data) {
   const width = 400;
   const height = 400;
@@ -118,6 +108,8 @@ function createScatterPlot(data) {
     .attr("cy", function (d) {
       return y(d.pf_ss);
     })
-    .attr("r", 2.5)
-    .style("fill", "blue");
+    .attr("r", 4)
+    .style("fill", "blue")
+    .on("mouseover", handleMouseOver)
+    .on("mouseleave", handleMouseLeave);
 }
