@@ -7,9 +7,6 @@ function createScatterPlot(data, update) {
 
   const margin = { left: 20, top: 20, right: 20, bottom: 40 };
 
-  var svg = d3.select("div#scatterPlot").select("svg");
-  svg.selectAll("*").remove(); // Remove the old vis before drawing the new vis with new countries
-
   var data = data.filter(function (d) {
     if (d.year == chosenYear) {
       return d;
@@ -92,7 +89,7 @@ function createScatterPlot(data, update) {
 
   svg = d3
     .select("div#scatterPlot")
-    .append("svg")
+    .select("svg")
     .attr("width", width)
     .attr("height", height);
 
@@ -101,6 +98,7 @@ function createScatterPlot(data, update) {
     .attr("x", width - 40)
     .attr("y", height)
     .style("text-anchor", "middle")
+    .attr("id", "removeOnUpdate")
     .text(chosenAttributeX);
 
   svg // text label for the y axis
@@ -108,11 +106,13 @@ function createScatterPlot(data, update) {
     .attr("x", 20)
     .attr("y", 15)
     .style("text-anchor", "middle")
+    .attr("id", "removeOnUpdate")
     .text(chosenAttributeY);
 
   // Add dots
   svg
     .append("g")
+    .attr("id", "removeOnUpdate")
     .selectAll("dot")
     .data(data)
     .enter()

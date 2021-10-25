@@ -38,20 +38,20 @@ function saveDropdownYear() {
 }
 
 function saveDropdownAttribute() {
-  d3.select("div#scatterPlot").select("*").remove(); //Remove old chart
+  d3.select("div#scatterPlot").selectAll("svg").selectAll("#removeOnUpdate").remove(); //Remove old chart
   chosenAttributeX = document.getElementById("dropdown_attribute1").value;
   console.log("ATTR X: ", chosenAttributeX)
   d3.csv("data/data.csv")
     .then((data) => {
-      d3.select("div#scatterPlot").select("svg").remove(); //Remove old chart
-      createScatterPlot(data, update);
+      // d3.select("div#scatterPlot").selectAll("svg").select("g#circles").remove(); //Remove old chart
+      createScatterPlot(data, true);
   });
 }
 
 function init() {
   d3.csv("data/data.csv")
     .then((data) => {
-      createScatterPlot(data, update);
+      createScatterPlot(data, false);
       createBarChart(data);
       createDropDownMenus();
     })
