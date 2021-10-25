@@ -38,6 +38,7 @@ function saveDropdownYear() {
 }
 
 function saveDropdownAttribute() {
+  d3.select("div#scatterPlot").select("*").remove(); //Remove old chart
   chosenAttributeX = document.getElementById("dropdown_attribute1").value;
   console.log("ATTR X: ", chosenAttributeX)
   d3.csv("data/data.csv")

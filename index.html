@@ -55,7 +55,7 @@
   <body onload="init()">
     <div id="title"><h1>Freedom Index Europe</h1></div>
 
-    <form id="selected_country">
+    <form id="selected_country1">
       <label
         >Selected Country:
         <select id="dropdown_country1" onchange="saveDropdownCountry(1)">
@@ -64,7 +64,7 @@
       </label>
     </form>
 
-    <form id="selected_country">
+    <form id="selected_country2">
       <label
         >Selected Country:
         <select id="dropdown_country2" onchange="saveDropdownCountry(2)">
@@ -73,7 +73,7 @@
       </label>
     </form>
 
-    <form id="selected_country">
+    <form id="selected_year">
       <label
         >Selected Year:
         <select id="dropdown_years" onchange="saveDropdownYear()">
@@ -109,7 +109,5 @@
     <div id="scatterPlot"></div>
     <div id="barChart"></div>
     <div id="lineChart"></div>
-    <svg id="choroplethMap" width="400" height="300"></svg>
-    <svg id="choroplethMap"></svg>
   </body>
 </html>
