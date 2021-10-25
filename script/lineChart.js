@@ -7,13 +7,14 @@ function createLineChart(data, update) {
   height = 400;
 
   var svg = d3.select("div#lineChart").select("svg");
-  svg.selectAll("*").remove(); // Remove the old vis before drawing the new vis with new countries
+  svg.selectAll("*").remove();  // Remove the old vis before drawing the new vis with new countries
 
   var dataC1 = data.filter(function (d) {
     if (d.country == chosenCountry1) {
       return d;
     }
   });
+
   var dataC2 = data.filter(function (d) {
     if (d.country == chosenCountry2) {
       return d;
@@ -93,38 +94,6 @@ function createLineChart(data, update) {
     .style("text-anchor", "middle")
     .text("pf_ss");
 
-  // var Tooltip = d3.select("#lineChart")
-  //   .append("div")
-  //   .style("opacity", 0)
-  //   .attr("class", "tooltip")
-  //   .style("background-color", "white")
-  //   .style("border", "solid")
-  //   .style("border-width", "2px")
-  //   .style("border-radius", "5px")
-  //   .style("padding", "5px")
-
-  // Three function that change the tooltip when user hover / move / leave a cell
-  // var mouseover = function(d) {
-  //   Tooltip
-  //     .style("opacity", 1)
-  //   d3.select(this)
-  //     .style("stroke", "black")
-  //     .style("opacity", 1);
-  // }
-  // var mousemove = function(d) {
-  //   Tooltip
-  //     .html("The hf_score for this<br>year is: " )
-  //     .style("left", (d3.mouse(this)[0]) + "px")
-  //     .style("top", (d3.mouse(this)[1]) + "px");
-  // }
-  // var mouseleave = function(d) {
-  //   Tooltip
-  //     .style("opacity", 0)
-  //   d3.select(this)
-  //     .style("stroke", "none")
-  //     .style("opacity", 0.8)
-  // }
-
   // Drwaing line for country 1, attribute 1
   svg
     .append("path")
@@ -145,10 +114,10 @@ function createLineChart(data, update) {
     .join("circle")
     .attr("cx", (d) => x(d.year))
     .attr("cy", (d) => y(d.hf_score))
-    .attr("r", 3);
-  // .on("mouseover", mouseover)
-  // .on("mousemove", mousemove)
-  // .on("mouseleave", mouseleave);
+    .attr("r", 3)
+    .attr("id", "one")
+    .on("mouseover", handleMouseOver)
+    .on("mouseleave", handleMouseLeave);
 
   // Drwaing line for country 1, attribute 2
   svg
@@ -157,8 +126,6 @@ function createLineChart(data, update) {
     .attr("fill", "none")
     .attr("stroke", "blue")
     .attr("stroke-width", 1.5)
-    // .attr("stroke-linejoin", "round")
-    // .attr("stroke-linecap", "round")
     .attr("d", lineA2);
 
   // dots for line for country 1, attribute 2
@@ -172,21 +139,24 @@ function createLineChart(data, update) {
     .join("circle")
     .attr("cx", (d) => x(d.year))
     .attr("cy", (d) => y(d.pf_ss))
-    .attr("r", 3);
+    .attr("r", 3)
+    .attr("id", "two")
+    .on("mouseover", handleMouseOver)
+    .on("mouseleave", handleMouseLeave);
 
   // Drwaing line for country 2, attribute 1
   svg
     .append("path")
     .datum(dataC2)
     .attr("fill", "none")
-    .attr("stroke", "red")
+    .attr("stroke", "PaleVioletRed")
     .attr("stroke-width", 1.5)
     .attr("d", lineA1);
 
   // dots for line for country 1, attribute 1
   svg
     .append("g")
-    .attr("fill", "red")
+    .attr("fill", "PaleVioletRed")
     .selectAll("circle")
     .data(dataC2, function (d) {
       return d;
@@ -194,7 +164,10 @@ function createLineChart(data, update) {
     .join("circle")
     .attr("cx", (d) => x(d.year))
     .attr("cy", (d) => y(d.hf_score))
-    .attr("r", 3);
+    .attr("r", 3)
+    .attr("id", "three")
+    .on("mouseover", handleMouseOver)
+    .on("mouseleave", handleMouseLeave);
 
   // Drwaing line for country 2, attribute 2
   svg
@@ -203,8 +176,6 @@ function createLineChart(data, update) {
     .attr("fill", "none")
     .attr("stroke", "pink")
     .attr("stroke-width", 1.5)
-    // .attr("stroke-linejoin", "round")
-    // .attr("stroke-linecap", "round")
     .attr("d", lineA2);
 
   // dots for line for country 2, attribute 2
@@ -218,73 +189,9 @@ function createLineChart(data, update) {
     .join("circle")
     .attr("cx", (d) => x(d.year))
     .attr("cy", (d) => y(d.pf_ss))
-    .attr("r", 3);
 
-  // svg.selectAll('circle')
-  // .on('click', function(d, i) {
-  //   console.log("click on", this);
-  //   d3.select(this)
-  //     .transition()
-  //     .attr('fill', '#ff0000');
-  // })
-
-  // svg.selectAll('circle')
-  // .on('mouseover', function(d, i) {
-  //   svg
-  //   .append("text")
-  //   .attr("id", "hoverText")
-  //   .attr("x", 100)
-  //   .attr("y", 200)
-  //   .style("text-anchor", "middle")
-  //   .datum(dataC1, function (d) {
-  //     return d;
-  // })
-  //   .text((d) => ("hf er: " + d[1].hf_score));
-  // })
-
-  // svg.selectAll('circle')
-  // .on('mouseleave', function(d, i) {
-  //   svg.select("#hoverText").remove();
-  // })
-
-  // svg
-  //   .select("g.line")
-  //   .selectAll("circle")
-  //   .dataum(data, function (d) {
-  //     return d;
-  //   })
-  //   .join(
-  //     (enter) => {
-  //       return enter
-  //         .append("circle")
-  //         .attr("cx", (d) => x(d.year))
-  //         .attr("cy", (d) => y(d.hf_score))
-  //         .attr("r", 2)
-  //         .style("fill", "steelblue")
-  //         .text(function (d) {
-  //           return d.year;
-  //         })
-  //       /*
-  //       //Here comes more code when the user can chose country and year
-  //       .on("mouseover", handleMouseOver)
-  //         .on("mouseleave", handleMouseLeave)
-  //         .on("click", handleClick)
-  //         .transition()
-  //         .duration(1000)
-  //         .style("opacity", "100%");
-  //     },
-
-  //       (update) => {
-  //         update
-  //           .transition()
-  //           .duration(1000)
-  //           .attr("cx", (d) => x(d.year))
-  //           .attr("cy", (d) => y(d.hf_score))
-  //           .attr("r", 2)
-  //           .style("fill", "steelblue");*/
-  //   },
-  //   (exit) => {
-  //      exit.remove();
-  //  }
-  // );
+    .attr("r", 3)
+    .attr("id", "four")
+    .on("mouseover", handleMouseOver)
+    .on("mouseleave", handleMouseLeave);
 }
