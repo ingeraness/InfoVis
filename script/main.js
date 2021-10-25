@@ -1,10 +1,11 @@
 // const countries = ['Albania', 'Austria', 'Belgium', 'Bosnia and Herzegovina','Bulgaria', 'Croatia','Cyprus', 'Czech Rebublic', 'Denmark', 'Estonia', 'Finland', 'France', 'Germany', 'Greece', 'Hungary', 'Iceland', 'Ireland', 'Italy', 'Latvia', 'Lithuania', 'Luxembourg', 'Malta', 'Moldova', 'Montenegro', 'Netherlands', 'North Macedonia', 'Norway', 'Poland', 'Portugal', 'Romania', 'Russian Federation',  'Serbia', 'Sloavk Rebublic', 'Slovenia', 'Spain', 'Sweden', 'Switzerland', 'Ukraine', 'United Kingdom' ];
 var chosenCountry1;
 var chosenCountry2;
+var chosenYear;
+var chosenAttribute = "pf_ss";
 
 
 function saveDropdownCountry(i){
-    console.log(i);
     if(i==1){
         chosenCountry1 = document.getElementById("dropdown_country1").value;
         console.log(chosenCountry1);
@@ -28,8 +29,17 @@ function saveDropdownCountry(i){
     .catch((error) => {
         console.log(error);
       });
-    
 }
+
+function saveDropdownYear(){
+  chosenYear = document.getElementById("dropdown_years");
+}
+
+function saveDropdownAttribute(){
+  chosenAttribute = document.getElementById("dropdown_attribute");
+}
+
+
 
 
 

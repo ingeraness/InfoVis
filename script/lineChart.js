@@ -1,6 +1,5 @@
 var country;
 var dataSet;
-var selectedAttribute = "pf_ss";
 
 
 function createLineChart(data, update) {
@@ -38,7 +37,7 @@ function createLineChart(data, update) {
   lineA2 = d3
     .line()
     .x((d) => x(d.year))
-    .y((d) => y(d.pf_ss));
+    .y((d) => y(d.chosenAttribute));
 
   x = d3
     .scaleLinear()
@@ -100,7 +99,7 @@ function createLineChart(data, update) {
     .attr("x", 30)
     .attr("y", 100)
     .style("text-anchor", "middle")
-    .text(selectedAttribute);
+    .text(chosenAttribute);
 
     
   var Tooltip = d3.select("#lineChart")
@@ -183,7 +182,7 @@ function createLineChart(data, update) {
     })
     .join("circle")
     .attr("cx", (d) => x(d.year))
-    .attr("cy", (d) => y(d.pf_ss))
+    .attr("cy", (d) => y(d.chosenAttribute))
     .attr("r", 3);
 
 
@@ -231,7 +230,7 @@ function createLineChart(data, update) {
      })
     .join("circle")
     .attr("cx", (d) => x(d.year))
-    .attr("cy", (d) => y(d.pf_ss))
+    .attr("cy", (d) => y(d.chosenAttribute))
     .attr("r", 3);
   
 
