@@ -32,11 +32,12 @@ function saveDropdownCountry(i){
 }
 
 function saveDropdownYear(){
-  chosenYear = document.getElementById("dropdown_years");
+  chosenYear = document.getElementById("dropdown_years").value;
 }
 
 function saveDropdownAttribute(){
-  chosenAttribute = document.getElementById("dropdown_attribute");
+  chosenAttribute = document.getElementById("dropdown_attribute").value;
+  console.log(chosenAttribute)
 }
 
 
