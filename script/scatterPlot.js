@@ -12,7 +12,7 @@ var selectedYear = 2018;
 //     });
 // }
 
-function createScatterPlot(data) {
+function createScatterPlot(data, update) {
   const width = 400;
   const height = 400;
 
@@ -81,25 +81,29 @@ function createScatterPlot(data) {
           .attr("x2", width - margin.right)
       );
 
+  if (!update) {
+    d3.select("div#scatterPlot")
+      .append("svg")
+      .append("g")
+      .attr("class", "circles")
+      .style("stroke-width", 1.5);
+  }
+
   const svg = d3
     .select("div#scatterPlot")
     .append("svg")
     .attr("width", width)
     .attr("height", height);
 
-  svg.append("g").call(xAxis);
-  svg.append("g").call(yAxis);
-  svg.append("g").call(grid);
-
-  svg
-    .append("text") // text label for the x axis
+  svg // text label for the x axis
+    .append("text")
     .attr("x", width - 40)
     .attr("y", height)
     .style("text-anchor", "middle")
     .text(xAttribute);
 
-  svg
-    .append("text") // text label for the y axis
+  svg // text label for the y axis
+    .append("text")
     .attr("x", 20)
     .attr("y", 15)
     .style("text-anchor", "middle")
@@ -120,4 +124,13 @@ function createScatterPlot(data) {
     })
     .attr("r", 2.5)
     .style("fill", "blue");
+
+  if (!update) {
+    svg.append("g").attr("class", "scatterXAxis");
+    svg.append("g").attr("class", "scatterYAxis");
+    svg.append("g").attr("class", "scatterGrid").call(grid);
+  } else {
+  }
+  d3.select("g.scatterXAxis").call(xAxis);
+  d3.select("g.scatterYAxis").call(yAxis);
 }
