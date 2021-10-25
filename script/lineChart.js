@@ -1,7 +1,6 @@
 var country;
 var dataSet;
 
-
 function createLineChart(data, update) {
   margin = { top: 20, right: 20, bottom: 20, left: 40 };
   width = 400;
@@ -72,7 +71,6 @@ function createLineChart(data, update) {
     .attr("width", width)
     .attr("height", height);
 
-
   if (!update) {
     svg.append("g").attr("class", "lineXAxis");
     svg.append("g").attr("class", "lineYAxis");
@@ -83,11 +81,11 @@ function createLineChart(data, update) {
   svg.select("g.lineYAxis").call(yAxis);
 
   svg
-  .append("text") // text label for the x axis
-  .attr("x", width - 20)
-  .attr("y", height)
-  .style("text-anchor", "middle")
-  .text("Year");
+    .append("text") // text label for the x axis
+    .attr("x", width - 20)
+    .attr("y", height)
+    .style("text-anchor", "middle")
+    .text("Year");
 
   svg
     .append("text") // text label for the y axis
@@ -96,7 +94,6 @@ function createLineChart(data, update) {
     .style("text-anchor", "middle")
     .text("pf_ss");
 
-  
   // Drwaing line for country 1, attribute 1
   svg
     .append("path")
@@ -105,14 +102,14 @@ function createLineChart(data, update) {
     .attr("stroke", "steelblue")
     .attr("stroke-width", 1.5)
     .attr("d", lineA1);
-  
-    // dots for line for country 1, attribute 1
+
+  // dots for line for country 1, attribute 1
   svg
     .append("g")
     .attr("fill", "steelblue")
     .selectAll("circle")
     .data(dataC1, function (d) {
-        return d;
+      return d;
     })
     .join("circle")
     .attr("cx", (d) => x(d.year))
@@ -121,8 +118,6 @@ function createLineChart(data, update) {
     .attr("id", "one")
     .on("mouseover", handleMouseOver)
     .on("mouseleave", handleMouseLeave);
-
-
 
   // Drwaing line for country 1, attribute 2
   svg
@@ -139,7 +134,7 @@ function createLineChart(data, update) {
     .attr("fill", "blue")
     .selectAll("circle")
     .data(dataC1, function (d) {
-        return d;
+      return d;
     })
     .join("circle")
     .attr("cx", (d) => x(d.year))
@@ -149,7 +144,6 @@ function createLineChart(data, update) {
     .on("mouseover", handleMouseOver)
     .on("mouseleave", handleMouseLeave);
 
-
   // Drwaing line for country 2, attribute 1
   svg
     .append("path")
@@ -158,14 +152,14 @@ function createLineChart(data, update) {
     .attr("stroke", "PaleVioletRed")
     .attr("stroke-width", 1.5)
     .attr("d", lineA1);
-  
+
   // dots for line for country 1, attribute 1
   svg
     .append("g")
     .attr("fill", "PaleVioletRed")
     .selectAll("circle")
     .data(dataC2, function (d) {
-        return d;
+      return d;
     })
     .join("circle")
     .attr("cx", (d) => x(d.year))
@@ -174,7 +168,6 @@ function createLineChart(data, update) {
     .attr("id", "three")
     .on("mouseover", handleMouseOver)
     .on("mouseleave", handleMouseLeave);
-
 
   // Drwaing line for country 2, attribute 2
   svg
@@ -185,17 +178,18 @@ function createLineChart(data, update) {
     .attr("stroke-width", 1.5)
     .attr("d", lineA2);
 
-    // dots for line for country 2, attribute 2
-    svg
+  // dots for line for country 2, attribute 2
+  svg
     .append("g")
     .attr("fill", "pink")
     .selectAll("circle")
     .data(dataC2, function (d) {
-         return d;
-     })
+      return d;
+    })
     .join("circle")
     .attr("cx", (d) => x(d.year))
     .attr("cy", (d) => y(d.pf_ss))
+
     .attr("r", 3)
     .attr("id", "four")
     .on("mouseover", handleMouseOver)
