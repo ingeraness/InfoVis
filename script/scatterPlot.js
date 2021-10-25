@@ -1,4 +1,3 @@
-
 function createScatterPlot(data, update) {
   const width = 400;
   const height = 400;
@@ -123,8 +122,10 @@ function createScatterPlot(data, update) {
     .attr("cy", function (d) {
       return y(d[attributesDict[chosenAttributeY]]);
     })
-    .attr("r", 2.5)
-    .style("fill", "blue");
+    .attr("r", 4)
+    .style("fill", "blue")
+    .on("mouseover", handleMouseOver)
+    .on("mouseleave", handleMouseLeave);
 
   if (!update) {
     svg.append("g").attr("class", "scatterXAxis");

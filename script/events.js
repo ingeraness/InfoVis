@@ -1,16 +1,35 @@
 function handleMouseOver(event, d) {
     lineChart = d3.select("div#lineChart").select("svg");
-
+    scatterPlot = d3.select("div#scatterPlot").select("svg");
+    
+    
     lineChart
-      .selectAll(`circle#${event.path[0].id}`)
+      .selectAll(event.path[0].id == "" ? "circle" : `circle#${event.path[0].id}`)
       .filter(function (b) {
         if (d.country == b.country && d.year == b.year ) {
-            
-            console.log(event.path[0].id)
           return b;
         }
       })
       .style("fill", "red");    
+
+    scatterPlot
+        .selectAll("circle")
+        .filter(function (b) {
+            if(d.country == b.country) {
+                console.log("Info om dette landet: " + b.country);
+                console.log("Freedom index: " + b.hf_score);
+                console.log("Freedom rank: " + b.hf_rank);
+                console.log("Women’s Freedom: " + b.pf_ss_women);
+                console.log("Security and Safety: " + b.pf_ss);
+                console.log("Police Reliability: " + b.ef_legal_police);
+                console.log("Criminal trends: " + b.pf_ss_disappearances_violent);
+                console.log("Religious Freedom: " + b.pf_religion_freedom);
+                return b;
+            }
+        })  
+        .style("fill", "red");
+
+
 
 }
 
@@ -44,5 +63,10 @@ function handleMouseLeave(event, d) {
         .selectAll(`circle#${event.path[0].id}`)
         .style("fill", "pink"); 
     }
+
+    d3.select("div#scatterPlot")
+    .select("svg")
+    .selectAll(`circle`)
+    .style("fill", "blue");
 
   }
