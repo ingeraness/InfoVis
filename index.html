@@ -21,7 +21,6 @@
       language="JavaScript"
       type="text/javascript"
       src="script/main.js"
-
     ></script>
     <script
       language="JavaScript"
@@ -31,22 +30,27 @@
     <script
       language="JavaScript"
       type="text/javascript"
-      src="script/scatterPlot.js"    
+      src="script/scatterPlot.js"
     ></script>
     <script
       language="JavaScript"
       type="text/javascript"
-      src="script/barChart.js"    
+      src="script/barChart.js"
     ></script>
     <script
       language="JavaScript"
       type="text/javascript"
-      src="script/lineChart.js"    
+      src="script/lineChart.js"
     ></script>
     <script
       language="JavaScript"
       type="text/javascript"
-      src="script/dropdownMenus.js"    
+      src="script/dropdownMenus.js"
+    ></script>
+    <script
+      language="JavaScript"
+      type="text/javascript"
+      src="script/events.js"    
     ></script>
 
     <!-- CSS -->
@@ -59,17 +63,18 @@
     <div id="header">
     <div id="title"><h1>Freedom Index Europe</h1></div>
 
-    <div id="options">
-    <form id="selected_country" class="options">
-      <label>Selected Country: 
+    <form id="selected_country1">
+      <label
+        >Selected Country:
         <select id="dropdown_country1" onchange="saveDropdownCountry(1)">
           <option value="">No country selected</option>
         </select>
       </label>
     </form>
 
-    <form id="selected_country" class="options">
-      <label>Selected Country: 
+    <form id="selected_country2">
+      <label
+        >Selected Country:
         <select id="dropdown_country2" onchange="saveDropdownCountry(2)">
           <option value="">No country selected</option>
         </select>
@@ -94,9 +99,11 @@
       </label>
     </form>
 
-    <form id="selected_attribute" class="options">
-      <label>Selected Attribute: 
-        <select id="dropdown_years" onchange="saveDropdownAttribute()">
+
+    <form id="selected_attribute" onchange="saveDropdownAttribute()">
+      <label
+        >Selected Attribute:
+        <select id="dropdown_attribute1" onchange="saveDropdownAttribute()">
           <option value="pf_ss">Safety and Security</option>
           <option value="pf_ss_women">Women’s Freedom</option>
           <option value="ef_legal_police">Police Reliability</option>
@@ -112,9 +119,5 @@
     <div id="scatterPlot"></div>
     <div id="barChart"></div>
     <div id="lineChart"></div>
-    <svg id="choroplethMap" width="400" height="300"></svg>
-    <svg id="choroplethMap"></svg>
-    </div>
-    </body>
   </body>
 </html>

@@ -1,38 +1,33 @@
 var country;
 var dataSet;
-var selectedCountry1 = "Ukraine";
-var selectedCountry2 = "Norway";
-var selectedAttribute = pf_ss;
-
-// function init() {
-//     d3.csv("data/data.csv")
-//       .then((data) => {
-//         dataSet = data;
-//         createLineChart(data, false);
-//       })
-//       .catch((error) => {
-//         console.log(error);
-//       });
-//   }
 
 function createLineChart(data, update) {
   margin = { top: 20, right: 20, bottom: 20, left: 40 };
   width = 400;
   height = 400;
 
-  /*var data = data.filter(function (d) {
-    if (d.country == selectedCountry1) {
-      return d;
-    }
-  });*/
+  const keys = Object.keys(data[0]);
+
+  let attributesDict = {
+    "pf_ss" : keys[8].valueOf(),
+    "pf_ss_women": keys[9].valueOf(),
+    "ef_legal_police": keys[10].valueOf(),
+    "pf_ss_disappearances_violent": keys[6].valueOf(),
+    "pf_religion_freedom": keys[7].valueOf(),
+    "hf_score": keys[4].valueOf()
+  }
+
+  var svg = d3.select("div#lineChart").select("svg");
+  svg.selectAll("*").remove();  // Remove the old vis before drawing the new vis with new countries
 
   var dataC1 = data.filter(function (d) {
-    if (d.country == selectedCountry1) {
+    if (d.country == chosenCountry1) {
       return d;
     }
   });
+
   var dataC2 = data.filter(function (d) {
-    if (d.country == selectedCountry2) {
+    if (d.country == chosenCountry2) {
       return d;
     }
   });
@@ -41,13 +36,13 @@ function createLineChart(data, update) {
   lineA1 = d3
     .line()
     .x((d) => x(d.year))
-    .y((d) => y(d.hf_score));
+    .y((d) => y(d.hf_score)); // Always this attribute
 
   // Values for selected attribute 2
   lineA2 = d3
     .line()
     .x((d) => x(d.year))
-    .y((d) => y(d.pf_ss));
+    .y((d) => y(d[attributesDict[chosenAttributeX]])); //Dependent on which attribute is selected
 
   x = d3
     .scaleLinear()
@@ -57,10 +52,10 @@ function createLineChart(data, update) {
   y = d3
     .scaleLinear()
     .domain([0, 10])
-    .range([height - margin.bottom, margin.top + 100]);
+    .range([height - margin.bottom - 15, margin.top + 100]);
 
   xAxis = (g) =>
-    g.attr("transform", `translate(0,${height - margin.bottom})`).call(
+    g.attr("transform", `translate(0,${height - margin.bottom - 15})`).call(
       d3
         .axisBottom(x)
         .tickFormat((x) => x)
@@ -81,8 +76,7 @@ function createLineChart(data, update) {
       .attr("class", "line")
       .append("path");
   }
-
-  const svg = d3
+  svg = d3
     .select("div#lineChart")
     .select("svg")
     .attr("width", width)
@@ -97,6 +91,21 @@ function createLineChart(data, update) {
 
   svg.select("g.lineYAxis").call(yAxis);
 
+  svg
+    .append("text") // text label for the x axis
+    .attr("x", width - 20)
+    .attr("y", height)
+    .style("text-anchor", "middle")
+    .text("Year");
+
+  /* It is better to show this info in the header instead of on the axis because we have two attributes
+  svg 
+    .append("text") // text label for the y axis
+    .attr("x", 30)
+    .attr("y", 100)
+    .style("text-anchor", "middle")
+    .text("pf_ss");*/
+
   // Drwaing line for country 1, attribute 1
   svg
     .append("path")
@@ -106,74 +115,95 @@ function createLineChart(data, update) {
     .attr("stroke-width", 1.5)
     .attr("d", lineA1);
 
+  // dots for line for country 1, attribute 1
+  svg
+    .append("g")
+    .attr("fill", "steelblue")
+    .selectAll("circle")
+    .data(dataC1, function (d) {
+      return d;
+    })
+    .join("circle")
+    .attr("cx", (d) => x(d.year))
+    .attr("cy", (d) => y(d.hf_score))
+    .attr("r", 3)
+    .attr("id", "one")
+    .on("mouseover", handleMouseOver)
+    .on("mouseleave", handleMouseLeave);
+
   // Drwaing line for country 1, attribute 2
   svg
-    .select("path")
+    .append("path")
     .datum(dataC1)
     .attr("fill", "none")
     .attr("stroke", "blue")
     .attr("stroke-width", 1.5)
-    .attr("stroke-linejoin", "round")
-    .attr("stroke-linecap", "round")
     .attr("d", lineA2);
+
+  // dots for line for country 1, attribute 2
+  svg
+    .append("g")
+    .attr("fill", "blue")
+    .selectAll("circle")
+    .data(dataC1, function (d) {
+      return d;
+    })
+    .join("circle")
+    .attr("cx", (d) => x(d.year))
+    .attr("cy", (d) => y(d[attributesDict[chosenAttributeX]]))
+    .attr("r", 3)
+    .attr("id", "two")
+    .on("mouseover", handleMouseOver)
+    .on("mouseleave", handleMouseLeave);
 
   // Drwaing line for country 2, attribute 1
   svg
     .append("path")
     .datum(dataC2)
     .attr("fill", "none")
-    .attr("stroke", "red")
+    .attr("stroke", "PaleVioletRed")
     .attr("stroke-width", 1.5)
     .attr("d", lineA1);
 
+  // dots for line for country 1, attribute 1
+  svg
+    .append("g")
+    .attr("fill", "PaleVioletRed")
+    .selectAll("circle")
+    .data(dataC2, function (d) {
+      return d;
+    })
+    .join("circle")
+    .attr("cx", (d) => x(d.year))
+    .attr("cy", (d) => y(d.hf_score))
+    .attr("r", 3)
+    .attr("id", "three")
+    .on("mouseover", handleMouseOver)
+    .on("mouseleave", handleMouseLeave);
+
   // Drwaing line for country 2, attribute 2
   svg
-    .select("path")
+    .append("path")
     .datum(dataC2)
     .attr("fill", "none")
     .attr("stroke", "pink")
     .attr("stroke-width", 1.5)
-    .attr("stroke-linejoin", "round")
-    .attr("stroke-linecap", "round")
     .attr("d", lineA2);
 
-  // dots for line for country 1, attribute 1
+  // dots for line for country 2, attribute 2
   svg
-    .select("g.line")
+    .append("g")
+    .attr("fill", "pink")
     .selectAll("circle")
-    .data(dataC1)
-    .join(
-      (enter) => {
-        return enter
-          .append("circle")
-          .attr("cx", (d) => x(d.year))
-          .attr("cy", (d) => y(d.hf_score))
-          .attr("r", 2)
-          .style("fill", "steelblue")
-          .text(function (d) {
-            return d.title;
-          });
-        /*
-        //Here comes more code when the user can chose country and year
-        .on("mouseover", handleMouseOver)
-          .on("mouseleave", handleMouseLeave)
-          .on("click", handleClick)
-          .transition()
-          .duration(1000)
-          .style("opacity", "100%");
-      },
-        
-        (update) => {
-          update
-            .transition()
-            .duration(1000)
-            .attr("cx", (d) => x(d.year))
-            .attr("cy", (d) => y(d.hf_score))
-            .attr("r", 2)
-            .style("fill", "steelblue");*/
-      },
-      (exit) => {
-        exit.remove();
-      }
-    );
+    .data(dataC2, function (d) {
+      return d;
+    })
+    .join("circle")
+    .attr("cx", (d) => x(d.year))
+    .attr("cy", (d) => y(d[attributesDict[chosenAttributeX]]))
+
+    .attr("r", 3)
+    .attr("id", "four")
+    .on("mouseover", handleMouseOver)
+    .on("mouseleave", handleMouseLeave);
 }
