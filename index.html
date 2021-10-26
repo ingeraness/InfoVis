@@ -54,28 +54,30 @@
   </head>
 
   <body onload="init()">
+
+  <div class = "grid">
+    <div id="header">
     <div id="title"><h1>Freedom Index Europe</h1></div>
 
-    <form id="selected_country">
-      <label>Selected Country:
+    <div id="options">
+    <form id="selected_country" class="options">
+      <label>Selected Country: 
         <select id="dropdown_country1" onchange="saveDropdownCountry(1)">
           <option value="">No country selected</option>
-        
         </select>
       </label>
     </form>
 
-    <form id="selected_country">
-      <label>Selected Country:
+    <form id="selected_country" class="options">
+      <label>Selected Country: 
         <select id="dropdown_country2" onchange="saveDropdownCountry(2)">
           <option value="">No country selected</option>
-        
         </select>
       </label>
     </form>
 
-    <form id="selected_country">
-      <label>Selected Year:
+    <form id="selected_year" class="option">
+      <label>Selected Year: 
         <select id="dropdown_years" onchange="saveDropdownYear()">
           <option value="2018">2018</option>
           <option value="2017">2017</option>
@@ -92,8 +94,8 @@
       </label>
     </form>
 
-    <form id="selected_attribute">
-      <label>Selected Attribute:
+    <form id="selected_attribute" class="options">
+      <label>Selected Attribute: 
         <select id="dropdown_years" onchange="saveDropdownAttribute()">
           <option value="pf_ss">Safety and Security</option>
           <option value="pf_ss_women">Women’s Freedom</option>
@@ -104,11 +106,15 @@
         </select>
       </label>
     </form>
+  </div>
+  </div>
 
     <div id="scatterPlot"></div>
     <div id="barChart"></div>
     <div id="lineChart"></div>
     <svg id="choroplethMap" width="400" height="300"></svg>
     <svg id="choroplethMap"></svg>
+    </div>
+    </body>
   </body>
 </html>
