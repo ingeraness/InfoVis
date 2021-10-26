@@ -6,6 +6,15 @@ var chosenAttributeX = "pf_ss";
 var chosenAttributeY = "pf_religion_freedom";
 var update = false;
 
+var labelsDict = {
+  pf_ss: "Safety and Security",
+  pf_ss_women: "Women’s Freedom",
+  ef_legal_police: "Police Reliability",
+  pf_ss_disappearances_violent: "Criminal Trends",
+  pf_religion_freedom: "Religious Freedom",
+  hf_score: "Freedom Index",
+};
+
 function saveDropdownCountry(i) {
   if (i == 1) {
     chosenCountry1 = document.getElementById("dropdown_country1").value;
