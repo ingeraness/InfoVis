@@ -45,6 +45,7 @@ function saveDropdownAttribute() {
     .then((data) => {
       // d3.select("div#scatterPlot").selectAll("svg").select("g#circles").remove(); //Remove old chart
       createScatterPlot(data, true);
+      createLineChart(data, false);
   });
 }
 

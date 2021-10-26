@@ -6,6 +6,17 @@ function createLineChart(data, update) {
   width = 400;
   height = 400;
 
+  const keys = Object.keys(data[0]);
+
+  let attributesDict = {
+    "pf_ss" : keys[8].valueOf(),
+    "pf_ss_women": keys[9].valueOf(),
+    "ef_legal_police": keys[10].valueOf(),
+    "pf_ss_disappearances_violent": keys[6].valueOf(),
+    "pf_religion_freedom": keys[7].valueOf(),
+    "hf_score": keys[4].valueOf()
+  }
+
   var svg = d3.select("div#lineChart").select("svg");
   svg.selectAll("*").remove();  // Remove the old vis before drawing the new vis with new countries
 
@@ -25,13 +36,13 @@ function createLineChart(data, update) {
   lineA1 = d3
     .line()
     .x((d) => x(d.year))
-    .y((d) => y(d.hf_score));
+    .y((d) => y(d.hf_score)); // Always this attribute
 
   // Values for selected attribute 2
   lineA2 = d3
     .line()
     .x((d) => x(d.year))
-    .y((d) => y(d.pf_ss));
+    .y((d) => y(d[attributesDict[chosenAttributeX]])); //Dependent on which attribute is selected
 
   x = d3
     .scaleLinear()
@@ -87,12 +98,13 @@ function createLineChart(data, update) {
     .style("text-anchor", "middle")
     .text("Year");
 
-  svg
+  /* It is better to show this info in the header instead of on the axis because we have two attributes
+  svg 
     .append("text") // text label for the y axis
     .attr("x", 30)
     .attr("y", 100)
     .style("text-anchor", "middle")
-    .text("pf_ss");
+    .text("pf_ss");*/
 
   // Drwaing line for country 1, attribute 1
   svg
@@ -138,7 +150,7 @@ function createLineChart(data, update) {
     })
     .join("circle")
     .attr("cx", (d) => x(d.year))
-    .attr("cy", (d) => y(d.pf_ss))
+    .attr("cy", (d) => y(d[attributesDict[chosenAttributeX]]))
     .attr("r", 3)
     .attr("id", "two")
     .on("mouseover", handleMouseOver)
@@ -188,7 +200,7 @@ function createLineChart(data, update) {
     })
     .join("circle")
     .attr("cx", (d) => x(d.year))
-    .attr("cy", (d) => y(d.pf_ss))
+    .attr("cy", (d) => y(d[attributesDict[chosenAttributeX]]))
 
     .attr("r", 3)
     .attr("id", "four")
