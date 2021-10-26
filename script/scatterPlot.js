@@ -1,4 +1,3 @@
-
 function createScatterPlot(data, update) {
   const width = 400;
   const height = 400;
@@ -16,13 +15,13 @@ function createScatterPlot(data, update) {
   const keys = Object.keys(data[0]);
 
   let attributesDict = {
-    "pf_ss" : keys[8].valueOf(),
-    "pf_ss_women": keys[9].valueOf(),
-    "ef_legal_police": keys[10].valueOf(),
-    "pf_ss_disappearances_violent": keys[6].valueOf(),
-    "pf_religion_freedom": keys[7].valueOf(),
-    "hf_score": keys[4].valueOf()
-  }
+    pf_ss: keys[8].valueOf(),
+    pf_ss_women: keys[9].valueOf(),
+    ef_legal_police: keys[10].valueOf(),
+    pf_ss_disappearances_violent: keys[6].valueOf(),
+    pf_religion_freedom: keys[7].valueOf(),
+    hf_score: keys[4].valueOf(),
+  };
 
   x = d3
     .scaleLinear()
@@ -136,4 +135,6 @@ function createScatterPlot(data, update) {
   }
   d3.select("g.scatterXAxis").call(xAxis);
   d3.select("g.scatterYAxis").call(yAxis);
+
+  markSelectedCountries(); //Mark the countries selected in the drop down menus
 }
