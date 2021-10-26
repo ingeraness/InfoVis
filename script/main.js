@@ -25,20 +25,6 @@ function saveDropdownCountry(i) {
       ) {
         d3.select("div#lineChart").select("svg").remove(); //Remove old chart
         createBarChart(data, false);
-      } else if (
-        (chosenCountry1 != undefined || chosenCountry1 != "") &&
-        (chosenCountry2 == undefined || chosenCountry2 == "")
-      ) {
-        d3.select("div#barChart").select("svg").remove(); //Remove old chart
-        d3.select("div#lineChart").select("svg").remove(); //Remove old chart
-        createLineChart(data, false);
-      } else if (
-        (chosenCountry1 == undefined || chosenCountry1 == "") &&
-        (chosenCountry2 != undefined || chosenCountry2 != "")
-      ) {
-        d3.select("div#barChart").select("svg").remove(); //Remove old chart
-        d3.select("div#lineChart").select("svg").remove(); //Remove old chart
-        createLineChart(data, false);
       } else {
         d3.select("div#barChart").select("svg").remove(); //Remove old chart
         d3.select("div#lineChart").select("svg").remove(); //Remove old chart
@@ -52,7 +38,6 @@ function saveDropdownCountry(i) {
 
 function saveDropdownYear() {
   chosenYear = document.getElementById("dropdown_years").value;
-
   // Check if it should draw the lineChart or barChart
   d3.csv("data/data.csv").then((data) => {
     d3.select("div#scatterPlot")
@@ -60,6 +45,7 @@ function saveDropdownYear() {
       .selectAll("#removeOnUpdate")
       .remove(); //Remove old chart
     createScatterPlot(data, true);
+    markSelectedCountries();
     if (
       (chosenCountry1 == undefined || chosenCountry1 == "") &&
       (chosenCountry2 == undefined || chosenCountry2 == "")
@@ -90,6 +76,7 @@ function saveDropdownAttribute() {
   d3.csv("data/data.csv").then((data) => {
     // d3.select("div#scatterPlot").selectAll("svg").select("g#circles").remove(); //Remove old chart
     createScatterPlot(data, true);
+    markSelectedCountries();
     createLineChart(data, false);
   });
 }
