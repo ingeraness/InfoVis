@@ -72,7 +72,13 @@ function handleMouseLeave(event, d) {
   d3.select("div#scatterPlot")
     .select("svg")
     .selectAll(`circle`)
-    .style("fill", "blue");
+    .style("fill", "blue")
+    .filter(function (b) {
+      if (b.country == chosenCountry1 || b.country == chosenCountry2) {
+        return b;
+      }
+    })
+    .style("fill", "green");
 
   d3.select("div#barChart")
     .select("svg")

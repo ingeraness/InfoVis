@@ -7,7 +7,7 @@
 //     });
 // }
 
-function createBarChart(data) {
+function createBarChart(data, update) {
   width = 800;
   height = 300;
   const selectedYear = 2018;
@@ -58,6 +58,7 @@ function createBarChart(data) {
 
   svg
     .append("g")
+    .attr("id", "removeOnUpdate")
     .attr("class", "bars")
     .attr("fill", "steelblue")
     .selectAll("rect")

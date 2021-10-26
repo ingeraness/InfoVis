@@ -9,9 +9,11 @@ var update = false;
 function saveDropdownCountry(i) {
   if (i == 1) {
     chosenCountry1 = document.getElementById("dropdown_country1").value;
+    console.log("CHANGED C1");
     markSelectedCountries();
   } else {
     chosenCountry2 = document.getElementById("dropdown_country2").value;
+    console.log("CHANGED C2");
     markSelectedCountries();
   }
   // Check if it should draw the lineChart or barChart
@@ -22,7 +24,21 @@ function saveDropdownCountry(i) {
         (chosenCountry2 == undefined || chosenCountry2 == "")
       ) {
         d3.select("div#lineChart").select("svg").remove(); //Remove old chart
-        createBarChart(data);
+        createBarChart(data, false);
+      } else if (
+        (chosenCountry1 != undefined || chosenCountry1 != "") &&
+        (chosenCountry2 == undefined || chosenCountry2 == "")
+      ) {
+        d3.select("div#barChart").select("svg").remove(); //Remove old chart
+        d3.select("div#lineChart").select("svg").remove(); //Remove old chart
+        createLineChart(data, false);
+      } else if (
+        (chosenCountry1 == undefined || chosenCountry1 == "") &&
+        (chosenCountry2 != undefined || chosenCountry2 != "")
+      ) {
+        d3.select("div#barChart").select("svg").remove(); //Remove old chart
+        d3.select("div#lineChart").select("svg").remove(); //Remove old chart
+        createLineChart(data, false);
       } else {
         d3.select("div#barChart").select("svg").remove(); //Remove old chart
         d3.select("div#lineChart").select("svg").remove(); //Remove old chart
@@ -52,7 +68,11 @@ function saveDropdownYear() {
         .select("svg")
         .selectAll("#removeOnUpdate")
         .remove(); //Remove old chart
-      createBarChart(data);
+      createBarChart(data, false);
+    } else {
+      d3.select("div#barChart").select("svg").remove(); //Remove old chart
+      d3.select("div#lineChart").select("svg").remove(); //Remove old chart
+      createLineChart(data, false);
     }
   });
 }
@@ -78,7 +98,7 @@ function init() {
   d3.csv("data/data.csv")
     .then((data) => {
       createScatterPlot(data, false);
-      createBarChart(data);
+      createBarChart(data, false);
       createDropDownMenus();
     })
     .catch((error) => {
