@@ -10,9 +10,11 @@ function saveDropdownCountry(i) {
   if (i == 1) {
     chosenCountry1 = document.getElementById("dropdown_country1").value;
     console.log(chosenCountry1);
+    markSelectedCountries();
   } else {
     chosenCountry2 = document.getElementById("dropdown_country2").value;
     console.log(chosenCountry2);
+    markSelectedCountries();
   }
   // Check if it should draw the lineChart or barChart
   d3.csv("data/data.csv")
@@ -38,14 +40,16 @@ function saveDropdownYear() {
 }
 
 function saveDropdownAttribute() {
-  d3.select("div#scatterPlot").selectAll("svg").selectAll("#removeOnUpdate").remove(); //Remove old chart
+  d3.select("div#scatterPlot")
+    .selectAll("svg")
+    .selectAll("#removeOnUpdate")
+    .remove(); //Remove old chart
   chosenAttributeX = document.getElementById("dropdown_attribute1").value;
-  console.log("ATTR X: ", chosenAttributeX)
-  d3.csv("data/data.csv")
-    .then((data) => {
-      // d3.select("div#scatterPlot").selectAll("svg").select("g#circles").remove(); //Remove old chart
-      createScatterPlot(data, true);
-      createLineChart(data, false);
+  console.log("ATTR X: ", chosenAttributeX);
+  d3.csv("data/data.csv").then((data) => {
+    // d3.select("div#scatterPlot").selectAll("svg").select("g#circles").remove(); //Remove old chart
+    createScatterPlot(data, true);
+    createLineChart(data, false);
   });
 }
 
