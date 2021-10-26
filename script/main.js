@@ -9,11 +9,9 @@ var update = false;
 function saveDropdownCountry(i) {
   if (i == 1) {
     chosenCountry1 = document.getElementById("dropdown_country1").value;
-    console.log(chosenCountry1);
     markSelectedCountries();
   } else {
     chosenCountry2 = document.getElementById("dropdown_country2").value;
-    console.log(chosenCountry2);
     markSelectedCountries();
   }
   // Check if it should draw the lineChart or barChart
@@ -27,6 +25,7 @@ function saveDropdownCountry(i) {
         createBarChart(data);
       } else {
         d3.select("div#barChart").select("svg").remove(); //Remove old chart
+        d3.select("div#lineChart").select("svg").remove(); //Remove old chart
         createLineChart(data, false);
       }
     })
@@ -36,7 +35,26 @@ function saveDropdownCountry(i) {
 }
 
 function saveDropdownYear() {
-  chosenYear = document.getElementById("dropdown_years");
+  chosenYear = document.getElementById("dropdown_years").value;
+
+  // Check if it should draw the lineChart or barChart
+  d3.csv("data/data.csv").then((data) => {
+    d3.select("div#scatterPlot")
+      .selectAll("svg")
+      .selectAll("#removeOnUpdate")
+      .remove(); //Remove old chart
+    createScatterPlot(data, true);
+    if (
+      (chosenCountry1 == undefined || chosenCountry1 == "") &&
+      (chosenCountry2 == undefined || chosenCountry2 == "")
+    ) {
+      d3.select("div#lineChart")
+        .select("svg")
+        .selectAll("#removeOnUpdate")
+        .remove(); //Remove old chart
+      createBarChart(data);
+    }
+  });
 }
 
 function saveDropdownAttribute() {
@@ -44,8 +62,11 @@ function saveDropdownAttribute() {
     .selectAll("svg")
     .selectAll("#removeOnUpdate")
     .remove(); //Remove old chart
+  d3.select("div#lineChart")
+    .select("svg")
+    .selectAll("#removeOnUpdate")
+    .remove(); //Remove old chart
   chosenAttributeX = document.getElementById("dropdown_attribute1").value;
-  console.log("ATTR X: ", chosenAttributeX);
   d3.csv("data/data.csv").then((data) => {
     // d3.select("div#scatterPlot").selectAll("svg").select("g#circles").remove(); //Remove old chart
     createScatterPlot(data, true);
