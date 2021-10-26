@@ -63,7 +63,9 @@ function createBarChart(data) {
         .attr("x", (d, i) => x(d.ISO_code))
         .attr("y", (d, i) => y(d.hf_score))  
         .attr("height", (d) => ((height  - margin.bottom) - y(d.hf_score)))
-        .attr("width", x.bandwidth());
+        .attr("width", x.bandwidth())
+        .on("mouseover", handleMouseOver)
+        .on("mouseleave", handleMouseLeave);
 
 
     svg.append("g").attr("class", "xAxis").call(xAxis);
