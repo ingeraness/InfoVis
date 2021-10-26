@@ -6,9 +6,18 @@ body {
   font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
 }
 
+h2{
+  margin-left: 20%;
+  margin-bottom: -1%;
+}
+
 div {
   width: 100%;
   float: left;
+}
+
+.grid{
+  display: grid;
 }
 .header > div{
   padding: 1em;
@@ -17,8 +26,14 @@ div {
 .header{
   
   display: grid;
-  grid-template-columns: 70% 30%;
+  grid-template-columns: 30% 70%;
 }
+
+.options{
+  display: grid;
+  grid-template-columns: 30% 30% 30%;
+}
+
 /*
 .flex-container {
   display: flex;
