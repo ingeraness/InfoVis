@@ -6,15 +6,20 @@ var chosenAttributeX = "pf_ss";
 var chosenAttributeY = "pf_religion_freedom";
 var update = false;
 
+var labelsDict = {
+  pf_ss: "Safety and Security",
+  pf_ss_women: "Women’s Freedom",
+  ef_legal_police: "Police Reliability",
+  pf_ss_disappearances_violent: "Criminal Trends",
+  pf_religion_freedom: "Religious Freedom",
+  hf_score: "Freedom Index",
+};
+
 function saveDropdownCountry(i) {
   if (i == 1) {
     chosenCountry1 = document.getElementById("dropdown_country1").value;
-    console.log("CHANGED C1");
-    markSelectedCountries();
   } else {
     chosenCountry2 = document.getElementById("dropdown_country2").value;
-    console.log("CHANGED C2");
-    markSelectedCountries();
   }
   // Check if it should draw the lineChart or barChart
   d3.csv("data/data.csv")
@@ -63,7 +68,12 @@ function saveDropdownYear() {
   });
 }
 
-function saveDropdownAttribute() {
+function saveDropdownAttribute(i) {
+  if (i == 1) {
+    chosenAttributeX = document.getElementById("dropdown_attribute1").value;
+  } else {
+    chosenAttributeY = document.getElementById("dropdown_attribute2").value;
+  }
   d3.select("div#scatterPlot")
     .selectAll("svg")
     .selectAll("#removeOnUpdate")
@@ -72,12 +82,18 @@ function saveDropdownAttribute() {
     .select("svg")
     .selectAll("#removeOnUpdate")
     .remove(); //Remove old chart
-  chosenAttributeX = document.getElementById("dropdown_attribute1").value;
   d3.csv("data/data.csv").then((data) => {
     // d3.select("div#scatterPlot").selectAll("svg").select("g#circles").remove(); //Remove old chart
     createScatterPlot(data, true);
     markSelectedCountries();
-    createLineChart(data, false);
+    if (
+      (chosenCountry1 == undefined || chosenCountry1 == "") &&
+      (chosenCountry2 == undefined || chosenCountry2 == "")
+    ) {
+      createBarChart(data, false);
+    } else {
+      createLineChart(data, false);
+    }
   });
 }
 
