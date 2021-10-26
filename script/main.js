@@ -86,6 +86,7 @@ function init() {
     .then((data) => {
       createScatterPlot(data, false);
       createBarChart(data, false);
+      markSelectedCountries();
       createDropDownMenus();
     })
     .catch((error) => {

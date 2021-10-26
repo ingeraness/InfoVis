@@ -3,6 +3,8 @@ function handleMouseOver(event, d) {
   scatterPlot = d3.select("div#scatterPlot").select("svg");
   barChart = d3.select("div#barChart").select("svg");
 
+  markSelectedCountries(); //Mark the countries selected in the drop down menus
+
   lineChart
     .selectAll(event.path[0].id == "" ? "circle" : `circle#${event.path[0].id}`)
     .filter(function (b) {
@@ -87,6 +89,7 @@ function handleMouseLeave(event, d) {
 }
 
 function markSelectedCountries() {
+  //Marks the countries selected in the drop down menus
   scatterPlot = d3.select("div#scatterPlot").select("svg");
 
   scatterPlot

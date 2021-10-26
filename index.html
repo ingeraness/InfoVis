@@ -58,9 +58,13 @@
   </head>
 
   <body onload="init()">
+
+  <div class = "grid">
+    <div id="header" class="header">
     <div id="title"><h1>Freedom Index Europe</h1></div>
 
-    <form id="selected_country1">
+    <div class="options">
+    <form id="selected_country1" class="option">
       <label
         >Selected Country:
         <select id="dropdown_country1" onchange="saveDropdownCountry(1)">
@@ -69,18 +73,27 @@
       </label>
     </form>
 
-    <form id="selected_country2">
+    
+
+    
+
+
+    <form id="selected_attribute" class = "option" onchange="saveDropdownAttribute()">
       <label
-        >Selected Country:
-        <select id="dropdown_country2" onchange="saveDropdownCountry(2)">
-          <option value="">No country selected</option>
+        >Selected Attribute:
+        <select id="dropdown_attribute1" onchange="saveDropdownAttribute()">
+          <option value="pf_ss">Safety and Security</option>
+          <option value="pf_ss_women">Women’s Freedom</option>
+          <option value="ef_legal_police">Police Reliability</option>
+          <option value="pf_ss_disappearances_violent">Criminal Trends</option>
+          <option value="pf_religion_freedom">Religious Freedom</option>
+          <option value="hf_score">Freedom Index</option>
         </select>
       </label>
     </form>
 
-    <form id="selected_year">
-      <label
-        >Selected Year:
+    <form id="selected_year" class="option">
+      <label>Selected Year: 
         <select id="dropdown_years" onchange="saveDropdownYear()">
           <option value="2018">2018</option>
           <option value="2017">2017</option>
@@ -97,11 +110,19 @@
       </label>
     </form>
 
+    <form id="selected_country2" class="option">
+      <label
+        >Selected Country:
+        <select id="dropdown_country2" onchange="saveDropdownCountry(2)">
+          <option value="">No country selected</option>
+        </select>
+      </label>
+    </form>
 
-    <form id="selected_attribute" onchange="saveDropdownAttribute()">
+    <form id="selected_attribute" class = "option" onchange="saveDropdownAttribute()">
       <label
         >Selected Attribute:
-        <select id="dropdown_attribute1" onchange="saveDropdownAttribute()">
+        <select id="dropdown_attribute2" onchange="saveDropdownAttribute()">
           <option value="pf_ss">Safety and Security</option>
           <option value="pf_ss_women">Women’s Freedom</option>
           <option value="ef_legal_police">Police Reliability</option>
@@ -111,9 +132,16 @@
         </select>
       </label>
     </form>
-
+  </div>
+  </div>
+  </div>
+    <div id = "choroplot">
+    </div>
     <div id="scatterPlot"></div>
-    <div id="barChart"></div>
+    <div id= "cleveland-dot-plot"></div>
+    <div id="barChart">
+      <h2>VS Freedom Index</h2>
+    </div>
     <div id="lineChart"></div>
   </body>
 </html>
