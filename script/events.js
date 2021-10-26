@@ -1,6 +1,7 @@
 function handleMouseOver(event, d) {
     lineChart = d3.select("div#lineChart").select("svg");
     scatterPlot = d3.select("div#scatterPlot").select("svg");
+    barChart = d3.select("div#barChart").select("svg");
     
     
     lineChart
@@ -28,9 +29,15 @@ function handleMouseOver(event, d) {
             }
         })  
         .style("fill", "red");
-
-
-
+    
+    barChart
+        .selectAll('rect')
+        .filter(function (b) {
+          if (d.country == b.country) {
+            return b;
+          }
+        })
+        .style("fill", "red");
 }
 
 
@@ -68,5 +75,10 @@ function handleMouseLeave(event, d) {
     .select("svg")
     .selectAll(`circle`)
     .style("fill", "blue");
+
+    d3.select("div#barChart")
+    .select("svg")
+    .selectAll("rect")
+    .style("fill", "steelblue");
 
   }
