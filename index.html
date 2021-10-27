@@ -95,65 +95,81 @@
             </label>
           </form>
 
-          <form id="selected_year" class="option">
-            <label
-              >Selected Year:
-              <select id="dropdown_years" onchange="saveDropdownYear()">
-                <option value="2018">2018</option>
-                <option value="2017">2017</option>
-                <option value="2016">2016</option>
-                <option value="2015">2015</option>
-                <option value="2014">2014</option>
-                <option value="2013">2013</option>
-                <option value="2012">2012</option>
-                <option value="2011">2011</option>
-                <option value="2010">2010</option>
-                <option value="2009">2009</option>
-                <option value="2008">2008</option>
-              </select>
-            </label>
-          </form>
+    <form id="selected_attribute" class = "option" onchange="saveDropdownAttribute()">
+      <label
+        >Selected Attribute:
+        <select id="dropdown_attribute1" onchange="saveDropdownAttribute()">
+          <option value="pf_ss">Safety and Security</option>
+          <option value="pf_ss_women">Women’s Freedom</option>
+          <option value="ef_legal_police">Police Reliability</option>
+          <option value="pf_ss_disappearances_violent">Criminal Trends</option>
+          <option value="pf_religion_freedom">Religious Freedom</option>
+          <option value="hf_score">Freedom Index</option>
+        </select>
+      </label>
+    </form>
 
-          <form id="selected_country2" class="option">
-            <label
-              >Selected Country:
-              <select id="dropdown_country2" onchange="saveDropdownCountry(2)">
-                <option value="">No country selected</option>
-              </select>
-            </label>
-          </form>
+    <form id="selected_year" class="option">
+      <label>Selected Year: 
+        <select id="dropdown_years" onchange="saveDropdownYear()">
+          <option value="2018">2018</option>
+          <option value="2017">2017</option>
+          <option value="2016">2016</option>
+          <option value="2015">2015</option>
+          <option value="2014">2014</option>
+          <option value="2013">2013</option>
+          <option value="2012">2012</option>
+          <option value="2011">2011</option>
+          <option value="2010">2010</option>
+          <option value="2009">2009</option>
+          <option value="2008">2008</option>
+        </select>
+      </label>
+    </form>
 
-          <form
-            id="selected_attribute2"
-            class="option"
-            onchange="saveDropdownAttribute(2)"
-          >
-            <label
-              >Selected Attribute:
-              <select
-                id="dropdown_attribute2"
-                onchange="saveDropdownAttribute()"
-              >
-                <option value="pf_ss">Safety and Security</option>
-                <option value="pf_ss_women">Women’s Freedom</option>
-                <option value="ef_legal_police">Police Reliability</option>
-                <option value="pf_ss_disappearances_violent">
-                  Criminal Trends
-                </option>
-                <option value="pf_religion_freedom">Religious Freedom</option>
-                <option value="hf_score">Freedom Index</option>
-              </select>
-            </label>
-          </form>
-        </div>
-      </div>
+    <form id="selected_country2" class="option">
+      <label
+        >Selected Country:
+        <select id="dropdown_country2" onchange="saveDropdownCountry(2)">
+          <option value="">No country selected</option>
+        </select>
+      </label>
+    </form>
+
+    <form id="selected_attribute" class = "option" onchange="saveDropdownAttribute()">
+      <label
+        >Selected Attribute:
+        <select id="dropdown_attribute2" onchange="saveDropdownAttribute()">
+          <option value="pf_ss">Safety and Security</option>
+          <option value="pf_ss_women">Women’s Freedom</option>
+          <option value="ef_legal_police">Police Reliability</option>
+          <option value="pf_ss_disappearances_violent">Criminal Trends</option>
+          <option value="pf_religion_freedom">Religious Freedom</option>
+          <option value="hf_score">Freedom Index</option>
+        </select>
+      </label>
+    </form>
+  </div>
+  </div>
+  <div class = "plots">
+  
+    <div id = "choroplot"  >
+      <img src="data/map.jpg" width="400" height="400"/>
     </div>
-    <div id="choroplot"></div>
-    <div id="scatterPlot"></div>
-    <div id="cleveland-dot-plot"></div>
+    <div id="scatterPlot" ></div>
+    <div id= "cleveland-dot-plot" >
+      <img src="data/cleveland-dot-plot.jpg"  width="300" height="700"/>
+    </div>
+ 
+  <div class="second-row">
+
     <div id="barChart">
-      <h2>VS Freedom Index</h2>
+      <h2>VS Freedom</h2>
     </div>
     <div id="lineChart"></div>
+  </div> 
+</div>
+</div>  
+ 
   </body>
 </html>
