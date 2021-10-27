@@ -3,8 +3,8 @@ var dataSet;
 
 function createLineChart(data, update) {
   margin = { top: 20, right: 20, bottom: 20, left: 40 };
-  width = 400;
-  height = 400;
+  width = 800;
+  height = 300;
 
   const keys = Object.keys(data[0]);
 
