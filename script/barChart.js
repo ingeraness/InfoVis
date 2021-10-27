@@ -58,7 +58,6 @@ function createBarChart(data, update) {
 
   svg
     .append("g")
-    .attr("id", "removeOnUpdate")
     .attr("class", "bars")
     .attr("fill", "steelblue")
     .selectAll("rect")
@@ -70,6 +69,7 @@ function createBarChart(data, update) {
     .attr("y", (d, i) => y(d.hf_score))
     .attr("height", (d) => height - margin.bottom - y(d.hf_score))
     .attr("width", x.bandwidth())
+    .attr("id", "removeOnUpdate")
     .on("mouseover", handleMouseOver)
     .on("mouseleave", handleMouseLeave);
 
