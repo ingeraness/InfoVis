@@ -9,16 +9,16 @@ function createLineChart(data, update) {
   const keys = Object.keys(data[0]);
 
   let attributesDict = {
-    "pf_ss" : keys[8].valueOf(),
-    "pf_ss_women": keys[9].valueOf(),
-    "ef_legal_police": keys[10].valueOf(),
-    "pf_ss_disappearances_violent": keys[6].valueOf(),
-    "pf_religion_freedom": keys[7].valueOf(),
-    "hf_score": keys[4].valueOf()
-  }
+    pf_ss: keys[8].valueOf(),
+    pf_ss_women: keys[9].valueOf(),
+    ef_legal_police: keys[10].valueOf(),
+    pf_ss_disappearances_violent: keys[6].valueOf(),
+    pf_religion_freedom: keys[7].valueOf(),
+    hf_score: keys[4].valueOf(),
+  };
 
   var svg = d3.select("div#lineChart").select("svg");
-  svg.selectAll("*").remove();  // Remove the old vis before drawing the new vis with new countries
+  svg.selectAll("*").remove(); // Remove the old vis before drawing the new vis with new countries
 
   var dataC1 = data.filter(function (d) {
     if (d.country == chosenCountry1) {
@@ -113,6 +113,7 @@ function createLineChart(data, update) {
     .attr("fill", "none")
     .attr("stroke", "steelblue")
     .attr("stroke-width", 1.5)
+    .attr("id", "removeOnUpdate")
     .attr("d", lineA1);
 
   // dots for line for country 1, attribute 1
@@ -128,6 +129,7 @@ function createLineChart(data, update) {
     .attr("cy", (d) => y(d.hf_score))
     .attr("r", 3)
     .attr("id", "one")
+    .attr("id", "removeOnUpdate")
     .on("mouseover", handleMouseOver)
     .on("mouseleave", handleMouseLeave);
 
@@ -138,6 +140,7 @@ function createLineChart(data, update) {
     .attr("fill", "none")
     .attr("stroke", "blue")
     .attr("stroke-width", 1.5)
+    .attr("id", "removeOnUpdate")
     .attr("d", lineA2);
 
   // dots for line for country 1, attribute 2
@@ -153,6 +156,7 @@ function createLineChart(data, update) {
     .attr("cy", (d) => y(d[attributesDict[chosenAttributeX]]))
     .attr("r", 3)
     .attr("id", "two")
+    .attr("id", "removeOnUpdate")
     .on("mouseover", handleMouseOver)
     .on("mouseleave", handleMouseLeave);
 
@@ -163,6 +167,7 @@ function createLineChart(data, update) {
     .attr("fill", "none")
     .attr("stroke", "PaleVioletRed")
     .attr("stroke-width", 1.5)
+    .attr("id", "removeOnUpdate")
     .attr("d", lineA1);
 
   // dots for line for country 1, attribute 1
@@ -178,6 +183,7 @@ function createLineChart(data, update) {
     .attr("cy", (d) => y(d.hf_score))
     .attr("r", 3)
     .attr("id", "three")
+    .attr("id", "removeOnUpdate")
     .on("mouseover", handleMouseOver)
     .on("mouseleave", handleMouseLeave);
 
@@ -188,6 +194,7 @@ function createLineChart(data, update) {
     .attr("fill", "none")
     .attr("stroke", "pink")
     .attr("stroke-width", 1.5)
+    .attr("id", "removeOnUpdate")
     .attr("d", lineA2);
 
   // dots for line for country 2, attribute 2
@@ -201,9 +208,9 @@ function createLineChart(data, update) {
     .join("circle")
     .attr("cx", (d) => x(d.year))
     .attr("cy", (d) => y(d[attributesDict[chosenAttributeX]]))
-
     .attr("r", 3)
     .attr("id", "four")
+    .attr("id", "removeOnUpdate")
     .on("mouseover", handleMouseOver)
     .on("mouseleave", handleMouseLeave);
 }

@@ -19,6 +19,7 @@ function handleMouseOver(event, d) {
     .filter(function (b) {
       if (d.country == b.country) {
         console.log("Info om dette landet: " + b.country);
+        console.log("Year: " + b.year);
         console.log("Freedom index: " + b.hf_score);
         console.log("Freedom rank: " + b.hf_rank);
         console.log("Women’s Freedom: " + b.pf_ss_women);

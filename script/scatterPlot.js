@@ -98,7 +98,7 @@ function createScatterPlot(data, update) {
     .attr("y", height)
     .style("text-anchor", "middle")
     .attr("id", "removeOnUpdate")
-    .text(chosenAttributeX);
+    .text(labelsDict[chosenAttributeX]);
 
   svg // text label for the y axis
     .append("text")
@@ -106,7 +106,7 @@ function createScatterPlot(data, update) {
     .attr("y", 15)
     .style("text-anchor", "middle")
     .attr("id", "removeOnUpdate")
-    .text(chosenAttributeY);
+    .text(labelsDict[chosenAttributeY]);
 
   // Add dots
   svg

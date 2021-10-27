@@ -50,7 +50,7 @@
     <script
       language="JavaScript"
       type="text/javascript"
-      src="script/events.js"    
+      src="script/events.js"
     ></script>
 
     <!-- CSS -->
@@ -58,20 +58,42 @@
   </head>
 
   <body onload="init()">
+    <div class="grid">
+      <div id="header" class="header">
+        <div id="title"><h1>Freedom Index Europe</h1></div>
 
-  <div class = "grid">
-    <div id="header" class="header">
-    <div id="title"><h1>Freedom Index Europe</h1></div>
+        <div class="options">
+          <form id="selected_country1" class="option">
+            <label
+              >Selected Country:
+              <select id="dropdown_country1" onchange="saveDropdownCountry(1)">
+                <option value="">No country selected</option>
+              </select>
+            </label>
+          </form>
 
-    <div class="options">
-    <form id="selected_country1" class="option">
-      <label
-        >Selected Country:
-        <select id="dropdown_country1" onchange="saveDropdownCountry(1)">
-          <option value="">No country selected</option>
-        </select>
-      </label>
-    </form>
+          <form
+            id="selected_attribute1"
+            class="option"
+            onchange="saveDropdownAttribute(1)"
+          >
+            <label
+              >Selected Attribute:
+              <select
+                id="dropdown_attribute1"
+                onchange="saveDropdownAttribute()"
+              >
+                <option value="pf_ss">Safety and Security</option>
+                <option value="pf_ss_women">Women’s Freedom</option>
+                <option value="ef_legal_police">Police Reliability</option>
+                <option value="pf_ss_disappearances_violent">
+                  Criminal Trends
+                </option>
+                <option value="pf_religion_freedom">Religious Freedom</option>
+                <option value="hf_score">Freedom Index</option>
+              </select>
+            </label>
+          </form>
 
     <form id="selected_attribute" class = "option" onchange="saveDropdownAttribute()">
       <label
@@ -140,6 +162,7 @@
     </div>
  
   <div class="second-row">
+
     <div id="barChart">
       <h2>VS Freedom</h2>
     </div>
