@@ -225,55 +225,55 @@ function createLineChart(data, update) {
   // Add color dots for legends
   svg
     .append("circle")
-    .attr("cx", 200)
-    .attr("cy", 130)
+    .attr("cx", 630)
+    .attr("cy", 205)
     .attr("r", 3)
     .style("fill", colors[0]);
   svg
     .append("circle")
-    .attr("cx", 200)
-    .attr("cy", 150)
+    .attr("cx", 630)
+    .attr("cy", 220)
     .attr("r", 3)
     .style("fill", colors[1]);
   svg
     .append("circle")
-    .attr("cx", 200)
-    .attr("cy", 170)
+    .attr("cx", 630)
+    .attr("cy", 235)
     .attr("r", 3)
     .style("fill", colors[2]);
   svg
     .append("circle")
-    .attr("cx", 200)
-    .attr("cy", 190)
+    .attr("cx", 630)
+    .attr("cy", 250)
     .attr("r", 3)
     .style("fill", colors[3]);
 
   // Add labels for legends
   svg
     .append("text")
-    .attr("x", 210)
-    .attr("y", 130)
+    .attr("x", 640)
+    .attr("y", 205)
     .text(lineLabels[0])
     .style("font-size", "10px")
     .attr("alignment-baseline", "middle");
   svg
     .append("text")
-    .attr("x", 210)
-    .attr("y", 110)
+    .attr("x", 640)
+    .attr("y", 220)
     .text(lineLabels[1])
     .style("font-size", "10px")
     .attr("alignment-baseline", "middle");
   svg
     .append("text")
-    .attr("x", 210)
-    .attr("y", 170)
+    .attr("x", 640)
+    .attr("y", 235)
     .text(lineLabels[2])
     .style("font-size", "10px")
     .attr("alignment-baseline", "middle");
   svg
     .append("text")
-    .attr("x", 210)
-    .attr("y", 190)
+    .attr("x", 640)
+    .attr("y", 250)
     .text(lineLabels[3])
     .style("font-size", "10px")
     .attr("alignment-baseline", "middle");
