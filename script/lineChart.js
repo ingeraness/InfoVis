@@ -213,4 +213,113 @@ function createLineChart(data, update) {
     .attr("id", "removeOnUpdate")
     .on("mouseover", handleMouseOver)
     .on("mouseleave", handleMouseLeave);
+
+  var lineLabels = [
+    "" + labelsDict[chosenAttributeX] + ", " + chosenCountry1,
+    "" + labelsDict[chosenAttributeY] + ", " + chosenCountry1,
+    "" + labelsDict[chosenAttributeX] + ", " + chosenCountry2,
+    "" + labelsDict[chosenAttributeY] + ", " + chosenCountry2,
+  ];
+  var colors = ["steelblue", "blue", "PaleVioletRed", "pink"]; //This will be changed to other colors in CP5
+
+  // Add color dots for legends
+  svg
+    .append("circle")
+    .attr("cx", 200)
+    .attr("cy", 130)
+    .attr("r", 3)
+    .style("fill", colors[0]);
+  svg
+    .append("circle")
+    .attr("cx", 200)
+    .attr("cy", 150)
+    .attr("r", 3)
+    .style("fill", colors[1]);
+  svg
+    .append("circle")
+    .attr("cx", 200)
+    .attr("cy", 170)
+    .attr("r", 3)
+    .style("fill", colors[2]);
+  svg
+    .append("circle")
+    .attr("cx", 200)
+    .attr("cy", 190)
+    .attr("r", 3)
+    .style("fill", colors[3]);
+
+  // Add labels for legends
+  svg
+    .append("text")
+    .attr("x", 210)
+    .attr("y", 130)
+    .text(lineLabels[0])
+    .style("font-size", "10px")
+    .attr("alignment-baseline", "middle");
+  svg
+    .append("text")
+    .attr("x", 210)
+    .attr("y", 110)
+    .text(lineLabels[1])
+    .style("font-size", "10px")
+    .attr("alignment-baseline", "middle");
+  svg
+    .append("text")
+    .attr("x", 210)
+    .attr("y", 170)
+    .text(lineLabels[2])
+    .style("font-size", "10px")
+    .attr("alignment-baseline", "middle");
+  svg
+    .append("text")
+    .attr("x", 210)
+    .attr("y", 190)
+    .text(lineLabels[3])
+    .style("font-size", "10px")
+    .attr("alignment-baseline", "middle");
+
+  /*
+  // Add descriptive labels (legends)
+  // create a list of keys
+  var keys = [
+    "" + chosenAttributeX + ", " + chosenCountry1,
+    "" + chosenAttributeY + ", " + chosenCountry1,
+    "" + chosenAttributeX + ", " + chosenCountry2,
+    "" + chosenAttributeY + ", " + chosenCountry2,
+  ];
+  var colors = ["steelblue", "blue", "PaleVioletRed", "pink"]; //This will be changed to other colors in CP5
+  
+  // Add one dot in the legend for each name.
+  svg
+    .selectAll("mydots")
+    .data(keys)
+    .enter()
+    .append("circle")
+    .attr("cx", 100)
+    .attr("cy", function (d, i) {
+      return 100 + i * 25;
+    }) // 100 is where the first dot appears. 25 is the distance between dots
+    .attr("r", 7)
+    .style("fill", function (d) {
+      return color(d);
+    });
+
+  // Add one dot in the legend for each name.
+  svg
+    .selectAll("mylabels")
+    .data(keys)
+    .enter()
+    .append("text")
+    .attr("x", 120)
+    .attr("y", function (d, i) {
+      return 100 + i * 25;
+    }) // 100 is where the first dot appears. 25 is the distance between dots
+    .style("fill", function (d) {
+      return color(d);
+    })
+    .text(function (d) {
+      return d;
+    })
+    .attr("text-anchor", "left")
+    .style("alignment-baseline", "middle");*/
 }
