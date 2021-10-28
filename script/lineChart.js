@@ -3,7 +3,7 @@ var dataSet;
 
 function createLineChart(data, update) {
   margin = { top: 20, right: 20, bottom: 20, left: 40 };
-  width = 800;
+  width = 1000;
   height = 300;
 
   const keys = Object.keys(data[0]);
@@ -133,7 +133,6 @@ function createLineChart(data, update) {
     .attr("cy", (d) => y(d.hf_score))
     .attr("r", 3)
     .attr("id", "one")
-    .attr("id", "removeOnUpdate")
     .on("mouseover", handleMouseOver)
     .on("mouseleave", handleMouseLeave);
 
@@ -144,7 +143,6 @@ function createLineChart(data, update) {
     .attr("fill", "none")
     .attr("stroke", "blue")
     .attr("stroke-width", 1.5)
-    .attr("id", "removeOnUpdate")
     .attr("d", lineA2);
 
   // dots for line for country 1, attribute 2
@@ -160,7 +158,6 @@ function createLineChart(data, update) {
     .attr("cy", (d) => y(d[attributesDict[chosenAttributeX]]))
     .attr("r", 3)
     .attr("id", "two")
-    .attr("id", "removeOnUpdate")
     .on("mouseover", handleMouseOver)
     .on("mouseleave", handleMouseLeave);
 
@@ -187,7 +184,6 @@ function createLineChart(data, update) {
     .attr("cy", (d) => y(d.hf_score))
     .attr("r", 3)
     .attr("id", "three")
-    .attr("id", "removeOnUpdate")
     .on("mouseover", handleMouseOver)
     .on("mouseleave", handleMouseLeave);
 
@@ -198,7 +194,6 @@ function createLineChart(data, update) {
     .attr("fill", "none")
     .attr("stroke", "pink")
     .attr("stroke-width", 1.5)
-    .attr("id", "removeOnUpdate")
     .attr("d", lineA2);
 
   // dots for line for country 2, attribute 2
@@ -214,7 +209,6 @@ function createLineChart(data, update) {
     .attr("cy", (d) => y(d[attributesDict[chosenAttributeX]]))
     .attr("r", 3)
     .attr("id", "four")
-    .attr("id", "removeOnUpdate")
     .on("mouseover", handleMouseOver)
     .on("mouseleave", handleMouseLeave);
 
@@ -230,27 +224,27 @@ function createLineChart(data, update) {
     // Add color dots for legends C1
     svg
       .append("circle")
-      .attr("cx", 630)
+      .attr("cx", 800)
       .attr("cy", 205)
       .attr("r", 3)
       .style("fill", colors[0]);
     svg
       .append("circle")
-      .attr("cx", 630)
+      .attr("cx", 800)
       .attr("cy", 220)
       .attr("r", 3)
       .style("fill", colors[1]);
     // Add labels for legends C1
     svg
       .append("text")
-      .attr("x", 640)
+      .attr("x", 810)
       .attr("y", 205)
       .text(lineLabels[0])
       .style("font-size", "10px")
       .attr("alignment-baseline", "middle");
     svg
       .append("text")
-      .attr("x", 640)
+      .attr("x", 810)
       .attr("y", 220)
       .text(lineLabels[1])
       .style("font-size", "10px")
@@ -261,13 +255,13 @@ function createLineChart(data, update) {
     //Dots for legends C2
     svg
       .append("circle")
-      .attr("cx", 630)
+      .attr("cx", 800)
       .attr("cy", 235)
       .attr("r", 3)
       .style("fill", colors[2]);
     svg
       .append("circle")
-      .attr("cx", 630)
+      .attr("cx", 800)
       .attr("cy", 250)
       .attr("r", 3)
       .style("fill", colors[3]);
@@ -275,14 +269,14 @@ function createLineChart(data, update) {
     // Add labels for legends C2
     svg
       .append("text")
-      .attr("x", 640)
+      .attr("x", 810)
       .attr("y", 235)
       .text(lineLabels[2])
       .style("font-size", "10px")
       .attr("alignment-baseline", "middle");
     svg
       .append("text")
-      .attr("x", 640)
+      .attr("x", 810)
       .attr("y", 250)
       .text(lineLabels[3])
       .style("font-size", "10px")

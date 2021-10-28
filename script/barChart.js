@@ -8,9 +8,8 @@
 // }
 
 function createBarChart(data, update) {
-  width = 1100;
+  width = 1000;
   height = 300;
-  const selectedYear = 2018;
 
   margin = { top: 20, right: 20, bottom: 40, left: 40 };
 
@@ -19,7 +18,7 @@ function createBarChart(data, update) {
 
   // Set header
   document.getElementById("headerBarAndLineChart").innerHTML =
-    "Freedom Ranking Europe " + chosenYear;
+    "Freedom Index Europe " + chosenYear;
 
   var filtered_data = data.filter(function (d) {
     if (d.year == chosenYear.valueOf()) {

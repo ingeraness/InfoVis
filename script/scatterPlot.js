@@ -4,41 +4,13 @@ function createScatterPlot(data, update) {
 
   // TODO: endre til dynamisk bredde og høyde. Også i transform!
 
-  const margin = { left: 20, top: 20, right: 20, bottom: 40 };
+  const margin = { left: 40, top: 40, right: 40, bottom: 40 };
 
   var data = data.filter(function (d) {
     if (d.year == chosenYear) {
       return d;
     }
   });
-
-  // Add a tooltip div. Here I define the general feature of the tooltip: stuff that do not depend on the data point.
-  // Its opacity is set to 0: we don't see it by default.
-  var tooltip = d3
-    .select("div#scatterPlot")
-    .append("div")
-    .style("opacity", 0)
-    .attr("class", "tooltip")
-    .style("background-color", "white")
-    .style("border", "solid")
-    .style("border-width", "1px")
-    .style("border-radius", "5px")
-    .style("padding", "10px");
-
-  // Three function that change the tooltip when user hover / move / leave a cell
-  // A function that change this tooltip when the user hover a point.
-  // Its opacity is set to 1: we can now see it. Plus it set the text and position of tooltip depending on the datapoint (d)
-  var mouseover = function (d) {
-    tooltip.style("opacity", 1);
-  };
-  var mousemove = function (d) {
-    tooltip.html("Country: " + d.year);
-    //.style("left", (d3.pointer(this)[0]+90) + "px") // It is important to put the +90: other wise the tooltip is exactly where the point is an it creates a weird effect
-    //.style("top", (d3.pointer(this)[1]) + "px")
-  };
-  var mouseleave = function (d) {
-    tooltip.transition().duration(600).style("opacity", 0);
-  };
 
   const keys = Object.keys(data[0]);
 
@@ -122,16 +94,16 @@ function createScatterPlot(data, update) {
 
   svg // text label for the x axis
     .append("text")
-    .attr("x", width - 40)
-    .attr("y", height)
+    .attr("x", width - 90)
+    .attr("y", height - 10)
     .style("text-anchor", "middle")
     .attr("id", "removeOnUpdate")
     .text(labelsDict[chosenAttributeX]);
 
   svg // text label for the y axis
     .append("text")
-    .attr("x", 20)
-    .attr("y", 15)
+    .attr("x", 67)
+    .attr("y", 32)
     .style("text-anchor", "middle")
     .attr("id", "removeOnUpdate")
     .text(labelsDict[chosenAttributeY]);
@@ -151,12 +123,12 @@ function createScatterPlot(data, update) {
       return y(d[attributesDict[chosenAttributeY]]);
     })
     .attr("r", 4)
-    .style("fill", "blue")
+    .style("fill", "steelblue")
     .on("mouseover", handleMouseOver)
     .on("mouseleave", handleMouseLeave)
     //.on("mouseover", mouseover )
     //.on("mousemove", mousemove )
-    //.on("mouseleave", mouseleave )
+    //.on("mouseleave", handleMouseMove)
     .on("click", handleClickScatterplot);
 
   if (!update) {

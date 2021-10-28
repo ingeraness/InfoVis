@@ -1,18 +1,39 @@
+// Add a tooltip div. Here I define the general feature of the tooltip: stuff that do not depend on the data point.
+// Its opacity is set to 0: we don't see it by default.
+var tooltip = d3
+  .select("div#scatterPlot")
+  .append("div")
+  .style("opacity", 0)
+  .attr("class", "tooltip")
+  .style("background-color", "white")
+  .style("border", "solid")
+  .style("border-width", "1px")
+  .style("border-radius", "5px")
+  .style("padding", "10px");
+
+var handleMouseMove = function (d) {
+  tooltip.html("Country: " + d.year);
+  //.style("left", (d3.pointer(this)[0]+90) + "px") // It is important to put the +90: other wise the tooltip is exactly where the point is an it creates a weird effect
+  //.style("top", (d3.pointer(this)[1]) + "px")
+};
+
 function handleMouseOver(event, d) {
   lineChart = d3.select("div#lineChart").select("svg");
   scatterPlot = d3.select("div#scatterPlot").select("svg");
   barChart = d3.select("div#barChart").select("svg");
 
+  tooltip.style("opacity", 1);
+
   markSelectedCountries(); //Mark the countries selected in the drop down menus
 
-  /*lineChart
+  lineChart
     .selectAll(event.path[0].id == "" ? "circle" : `circle#${event.path[0].id}`)
     .filter(function (b) {
       if (d.country == b.country && d.year == b.year) {
         return b;
       }
     })
-    .style("fill", "red");*/
+    .style("fill", "red");
 
   scatterPlot
     .selectAll("circle")
@@ -43,6 +64,8 @@ function handleMouseOver(event, d) {
 }
 
 function handleMouseLeave(event, d) {
+  tooltip.transition().duration(600).style("opacity", 0);
+
   if (event.path[0].id == "one") {
     d3.select("div#lineChart")
       .select("svg")
@@ -74,13 +97,13 @@ function handleMouseLeave(event, d) {
   d3.select("div#scatterPlot")
     .select("svg")
     .selectAll(`circle`)
-    .style("fill", "blue")
+    .style("fill", "steelblue")
     .filter(function (b) {
       if (b.country == chosenCountry1 || b.country == chosenCountry2) {
         return b;
       }
     })
-    .style("fill", "green");
+    .style("fill", "purple");
 
   d3.select("div#barChart")
     .select("svg")
@@ -108,11 +131,11 @@ function markSelectedCountries() {
 
   scatterPlot
     .selectAll("circle")
-    .style("fill", "blue")
+    .style("fill", "steelblue")
     .filter(function (b) {
       if (b.country == chosenCountry1 || b.country == chosenCountry2) {
         return b;
       }
     })
-    .style("fill", "green");
+    .style("fill", "purple");
 }
