@@ -33,7 +33,7 @@ function init() {
 function saveDropdownCountry(i) {
   if (i == 1) {
     chosenCountry1 = document.getElementById("dropdown_country1").value;
-  } else {
+  } else if (i == 2) {
     chosenCountry2 = document.getElementById("dropdown_country2").value;
   }
   // Check if it should draw the lineChart or barChart
