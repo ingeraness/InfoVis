@@ -75,7 +75,8 @@ function createBarChart(data, update) {
     .attr("width", x.bandwidth())
     .attr("id", "removeOnUpdate")
     .on("mouseover", handleMouseOver)
-    .on("mouseleave", handleMouseLeave);
+    .on("mouseleave", handleMouseLeave)
+    .on("click", handleClickBarChart);
 
   svg.append("g").attr("class", "xAxis").call(xAxis);
 

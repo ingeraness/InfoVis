@@ -88,6 +88,12 @@ function handleMouseLeave(event, d) {
     .style("fill", "steelblue");
 }
 
+function handleClickBarChart(event, d) {
+  chosenCountry1 = d.country;
+  document.getElementById("optionC1").innerHTML = chosenCountry1;
+  saveDropdownCountry(3);
+}
+
 function markSelectedCountries() {
   //Marks the countries selected in the drop down menus
   scatterPlot = d3.select("div#scatterPlot").select("svg");
