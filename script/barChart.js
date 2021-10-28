@@ -8,7 +8,7 @@
 // }
 
 function createBarChart(data, update) {
-  width = 800;
+  width = 1100;
   height = 300;
   const selectedYear = 2018;
 
