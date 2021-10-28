@@ -88,7 +88,15 @@ function handleMouseLeave(event, d) {
     .style("fill", "steelblue");
 }
 
+// Change selected country when bar is clicked on in bar chart
 function handleClickBarChart(event, d) {
+  chosenCountry1 = d.country;
+  document.getElementById("optionC1").innerHTML = chosenCountry1;
+  saveDropdownCountry(3);
+}
+
+// Change selected country when bar is clicked on in scatterplot
+function handleClickScatterplot(event, d) {
   chosenCountry1 = d.country;
   document.getElementById("optionC1").innerHTML = chosenCountry1;
   saveDropdownCountry(3);

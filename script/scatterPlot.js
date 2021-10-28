@@ -125,7 +125,8 @@ function createScatterPlot(data, update) {
     .attr("r", 4)
     .style("fill", "blue")
     .on("mouseover", handleMouseOver)
-    .on("mouseleave", handleMouseLeave);
+    .on("mouseleave", handleMouseLeave)
+    .on("click", handleClickScatterplot);
 
   if (!update) {
     svg.append("g").attr("class", "scatterXAxis");
