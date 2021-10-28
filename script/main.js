@@ -113,10 +113,7 @@ function saveDropdownAttribute(i) {
 }
 
 function removeCharts(showingBarChart) {
-  d3.select("div#scatterPlot")
-    .selectAll("svg")
-    .selectAll("#removeOnUpdate")
-    .remove(); //Remove old chart
+  d3.select("div#scatterPlot").selectAll("svg").remove(); //Remove old chart
   if (showingBarChart) {
     d3.select("div#lineChart").select("svg").remove(); //Remove old chart
     d3.select("div#barChart").select("svg").remove(); //Remove old chart

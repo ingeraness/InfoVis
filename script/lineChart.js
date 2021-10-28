@@ -222,104 +222,68 @@ function createLineChart(data, update) {
   ];
   var colors = ["steelblue", "blue", "PaleVioletRed", "pink"]; //This will be changed to other colors in CP5
 
-  // Add color dots for legends
-  svg
-    .append("circle")
-    .attr("cx", 630)
-    .attr("cy", 205)
-    .attr("r", 3)
-    .style("fill", colors[0]);
-  svg
-    .append("circle")
-    .attr("cx", 630)
-    .attr("cy", 220)
-    .attr("r", 3)
-    .style("fill", colors[1]);
-  svg
-    .append("circle")
-    .attr("cx", 630)
-    .attr("cy", 235)
-    .attr("r", 3)
-    .style("fill", colors[2]);
-  svg
-    .append("circle")
-    .attr("cx", 630)
-    .attr("cy", 250)
-    .attr("r", 3)
-    .style("fill", colors[3]);
+  console.log("C1: " + chosenCountry1);
+  console.log("C2: " + chosenCountry2);
+  if (chosenCountry1 != undefined && chosenCountry1 != "") {
+    // Add color dots for legends C1
+    svg
+      .append("circle")
+      .attr("cx", 630)
+      .attr("cy", 205)
+      .attr("r", 3)
+      .style("fill", colors[0]);
+    svg
+      .append("circle")
+      .attr("cx", 630)
+      .attr("cy", 220)
+      .attr("r", 3)
+      .style("fill", colors[1]);
+    // Add labels for legends C1
+    svg
+      .append("text")
+      .attr("x", 640)
+      .attr("y", 205)
+      .text(lineLabels[0])
+      .style("font-size", "10px")
+      .attr("alignment-baseline", "middle");
+    svg
+      .append("text")
+      .attr("x", 640)
+      .attr("y", 220)
+      .text(lineLabels[1])
+      .style("font-size", "10px")
+      .attr("alignment-baseline", "middle");
+  }
 
-  // Add labels for legends
-  svg
-    .append("text")
-    .attr("x", 640)
-    .attr("y", 205)
-    .text(lineLabels[0])
-    .style("font-size", "10px")
-    .attr("alignment-baseline", "middle");
-  svg
-    .append("text")
-    .attr("x", 640)
-    .attr("y", 220)
-    .text(lineLabels[1])
-    .style("font-size", "10px")
-    .attr("alignment-baseline", "middle");
-  svg
-    .append("text")
-    .attr("x", 640)
-    .attr("y", 235)
-    .text(lineLabels[2])
-    .style("font-size", "10px")
-    .attr("alignment-baseline", "middle");
-  svg
-    .append("text")
-    .attr("x", 640)
-    .attr("y", 250)
-    .text(lineLabels[3])
-    .style("font-size", "10px")
-    .attr("alignment-baseline", "middle");
+  if (chosenCountry2 != undefined && chosenCountry2 != "") {
+    //Dots for legends C2
+    svg
+      .append("circle")
+      .attr("cx", 630)
+      .attr("cy", 235)
+      .attr("r", 3)
+      .style("fill", colors[2]);
+    svg
+      .append("circle")
+      .attr("cx", 630)
+      .attr("cy", 250)
+      .attr("r", 3)
+      .style("fill", colors[3]);
 
-  /*
-  // Add descriptive labels (legends)
-  // create a list of keys
-  var keys = [
-    "" + chosenAttributeX + ", " + chosenCountry1,
-    "" + chosenAttributeY + ", " + chosenCountry1,
-    "" + chosenAttributeX + ", " + chosenCountry2,
-    "" + chosenAttributeY + ", " + chosenCountry2,
-  ];
-  var colors = ["steelblue", "blue", "PaleVioletRed", "pink"]; //This will be changed to other colors in CP5
-  
-  // Add one dot in the legend for each name.
-  svg
-    .selectAll("mydots")
-    .data(keys)
-    .enter()
-    .append("circle")
-    .attr("cx", 100)
-    .attr("cy", function (d, i) {
-      return 100 + i * 25;
-    }) // 100 is where the first dot appears. 25 is the distance between dots
-    .attr("r", 7)
-    .style("fill", function (d) {
-      return color(d);
-    });
-
-  // Add one dot in the legend for each name.
-  svg
-    .selectAll("mylabels")
-    .data(keys)
-    .enter()
-    .append("text")
-    .attr("x", 120)
-    .attr("y", function (d, i) {
-      return 100 + i * 25;
-    }) // 100 is where the first dot appears. 25 is the distance between dots
-    .style("fill", function (d) {
-      return color(d);
-    })
-    .text(function (d) {
-      return d;
-    })
-    .attr("text-anchor", "left")
-    .style("alignment-baseline", "middle");*/
+    // Add labels for legends C2
+    svg
+      .append("text")
+      .attr("x", 640)
+      .attr("y", 235)
+      .text(lineLabels[2])
+      .style("font-size", "10px")
+      .attr("alignment-baseline", "middle");
+    svg
+      .append("text")
+      .attr("x", 640)
+      .attr("y", 250)
+      .text(lineLabels[3])
+      .style("font-size", "10px")
+      .attr("alignment-baseline", "middle");
+  }
 }

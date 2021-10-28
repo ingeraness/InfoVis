@@ -9,6 +9,7 @@ function handleMouseOver(event, d) {
     .selectAll(event.path[0].id == "" ? "circle" : `circle#${event.path[0].id}`)
     .filter(function (b) {
       if (d.country == b.country && d.year == b.year) {
+        //Error her
         return b;
       }
     })
