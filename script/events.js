@@ -5,14 +5,14 @@ function handleMouseOver(event, d) {
 
   markSelectedCountries(); //Mark the countries selected in the drop down menus
 
-  /*lineChart
+  lineChart
     .selectAll(event.path[0].id == "" ? "circle" : `circle#${event.path[0].id}`)
     .filter(function (b) {
       if (d.country == b.country && d.year == b.year) {
         return b;
       }
     })
-    .style("fill", "red");*/
+    .style("fill", "red");
 
   scatterPlot
     .selectAll("circle")
