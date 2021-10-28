@@ -161,6 +161,8 @@ function createScatterPlot(data, update) {
     .on("mouseover", mouseover )
     .on("mousemove", mousemove )
     .on("mouseleave", mouseleave )
+    .on("click", handleClickScatterplot);
+
 
   if (!update) {
     svg.append("g").attr("class", "scatterXAxis");

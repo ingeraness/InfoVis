@@ -20,6 +20,10 @@ function createLineChart(data, update) {
   var svg = d3.select("div#lineChart").select("svg");
   svg.selectAll("*").remove(); // Remove the old vis before drawing the new vis with new countries
 
+  // Set header
+  document.getElementById("headerBarAndLineChart").innerHTML =
+    labelsDict[chosenAttributeX] + " VS. Freedom Ranking";
+
   var dataC1 = data.filter(function (d) {
     if (d.country == chosenCountry1) {
       return d;
@@ -213,4 +217,75 @@ function createLineChart(data, update) {
     .attr("id", "removeOnUpdate")
     .on("mouseover", handleMouseOver)
     .on("mouseleave", handleMouseLeave);
+
+  var lineLabels = [
+    "" + labelsDict[chosenAttributeX] + ", " + chosenCountry1,
+    "" + labelsDict[chosenAttributeY] + ", " + chosenCountry1,
+    "" + labelsDict[chosenAttributeX] + ", " + chosenCountry2,
+    "" + labelsDict[chosenAttributeY] + ", " + chosenCountry2,
+  ];
+  var colors = ["steelblue", "blue", "PaleVioletRed", "pink"]; //This will be changed to other colors in CP5
+
+  if (chosenCountry1 != undefined && chosenCountry1 != "") {
+    // Add color dots for legends C1
+    svg
+      .append("circle")
+      .attr("cx", 630)
+      .attr("cy", 205)
+      .attr("r", 3)
+      .style("fill", colors[0]);
+    svg
+      .append("circle")
+      .attr("cx", 630)
+      .attr("cy", 220)
+      .attr("r", 3)
+      .style("fill", colors[1]);
+    // Add labels for legends C1
+    svg
+      .append("text")
+      .attr("x", 640)
+      .attr("y", 205)
+      .text(lineLabels[0])
+      .style("font-size", "10px")
+      .attr("alignment-baseline", "middle");
+    svg
+      .append("text")
+      .attr("x", 640)
+      .attr("y", 220)
+      .text(lineLabels[1])
+      .style("font-size", "10px")
+      .attr("alignment-baseline", "middle");
+  }
+
+  if (chosenCountry2 != undefined && chosenCountry2 != "") {
+    //Dots for legends C2
+    svg
+      .append("circle")
+      .attr("cx", 630)
+      .attr("cy", 235)
+      .attr("r", 3)
+      .style("fill", colors[2]);
+    svg
+      .append("circle")
+      .attr("cx", 630)
+      .attr("cy", 250)
+      .attr("r", 3)
+      .style("fill", colors[3]);
+
+    // Add labels for legends C2
+    svg
+      .append("text")
+      .attr("x", 640)
+      .attr("y", 235)
+      .text(lineLabels[2])
+      .style("font-size", "10px")
+      .attr("alignment-baseline", "middle");
+    svg
+      .append("text")
+      .attr("x", 640)
+      .attr("y", 250)
+      .text(lineLabels[3])
+      .style("font-size", "10px")
+      .attr("alignment-baseline", "middle");
+  }
 }

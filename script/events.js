@@ -5,14 +5,14 @@ function handleMouseOver(event, d) {
 
   markSelectedCountries(); //Mark the countries selected in the drop down menus
 
-  lineChart
+  /*lineChart
     .selectAll(event.path[0].id == "" ? "circle" : `circle#${event.path[0].id}`)
     .filter(function (b) {
       if (d.country == b.country && d.year == b.year) {
         return b;
       }
     })
-    .style("fill", "red");
+    .style("fill", "red");*/
 
   scatterPlot
     .selectAll("circle")
@@ -86,6 +86,20 @@ function handleMouseLeave(event, d) {
     .select("svg")
     .selectAll("rect")
     .style("fill", "steelblue");
+}
+
+// Change selected country when bar is clicked on in bar chart
+function handleClickBarChart(event, d) {
+  chosenCountry1 = d.country;
+  document.getElementById("optionC1").innerHTML = chosenCountry1;
+  saveDropdownCountry(3);
+}
+
+// Change selected country when bar is clicked on in scatterplot
+function handleClickScatterplot(event, d) {
+  chosenCountry1 = d.country;
+  document.getElementById("optionC1").innerHTML = chosenCountry1;
+  saveDropdownYear();
 }
 
 function markSelectedCountries() {

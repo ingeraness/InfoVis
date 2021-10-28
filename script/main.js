@@ -33,7 +33,7 @@ function init() {
 function saveDropdownCountry(i) {
   if (i == 1) {
     chosenCountry1 = document.getElementById("dropdown_country1").value;
-  } else {
+  } else if (i == 2) {
     chosenCountry2 = document.getElementById("dropdown_country2").value;
   }
   d3.select("div#scatterPlot").select("svg").remove(); //Remove old chart
@@ -62,6 +62,8 @@ function saveDropdownCountry(i) {
 
 function saveDropdownYear() {
   chosenYear = document.getElementById("dropdown_years").value;
+  document.getElementById("titleH1").innerHTML =
+    "Freedom Ranking Europe " + chosenYear;
   // Check if it should draw the lineChart or barChart
   removeCharts(showingBarChart);
   d3.csv("data/data.csv").then((data) => {

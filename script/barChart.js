@@ -17,6 +17,10 @@ function createBarChart(data, update) {
   var svg = d3.select("div#barChart").select("svg");
   svg.selectAll("*").remove(); // Remove the old vis before drawing the new vis with new countries
 
+  // Set header
+  document.getElementById("headerBarAndLineChart").innerHTML =
+    "Freedom Ranking Europe " + chosenYear;
+
   var filtered_data = data.filter(function (d) {
     if (d.year == chosenYear.valueOf()) {
       return d;
@@ -71,7 +75,8 @@ function createBarChart(data, update) {
     .attr("width", x.bandwidth())
     .attr("id", "removeOnUpdate")
     .on("mouseover", handleMouseOver)
-    .on("mouseleave", handleMouseLeave);
+    .on("mouseleave", handleMouseLeave)
+    .on("click", handleClickBarChart);
 
   svg.append("g").attr("class", "xAxis").call(xAxis);
 
