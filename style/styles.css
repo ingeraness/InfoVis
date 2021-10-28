@@ -13,7 +13,7 @@ h2 {
 
 .first-row {
   display: grid;
-  grid-template-columns: 35% 30%;
+  grid-template-columns: 25% 30%;
   column-gap: 2rem;
   height: 40%;
 }
@@ -63,7 +63,7 @@ div {
 .header {
   display: grid;
   grid-template-columns: 35% 65%;
-  margin-bottom: 0;
+  margin-bottom: 7px;
   height: 20%;
 }
 
