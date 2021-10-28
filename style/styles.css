@@ -74,6 +74,14 @@ div {
   margin-bottom: -3;*/
 }
 
+#headerBarAndLineChart {
+  margin-bottom: -10px;
+}
+
+#lineChart {
+  margin-bottom: -20px;
+}
+
 /*
 .flex-container {
   display: flex;
