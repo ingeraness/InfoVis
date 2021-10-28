@@ -4,7 +4,7 @@ function createScatterPlot(data, update) {
 
   // TODO: endre til dynamisk bredde og høyde. Også i transform!
 
-  const margin = { left: 20, top: 20, right: 20, bottom: 40 };
+  const margin = { left: 40, top: 40, right: 40, bottom: 40 };
 
   var data = data.filter(function (d) {
     if (d.year == chosenYear) {

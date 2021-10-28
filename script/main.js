@@ -63,7 +63,7 @@ function saveDropdownCountry(i) {
 function saveDropdownYear() {
   chosenYear = document.getElementById("dropdown_years").value;
   document.getElementById("titleH1").innerHTML =
-    "Freedom Ranking Europe " + chosenYear;
+    "Freedom Index Europe " + chosenYear;
   // Check if it should draw the lineChart or barChart
   removeCharts(showingBarChart);
   d3.csv("data/data.csv").then((data) => {
