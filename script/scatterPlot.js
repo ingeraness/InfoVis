@@ -123,12 +123,12 @@ function createScatterPlot(data, update) {
       return y(d[attributesDict[chosenAttributeY]]);
     })
     .attr("r", 4)
-    .style("fill", "blue")
+    .style("fill", "steelblue")
     .on("mouseover", handleMouseOver)
     .on("mouseleave", handleMouseLeave)
     //.on("mouseover", mouseover )
     //.on("mousemove", mousemove )
-    //.on("mouseleave", mouseleave )
+    //.on("mouseleave", handleMouseMove)
     .on("click", handleClickScatterplot);
 
   if (!update) {
