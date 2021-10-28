@@ -99,7 +99,7 @@ function handleClickBarChart(event, d) {
 function handleClickScatterplot(event, d) {
   chosenCountry1 = d.country;
   document.getElementById("optionC1").innerHTML = chosenCountry1;
-  saveDropdownCountry(3);
+  saveDropdownYear();
 }
 
 function markSelectedCountries() {
