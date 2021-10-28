@@ -12,9 +12,10 @@ function createScatterPlot(data, update) {
     }
   });
 
-    // Add a tooltip div. Here I define the general feature of the tooltip: stuff that do not depend on the data point.
+  // Add a tooltip div. Here I define the general feature of the tooltip: stuff that do not depend on the data point.
   // Its opacity is set to 0: we don't see it by default.
-  var tooltip = d3.select("div#scatterPlot")
+  var tooltip = d3
+    .select("div#scatterPlot")
     .append("div")
     .style("opacity", 0)
     .attr("class", "tooltip")
@@ -22,27 +23,22 @@ function createScatterPlot(data, update) {
     .style("border", "solid")
     .style("border-width", "1px")
     .style("border-radius", "5px")
-    .style("padding", "10px")
+    .style("padding", "10px");
 
   // Three function that change the tooltip when user hover / move / leave a cell
   // A function that change this tooltip when the user hover a point.
   // Its opacity is set to 1: we can now see it. Plus it set the text and position of tooltip depending on the datapoint (d)
-  var mouseover = function(d) {
-    tooltip
-      .style("opacity", 1)
-  }
-  var mousemove = function(d) {
-    tooltip
-      .html("Country: " + d.year );
-      //.style("left", (d3.pointer(this)[0]+90) + "px") // It is important to put the +90: other wise the tooltip is exactly where the point is an it creates a weird effect
-      //.style("top", (d3.pointer(this)[1]) + "px")
-  }
-  var mouseleave = function(d) {
-    tooltip
-      .transition()
-      .duration(600)
-      .style("opacity", 0)
-  }
+  var mouseover = function (d) {
+    tooltip.style("opacity", 1);
+  };
+  var mousemove = function (d) {
+    tooltip.html("Country: " + d.year);
+    //.style("left", (d3.pointer(this)[0]+90) + "px") // It is important to put the +90: other wise the tooltip is exactly where the point is an it creates a weird effect
+    //.style("top", (d3.pointer(this)[1]) + "px")
+  };
+  var mouseleave = function (d) {
+    tooltip.transition().duration(600).style("opacity", 0);
+  };
 
   const keys = Object.keys(data[0]);
 
@@ -158,11 +154,10 @@ function createScatterPlot(data, update) {
     .style("fill", "blue")
     .on("mouseover", handleMouseOver)
     .on("mouseleave", handleMouseLeave)
-    .on("mouseover", mouseover )
-    .on("mousemove", mousemove )
-    .on("mouseleave", mouseleave )
+    //.on("mouseover", mouseover )
+    //.on("mousemove", mousemove )
+    //.on("mouseleave", mouseleave )
     .on("click", handleClickScatterplot);
-
 
   if (!update) {
     svg.append("g").attr("class", "scatterXAxis");
