@@ -226,8 +226,6 @@ function createLineChart(data, update) {
   ];
   var colors = ["steelblue", "blue", "PaleVioletRed", "pink"]; //This will be changed to other colors in CP5
 
-  console.log("C1: " + chosenCountry1);
-  console.log("C2: " + chosenCountry2);
   if (chosenCountry1 != undefined && chosenCountry1 != "") {
     // Add color dots for legends C1
     svg
