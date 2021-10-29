@@ -214,9 +214,9 @@ function createLineChart(data, update) {
 
   var lineLabels = [
     "" + labelsDict[chosenAttributeX] + ", " + chosenCountry1,
-    "" + labelsDict[chosenAttributeY] + ", " + chosenCountry1,
+    "Freedom Index, " + chosenCountry1,
     "" + labelsDict[chosenAttributeX] + ", " + chosenCountry2,
-    "" + labelsDict[chosenAttributeY] + ", " + chosenCountry2,
+    "Freedom Index, " + chosenCountry2,
   ];
   var colors = ["steelblue", "blue", "PaleVioletRed", "pink"]; //This will be changed to other colors in CP5
 
