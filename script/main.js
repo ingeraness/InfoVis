@@ -2,8 +2,8 @@
 var chosenCountry1;
 var chosenCountry2;
 var chosenYear = 2018;
-var chosenAttributeX = "pf_ss";
-var chosenAttributeY = "pf_religion_freedom";
+var chosenAttributeY = "pf_ss";
+var chosenAttributeX = "pf_religion_freedom";
 var update = false;
 
 var showingBarChart;
