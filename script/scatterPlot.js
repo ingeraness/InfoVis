@@ -102,7 +102,7 @@ function createScatterPlot(data, update) {
 
   svg // text label for the y axis
     .append("text")
-    .attr("x", 67)
+    .attr("x", 70)
     .attr("y", 32)
     .style("text-anchor", "middle")
     .attr("id", "removeOnUpdate")
