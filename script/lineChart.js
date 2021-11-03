@@ -110,15 +110,15 @@ function createLineChart(data, update, attribute, div) {
     .append("path")
     .datum(dataC1)
     .attr("fill", "none")
-    .attr("stroke", "steelblue")
+    .attr("stroke", "purple")
     .attr("stroke-width", 1.5)
-    .attr("id", "removeOnUpdate")
+    .attr("id", "lineLineChart")
     .attr("d", lineA1);
 
   // dots for line for country 1, attribute 1
   svg
     .append("g")
-    .attr("fill", "steelblue")
+    .attr("fill", "purple")
     .selectAll("circle")
     .data(dataC1, function (d) {
       return d;
@@ -136,15 +136,15 @@ function createLineChart(data, update, attribute, div) {
     .append("path")
     .datum(dataC2)
     .attr("fill", "none")
-    .attr("stroke", "PaleVioletRed")
+    .attr("stroke", "green")
     .attr("stroke-width", 1.5)
-    .attr("id", "removeOnUpdate")
+    .attr("id", "lineLineChart")
     .attr("d", lineA1);
 
   // dots for line for country 1, attribute 1
   svg
     .append("g")
-    .attr("fill", "PaleVioletRed")
+    .attr("fill", "green")
     .selectAll("circle")
     .data(dataC2, function (d) {
       return d;
@@ -153,7 +153,7 @@ function createLineChart(data, update, attribute, div) {
     .attr("cx", (d) => x(d.year))
     .attr("cy", (d) => y(d[attributesDict[attribute]]))
     .attr("r", 3)
-    .attr("id", "three")
+    .attr("id", "two")
     .on("mouseover", handleMouseOver)
     .on("mouseleave", handleMouseLeave);
 
@@ -161,7 +161,7 @@ function createLineChart(data, update, attribute, div) {
     "" + labelsDict[attribute] + ", " + chosenCountry1,
     "" + labelsDict[attribute] + ", " + chosenCountry2,
   ];
-  var colors = ["steelblue", "PaleVioletRed"]; //This will be changed to other colors in CP5
+  var colors = ["purple", "green"]; //This will be changed to other colors in CP5
 
   if (chosenCountry1 != undefined && chosenCountry1 != "") {
     // Add color dots for legends C1

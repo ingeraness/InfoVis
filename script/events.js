@@ -80,56 +80,28 @@ function handleMouseLeave(event, d) {
     d3.select("div#lineChart1")
       .select("svg")
       .selectAll(`circle#${event.path[0].id}`)
-      .style("fill", "steelblue");
+      .style("fill", "purple");
   }
 
   if (event.path[0].id == "two") {
     d3.select("div#lineChart1")
       .select("svg")
       .selectAll(`circle#${event.path[0].id}`)
-      .style("fill", "blue");
-  }
-
-  if (event.path[0].id == "three") {
-    d3.select("div#lineChart1")
-      .select("svg")
-      .selectAll(`circle#${event.path[0].id}`)
-      .style("fill", "PaleVioletRed");
-  }
-
-  if (event.path[0].id == "four") {
-    d3.select("div#lineChart1")
-      .select("svg")
-      .selectAll(`circle#${event.path[0].id}`)
-      .style("fill", "pink");
+      .style("fill", "green");
   }
 
   if (event.path[0].id == "one") {
     d3.select("div#lineChart2")
       .select("svg")
       .selectAll(`circle#${event.path[0].id}`)
-      .style("fill", "steelblue");
+      .style("fill", "purple");
   }
 
   if (event.path[0].id == "two") {
     d3.select("div#lineChart2")
       .select("svg")
       .selectAll(`circle#${event.path[0].id}`)
-      .style("fill", "blue");
-  }
-
-  if (event.path[0].id == "three") {
-    d3.select("div#lineChart2")
-      .select("svg")
-      .selectAll(`circle#${event.path[0].id}`)
-      .style("fill", "PaleVioletRed");
-  }
-
-  if (event.path[0].id == "four") {
-    d3.select("div#lineChart2")
-      .select("svg")
-      .selectAll(`circle#${event.path[0].id}`)
-      .style("fill", "pink");
+      .style("fill", "green");
   }
 
   d3.select("div#scatterPlot")
@@ -169,6 +141,7 @@ function markSelectedCountries() {
 
   scatterPlot
     .selectAll("circle")
+    .selectAll("#dataScatter")
     .style("fill", "steelblue")
     .filter(function (b) {
       if (b.country == chosenCountry1 || b.country == chosenCountry2) {
