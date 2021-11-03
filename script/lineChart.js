@@ -162,21 +162,21 @@ function createLineChart(data, update, attribute, div) {
     "" + labelsDict[attribute] + ", " + chosenCountry2,
   ];
   var colors = ["steelblue", "PaleVioletRed"]; //This will be changed to other colors in CP5
-  /*
+
   if (chosenCountry1 != undefined && chosenCountry1 != "") {
     // Add color dots for legends C1
     svg
       .append("circle")
-      .attr("cx", 800)
-      .attr("cy", 205)
+      .attr("cx", width - 200)
+      .attr("cy", 220)
       .attr("r", 3)
       .style("fill", colors[0]);
 
     // Add labels for legends C1
     svg
       .append("text")
-      .attr("x", 810)
-      .attr("y", 205)
+      .attr("x", width - 190)
+      .attr("y", 220)
       .text(lineLabels[0])
       .style("font-size", "10px")
       .attr("alignment-baseline", "middle");
@@ -186,7 +186,7 @@ function createLineChart(data, update, attribute, div) {
     //Dots for legends C2
     svg
       .append("circle")
-      .attr("cx", 800)
+      .attr("cx", width - 200)
       .attr("cy", 235)
       .attr("r", 3)
       .style("fill", colors[1]);
@@ -194,10 +194,10 @@ function createLineChart(data, update, attribute, div) {
     // Add labels for legends C2
     svg
       .append("text")
-      .attr("x", 810)
+      .attr("x", width - 190)
       .attr("y", 235)
       .text(lineLabels[1])
       .style("font-size", "10px")
       .attr("alignment-baseline", "middle");
-  }*/
+  }
 }
