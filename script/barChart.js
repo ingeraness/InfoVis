@@ -17,7 +17,7 @@ function createBarChart(data, update) {
   svg.selectAll("*").remove(); // Remove the old vis before drawing the new vis with new countries
 
   // Set header
-  document.getElementById("headerBarAndLineChart").innerHTML =
+  document.getElementById("headerBarChart").innerHTML =
     "Freedom Index Europe " + chosenYear;
 
   var filtered_data = data.filter(function (d) {

@@ -85,6 +85,8 @@ div {
 }
 
 #lineChart {
+  display: grid;
+  grid-template-columns: 50% 50%;
   margin-bottom: -20px;
 }
 

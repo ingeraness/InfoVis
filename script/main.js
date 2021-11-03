@@ -47,12 +47,14 @@ function saveDropdownCountry(i) {
         (chosenCountry1 == undefined || chosenCountry1 == "") &&
         (chosenCountry2 == undefined || chosenCountry2 == "")
       ) {
-        d3.select("div#lineChart").select("svg").remove(); //Remove old chart
+        d3.select("div#lineChart1").select("svg").remove(); //Remove old chart
+        d3.select("div#lineChart2").select("svg").remove(); //Remove old chart
         createBarChart(data, false);
         showingBarChart = true;
       } else {
         showingBarChart = false;
-        createLineChart(data, false);
+        createLineChart(data, false, chosenAttributeX, 1);
+        createLineChart(data, false, chosenAttributeY, 2);
       }
     })
     .catch((error) => {
@@ -73,12 +75,13 @@ function saveDropdownYear() {
       (chosenCountry1 == undefined || chosenCountry1 == "") &&
       (chosenCountry2 == undefined || chosenCountry2 == "")
     ) {
-      //d3.select("div#lineChart").select("svg").remove(); //Remove old chart
+      //d3.select("div#lineChart1").select("svg").remove(); //Remove old chart
       //d3.select("div#barChart").select("svg").remove(); //Remove old chart
       createBarChart(data, false);
       showingBarChart = true;
     } else {
-      createLineChart(data, false);
+      createLineChart(data, false, chosenAttributeX, 1);
+      createLineChart(data, false, chosenAttributeY, 2);
       showingBarChart = false;
     }
   });
@@ -103,12 +106,14 @@ function saveDropdownAttribute(i) {
         (chosenCountry1 == undefined || chosenCountry1 == "") &&
         (chosenCountry2 == undefined || chosenCountry2 == "")
       ) {
-        d3.select("div#lineChart").select("svg").remove(); //Remove old chart
+        d3.select("div#lineChart1").select("svg").remove(); //Remove old chart
+        d3.select("div#lineChart2").select("svg").remove(); //Remove old chart
         d3.select("div#barChart").select("svg").remove(); //Remove old chart
         createBarChart(data, false);
         showingBarChart = true;
       } else {
-        createLineChart(data, false);
+        createLineChart(data, false, chosenAttributeX, 1);
+        createLineChart(data, false, chosenAttributeY, 2);
         showingBarChart = false;
       }
     }
@@ -121,10 +126,12 @@ function removeCharts(showingBarChart) {
     .selectAll("#removeOnUpdate")
     .remove(); //Remove old chart
   if (showingBarChart) {
-    d3.select("div#lineChart").select("svg").remove(); //Remove old chart
+    d3.select("div#lineChart1").select("svg").remove(); //Remove old chart
+    d3.select("div#lineChart2").select("svg").remove(); //Remove old chart
     d3.select("div#barChart").select("svg").remove(); //Remove old chart
   } else {
-    d3.select("div#lineChart").select("svg").remove(); //Remove old chart
+    d3.select("div#lineChart1").select("svg").remove(); //Remove old chart
+    d3.select("div#lineChart2").select("svg").remove(); //Remove old chart
     d3.select("div#barChart").select("svg").remove(); //Remove old chart
   }
 }

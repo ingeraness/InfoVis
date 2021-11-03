@@ -18,7 +18,8 @@ var handleMouseMove = function (d) {
 };
 
 function handleMouseOver(event, d) {
-  lineChart = d3.select("div#lineChart").select("svg");
+  lineChart1 = d3.select("div#lineChart1").select("svg");
+  lineChart2 = d3.select("div#lineChart2").select("svg");
   scatterPlot = d3.select("div#scatterPlot").select("svg");
   barChart = d3.select("div#barChart").select("svg");
 
@@ -67,28 +68,56 @@ function handleMouseLeave(event, d) {
   tooltip.transition().duration(600).style("opacity", 0);
 
   if (event.path[0].id == "one") {
-    d3.select("div#lineChart")
+    d3.select("div#lineChart1")
       .select("svg")
       .selectAll(`circle#${event.path[0].id}`)
       .style("fill", "steelblue");
   }
 
   if (event.path[0].id == "two") {
-    d3.select("div#lineChart")
+    d3.select("div#lineChart1")
       .select("svg")
       .selectAll(`circle#${event.path[0].id}`)
       .style("fill", "blue");
   }
 
   if (event.path[0].id == "three") {
-    d3.select("div#lineChart")
+    d3.select("div#lineChart1")
       .select("svg")
       .selectAll(`circle#${event.path[0].id}`)
       .style("fill", "PaleVioletRed");
   }
 
   if (event.path[0].id == "four") {
-    d3.select("div#lineChart")
+    d3.select("div#lineChart1")
+      .select("svg")
+      .selectAll(`circle#${event.path[0].id}`)
+      .style("fill", "pink");
+  }
+
+  if (event.path[0].id == "one") {
+    d3.select("div#lineChart2")
+      .select("svg")
+      .selectAll(`circle#${event.path[0].id}`)
+      .style("fill", "steelblue");
+  }
+
+  if (event.path[0].id == "two") {
+    d3.select("div#lineChart2")
+      .select("svg")
+      .selectAll(`circle#${event.path[0].id}`)
+      .style("fill", "blue");
+  }
+
+  if (event.path[0].id == "three") {
+    d3.select("div#lineChart2")
+      .select("svg")
+      .selectAll(`circle#${event.path[0].id}`)
+      .style("fill", "PaleVioletRed");
+  }
+
+  if (event.path[0].id == "four") {
+    d3.select("div#lineChart2")
       .select("svg")
       .selectAll(`circle#${event.path[0].id}`)
       .style("fill", "pink");
