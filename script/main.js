@@ -24,6 +24,7 @@ function init() {
       createBarChart(data, false);
       markSelectedCountries();
       createDropDownMenus();
+      createClevelandPlot(data, false);
     })
     .catch((error) => {
       console.log(error);

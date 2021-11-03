@@ -21,6 +21,7 @@ function handleMouseOver(event, d) {
   lineChart = d3.select("div#lineChart").select("svg");
   scatterPlot = d3.select("div#scatterPlot").select("svg");
   barChart = d3.select("div#barChart").select("svg");
+  clevelandPlot = d3.select("div#clevelandPlot").select("svg");
 
   tooltip.style("opacity", 1);
 
@@ -61,6 +62,15 @@ function handleMouseOver(event, d) {
       }
     })
     .style("fill", "red");
+
+  /*clevelandPlot
+    .selectAll("line")
+    .filter(function (b) {
+      if (d.ISO_code == b.ISO_code) {
+        return b;
+      }
+    })
+    .style("fill", "red");*/
 }
 
 function handleMouseLeave(event, d) {
@@ -108,6 +118,11 @@ function handleMouseLeave(event, d) {
   d3.select("div#barChart")
     .select("svg")
     .selectAll("rect")
+    .style("fill", "steelblue");
+
+  d3.select("div#clevelandPlot")
+    .select("svg")
+    .selectAll("line")
     .style("fill", "steelblue");
 }
 
