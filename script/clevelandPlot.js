@@ -51,10 +51,11 @@ function createClevelandPlot(data, update) {
     .data(data)
     .join("line")
     .attr("x1", function (d) {
+      console.log("YEEAR: " + d.year);
       return x(d[attributesDict[chosenAttributeX]]);
     })
     .attr("x2", function (d) {
-      return x(d.pf_ss);
+      return x(d[attributesDict[chosenAttributeY]]); //MÅ ENDRES!!
     })
     .attr("y1", function (d) {
       return y(d.ISO_code);
