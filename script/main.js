@@ -49,10 +49,12 @@ function saveDropdownCountry(i) {
       ) {
         d3.select("div#lineChart1").select("svg").remove(); //Remove old chart
         d3.select("div#lineChart2").select("svg").remove(); //Remove old chart
+        clearHeaders();
         createBarChart(data, false);
         showingBarChart = true;
       } else {
         showingBarChart = false;
+        clearHeaders();
         createLineChart(data, false, chosenAttributeX, 1);
         createLineChart(data, false, chosenAttributeY, 2);
       }
@@ -77,9 +79,11 @@ function saveDropdownYear() {
     ) {
       //d3.select("div#lineChart1").select("svg").remove(); //Remove old chart
       //d3.select("div#barChart").select("svg").remove(); //Remove old chart
+      clearHeaders();
       createBarChart(data, false);
       showingBarChart = true;
     } else {
+      clearHeaders();
       createLineChart(data, false, chosenAttributeX, 1);
       createLineChart(data, false, chosenAttributeY, 2);
       showingBarChart = false;
@@ -109,15 +113,23 @@ function saveDropdownAttribute(i) {
         d3.select("div#lineChart1").select("svg").remove(); //Remove old chart
         d3.select("div#lineChart2").select("svg").remove(); //Remove old chart
         d3.select("div#barChart").select("svg").remove(); //Remove old chart
+        clearHeaders();
         createBarChart(data, false);
         showingBarChart = true;
       } else {
+        clearHeaders();
         createLineChart(data, false, chosenAttributeX, 1);
         createLineChart(data, false, chosenAttributeY, 2);
         showingBarChart = false;
       }
     }
   });
+}
+
+function clearHeaders() {
+  document.getElementById("headerBarChart").innerHTML = "";
+  document.getElementById("headerLineChart1").innerHTML = "";
+  document.getElementById("headerLineChart2").innerHTML = "";
 }
 
 function removeCharts(showingBarChart) {
