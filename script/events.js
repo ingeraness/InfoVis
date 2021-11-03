@@ -141,12 +141,14 @@ function markSelectedCountries() {
 
   scatterPlot
     .selectAll("circle")
-    .selectAll("#dataScatter")
     .style("fill", "steelblue")
     .filter(function (b) {
+      console.log("COUNTRY: " + b.country);
+      console.log("COUNTRY1: " + chosenCountry1);
+      console.log("COUNTRY2: " + chosenCountry2);
       if (b.country == chosenCountry1 || b.country == chosenCountry2) {
         return b;
       }
     })
-    .style("fill", "purple");
+    .style("fill", (d) => (d.country == chosenCountry1 ? "purple" : "green"));
 }
