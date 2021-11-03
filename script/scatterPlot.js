@@ -23,6 +23,9 @@ function createScatterPlot(data, update) {
     hf_score: keys[4].valueOf(),
   };
 
+  document.getElementById("headerScatter").innerHTML =
+    labelsDict[chosenAttributeX] + " VS. " + labelsDict[chosenAttributeY];
+
   x = d3
     .scaleLinear()
     .domain([0, 10])
