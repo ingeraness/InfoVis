@@ -1,6 +1,7 @@
 function createScatterPlot(data, update) {
   const width = 400;
   const height = 400;
+  
 
   // TODO: endre til dynamisk bredde og høyde. Også i transform!
 
@@ -11,6 +12,8 @@ function createScatterPlot(data, update) {
       return d;
     }
   });
+
+
 
   const keys = Object.keys(data[0]);
 
@@ -111,6 +114,7 @@ function createScatterPlot(data, update) {
     .attr("id", "removeOnUpdate")
     .text(labelsDict[chosenAttributeY]);
 
+  
   // Add dots
   svg
     .append("g")
@@ -127,13 +131,12 @@ function createScatterPlot(data, update) {
     })
     .attr("r", 4)
     .style("fill", "steelblue")
+    .on("mousemove", handleMouseMove)
     .on("mouseover", handleMouseOver)
     .on("mouseleave", handleMouseLeave)
-    //.on("mouseover", mouseover )
-    //.on("mousemove", mousemove )
-    //.on("mouseleave", handleMouseMove)
     .on("click", handleClickScatterplot)
     .attr("id", "dataScatter");
+
 
   if (!update) {
     svg.append("g").attr("class", "scatterXAxis");

@@ -17,6 +17,12 @@ h3 {
   margin-bottom: -10px;
 }
 
+.tooltip{
+  width: max-content;
+  height: min-content;
+  position: fixed;
+}
+
 .first-row {
   display: grid;
   grid-template-columns: 25% 30%;
@@ -43,6 +49,7 @@ h3 {
 div {
   width: 100%;
   float: left;
+
 }
 
 .grid {
