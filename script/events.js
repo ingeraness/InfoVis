@@ -140,13 +140,13 @@ function handleClickBarChart(event, d) {
   if(chosenCountry1 != d.country && chosenCountry2 != d.country){
     if(chosenCountryNumber % 2 == 0){
       chosenCountry1 = d.country;
-      document.getElementById("optionC1").innerHTML = chosenCountry1;
+      document.getElementById("dropdown_country1").value = chosenCountry1;
       saveDropdownCountry(3);
       chosenCountryNumber++;
     }
     else {
       chosenCountry2 = d.country;
-      document.getElementById("optionC2").innerHTML = chosenCountry2;
+      document.getElementById("dropdown_country2").value = chosenCountry2;
       saveDropdownCountry(3);
       chosenCountryNumber++;
     }
@@ -158,13 +158,13 @@ function handleClickScatterplot(event, d) {
   if(chosenCountry1 != d.country && chosenCountry2 != d.country){
     if(chosenCountryNumber % 2 == 0){
       chosenCountry1 = d.country;
-      document.getElementById("optionC1").innerHTML = chosenCountry1;
+      document.getElementById("dropdown_country1").value = chosenCountry1;
       saveDropdownYear();
       chosenCountryNumber++;
     }
     else {
       chosenCountry2 = d.country;
-      document.getElementById("optionC2").innerHTML = chosenCountry2;
+      document.getElementById("dropdown_country2").value = chosenCountry2;
       saveDropdownYear();
       chosenCountryNumber++;
     }
@@ -176,13 +176,13 @@ function handleClickChoropleth(event, d) {
   if(chosenCountry1 != d.properties.NAME && chosenCountry2 != d.properties.NAME){
     if(chosenCountryNumber % 2 == 0){
       chosenCountry1 = d.properties.NAME;
-      document.getElementById("optionC1").innerHTML = chosenCountry1;
+      document.getElementById("dropdown_country1").value = chosenCountry1;
       saveDropdownYear();
       chosenCountryNumber++;
     }
     else {
       chosenCountry2 = d.properties.NAME;
-      document.getElementById("optionC2").innerHTML = chosenCountry2;
+      document.getElementById("dropdown_country2").value = chosenCountry2;
       saveDropdownYear();
       chosenCountryNumber++;
     }
