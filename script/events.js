@@ -18,7 +18,8 @@ var handleMouseMove = function (d) {
 };
 
 function handleMouseOver(event, d) {
-  lineChart = d3.select("div#lineChart").select("svg");
+  lineChart1 = d3.select("div#lineChart1").select("svg");
+  lineChart2 = d3.select("div#lineChart2").select("svg");
   scatterPlot = d3.select("div#scatterPlot").select("svg");
   barChart = d3.select("div#barChart").select("svg");
 
@@ -26,7 +27,16 @@ function handleMouseOver(event, d) {
 
   markSelectedCountries(); //Mark the countries selected in the drop down menus
 
-  lineChart
+  lineChart1
+    .selectAll(event.path[0].id == "" ? "circle" : `circle#${event.path[0].id}`)
+    .filter(function (b) {
+      if (d.country == b.country && d.year == b.year) {
+        return b;
+      }
+    })
+    .style("fill", "red");
+
+  lineChart2
     .selectAll(event.path[0].id == "" ? "circle" : `circle#${event.path[0].id}`)
     .filter(function (b) {
       if (d.country == b.country && d.year == b.year) {
@@ -37,6 +47,7 @@ function handleMouseOver(event, d) {
 
   scatterPlot
     .selectAll("circle")
+    //.selectAll("dataScatter")
     .filter(function (b) {
       if (d.country == b.country) {
         console.log("Info om dette landet: " + b.country);
@@ -67,36 +78,36 @@ function handleMouseLeave(event, d) {
   tooltip.transition().duration(600).style("opacity", 0);
 
   if (event.path[0].id == "one") {
-    d3.select("div#lineChart")
+    d3.select("div#lineChart1")
       .select("svg")
       .selectAll(`circle#${event.path[0].id}`)
-      .style("fill", "steelblue");
+      .style("fill", "purple");
   }
 
   if (event.path[0].id == "two") {
-    d3.select("div#lineChart")
+    d3.select("div#lineChart1")
       .select("svg")
       .selectAll(`circle#${event.path[0].id}`)
-      .style("fill", "blue");
+      .style("fill", "green");
   }
 
-  if (event.path[0].id == "three") {
-    d3.select("div#lineChart")
+  if (event.path[0].id == "one") {
+    d3.select("div#lineChart2")
       .select("svg")
       .selectAll(`circle#${event.path[0].id}`)
-      .style("fill", "PaleVioletRed");
+      .style("fill", "purple");
   }
 
-  if (event.path[0].id == "four") {
-    d3.select("div#lineChart")
+  if (event.path[0].id == "two") {
+    d3.select("div#lineChart2")
       .select("svg")
       .selectAll(`circle#${event.path[0].id}`)
-      .style("fill", "pink");
+      .style("fill", "green");
   }
 
   d3.select("div#scatterPlot")
     .select("svg")
-    .selectAll(`circle`)
+    .selectAll("circle#dataScatter")
     .style("fill", "steelblue")
     .filter(function (b) {
       if (b.country == chosenCountry1 || b.country == chosenCountry2) {
@@ -130,12 +141,15 @@ function markSelectedCountries() {
   scatterPlot = d3.select("div#scatterPlot").select("svg");
 
   scatterPlot
-    .selectAll("circle")
+    .selectAll("circle#dataScatter")
     .style("fill", "steelblue")
     .filter(function (b) {
+      console.log("COUNTRY: " + b.country);
+      console.log("COUNTRY1: " + chosenCountry1);
+      console.log("COUNTRY2: " + chosenCountry2);
       if (b.country == chosenCountry1 || b.country == chosenCountry2) {
         return b;
       }
     })
-    .style("fill", "purple");
+    .style("fill", (d) => (d.country == chosenCountry1 ? "purple" : "green"));
 }
