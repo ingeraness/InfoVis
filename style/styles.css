@@ -13,12 +13,12 @@ h2 {
 
 .first-row {
   display: grid;
-  grid-template-columns: 25% 30%;
+  /* grid-template-columns: 25% 30%; */
   column-gap: 2rem;
   height: 40%;
 }
 
-#choroplot {
+#choropleth {
   height: min-content;
   grid-column: 1/2;
 }

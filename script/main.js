@@ -24,6 +24,7 @@ function init() {
       createBarChart(data, false);
       markSelectedCountries();
       createDropDownMenus();
+      createChoroplethMap();
     })
     .catch((error) => {
       console.log(error);
