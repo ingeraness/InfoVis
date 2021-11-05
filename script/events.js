@@ -1,7 +1,7 @@
 
 var handleMouseMove = function (event, d) {
 
-  d3.select(".tooltip").style("left", (event.pageX + 20) + "px").style("top", (event.pageY + 20)+"px");
+  d3.select(".tooltip").style("left", (event.pageX + 20) + "px").style("top", (event.pageY - 150)+"px");
   
 };
 
@@ -73,13 +73,11 @@ function handleMouseOver(event, d) {
     .style("fill", "red");
 
     d3.select(".tooltip").style("visibility", "visible")
-   .style("left", event.x  + "px").style("top", (event.y + 20)+"px")
+   //.style("top", (event.x  ) + "px").style("left", (event.y )+"px")
     .html("Country: " +  d.country + 
     "</br> Year: " + d.year + 
-    "</br>"+labelsDict[chosenAttributeX]+": " +
-    "</br>"+ d[chosenAttributeX]
-    +  "</br>"+labelsDict[chosenAttributeY]+": " 
-    +"</br>"+ d[chosenAttributeY]
+    "</br>"+labelsDict[chosenAttributeX]+": " + d[chosenAttributeX]
+    +  "</br>"+labelsDict[chosenAttributeY]+": " + d[chosenAttributeY]
   
     );
    
