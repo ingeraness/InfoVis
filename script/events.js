@@ -47,6 +47,7 @@ function handleMouseOver(event, d) {
 
   scatterPlot
     .selectAll("circle")
+    //.selectAll("dataScatter")
     .filter(function (b) {
       if (d.country == b.country) {
         console.log("Info om dette landet: " + b.country);
@@ -106,7 +107,7 @@ function handleMouseLeave(event, d) {
 
   d3.select("div#scatterPlot")
     .select("svg")
-    .selectAll(`circle`)
+    .selectAll("circle#dataScatter")
     .style("fill", "steelblue")
     .filter(function (b) {
       if (b.country == chosenCountry1 || b.country == chosenCountry2) {
@@ -140,7 +141,7 @@ function markSelectedCountries() {
   scatterPlot = d3.select("div#scatterPlot").select("svg");
 
   scatterPlot
-    .selectAll("circle")
+    .selectAll("circle#dataScatter")
     .style("fill", "steelblue")
     .filter(function (b) {
       console.log("COUNTRY: " + b.country);

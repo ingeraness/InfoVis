@@ -157,6 +157,7 @@ function createScatterPlot(data, update) {
       .attr("r", 3)
       .attr("id", "legendScatter")
       .style("fill", colorsScatter[0]);
+
     // Add labels for legends for selected country 1
     svg
       .append("text")
