@@ -25,6 +25,7 @@ function init() {
       markSelectedCountries();
       createDropDownMenus();
       createChoroplethMap();
+      createClevelandPlot(data, false);
     })
     .catch((error) => {
       console.log(error);
