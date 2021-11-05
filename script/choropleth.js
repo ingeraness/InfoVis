@@ -66,15 +66,15 @@ function choropleth() {
           return colorScale(value);
         })
         .attr("id", function(d, i) {
-            return d.properties.name;
+            return d.properties.NAME;
         })
         .append("title")
         .text(function(d) {
-            return d.properties.name;
+            return d.properties.NAME;
         })
 
     function mouse(event, d){
-        console.log(d.properties.NAME);
+        // console.log(d.properties.NAME);
     }
 
     var l_domain = [min, max];

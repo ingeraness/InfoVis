@@ -150,6 +150,7 @@ function handleClickScatterplot(event, d) {
 function markSelectedCountries() {
   //Marks the countries selected in the drop down menus
   scatterPlot = d3.select("div#scatterPlot").select("svg");
+  choroplethMap = d3.select("div#choropleth").select("svg");
 
   scatterPlot
     .selectAll("circle")
@@ -159,5 +160,16 @@ function markSelectedCountries() {
         return b;
       }
     })
-    .style("fill", "purple");
+  .style("fill", "purple");
+
+
+  choroplethMap
+    .selectAll(".country")
+    .style("stroke", "none")
+    .filter(function(b) {
+      if(b.properties.NAME == chosenCountry1 || b.properties.NAME == chosenCountry2) {
+        return b;
+      }
+    })
+    .style("stroke", "black");
 }
