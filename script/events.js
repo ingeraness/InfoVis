@@ -140,9 +140,16 @@ function handleClickBarChart(event, d) {
   saveDropdownCountry(3);
 }
 
-// Change selected country when bar is clicked on in scatterplot
+// Change selected country when circle is clicked on in scatterplot
 function handleClickScatterplot(event, d) {
   chosenCountry1 = d.country;
+  document.getElementById("optionC1").innerHTML = chosenCountry1;
+  saveDropdownYear();
+}
+
+// Change selected country when country is clicked on in choropleth
+function handleClickChoropleth(event, d) {
+  chosenCountry1 = d.properties.NAME;
   document.getElementById("optionC1").innerHTML = chosenCountry1;
   saveDropdownYear();
 }

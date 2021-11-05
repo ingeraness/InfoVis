@@ -58,6 +58,7 @@ function choropleth() {
             }
           })
         .on("mouseover", mouse)
+        .on("click", handleClickChoropleth)
         .attr("class", "country")
         .attr("d", path)
         // Using value for hf_score to give countries different color
