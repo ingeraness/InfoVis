@@ -11,6 +11,12 @@ h2 {
   text-align: center;
 }
 
+.tooltip{
+  width: min-content;
+  height: min-content;
+  position: fixed;
+}
+
 .first-row {
   display: grid;
   grid-template-columns: 25% 30%;
@@ -37,6 +43,7 @@ h2 {
 div {
   width: 100%;
   float: left;
+
 }
 
 .grid {

@@ -1,29 +1,26 @@
-// Add a tooltip div. Here I define the general feature of the tooltip: stuff that do not depend on the data point.
-// Its opacity is set to 0: we don't see it by default.
-var tooltip = d3
-  .select("div#scatterPlot")
-  .append("div")
-  .style("opacity", 0)
-  .attr("class", "tooltip")
-  .style("background-color", "white")
-  .style("border", "solid")
-  .style("border-width", "1px")
-  .style("border-radius", "5px")
-  .style("padding", "10px");
 
-var handleMouseMove = function (d) {
-  tooltip.html("Country: " + d.year);
-  //.style("left", (d3.pointer(this)[0]+90) + "px") // It is important to put the +90: other wise the tooltip is exactly where the point is an it creates a weird effect
-  //.style("top", (d3.pointer(this)[1]) + "px")
+var handleMouseMove = function (event, d) {
+
+  d3.select(".tooltip").style("left", (event.pageX + 20) + "px").style("top", (event.pageY + 20)+"px");
+  
 };
 
 function handleMouseOver(event, d) {
   lineChart = d3.select("div#lineChart").select("svg");
   scatterPlot = d3.select("div#scatterPlot").select("svg");
   barChart = d3.select("div#barChart").select("svg");
+/*
+  const keys = Object.keys(d[0]);
 
-  tooltip.style("opacity", 1);
-
+  let attributesDict = {
+    pf_ss: keys[8].valueOf(),
+    pf_ss_women: keys[9].valueOf(),
+    ef_legal_police: keys[10].valueOf(),
+    pf_ss_disappearances_violent: keys[6].valueOf(),
+    pf_religion_freedom: keys[7].valueOf(),
+    hf_score: keys[4].valueOf(),
+  };*/
+ 
   markSelectedCountries(); //Mark the countries selected in the drop down menus
 
   lineChart
@@ -52,6 +49,8 @@ function handleMouseOver(event, d) {
       }
     })
     .style("fill", "red");
+   
+    
 
   barChart
     .selectAll("rect")
@@ -61,10 +60,30 @@ function handleMouseOver(event, d) {
       }
     })
     .style("fill", "red");
+
+    d3.select(".tooltip").style("visibility", "visible")
+   .style("left", event.x  + "px").style("top", (event.y + 20)+"px")
+    .html("Country: " +  d.country + 
+    "</br> Year: " + d.year + 
+    "</br>"+labelsDict[chosenAttributeX]+": " +
+    "</br>"+ d[chosenAttributeX]
+    +  "</br>"+labelsDict[chosenAttributeY]+": " 
+    +"</br>"+ d[chosenAttributeY]
+  
+    );
+   
+    console.log(d.chosenAttributeX);
+    console.log(chosenAttributeX);
+    console.log(d.pf_religion_freedom);
+    console.log(d);
+
 }
 
+
 function handleMouseLeave(event, d) {
-  tooltip.transition().duration(600).style("opacity", 0);
+
+  d3.select(".tooltip").style("visibility", "hidden");
+
 
   if (event.path[0].id == "one") {
     d3.select("div#lineChart")
@@ -129,6 +148,8 @@ function markSelectedCountries() {
   //Marks the countries selected in the drop down menus
   scatterPlot = d3.select("div#scatterPlot").select("svg");
 
+ 
+
   scatterPlot
     .selectAll("circle")
     .style("fill", "steelblue")
@@ -138,4 +159,5 @@ function markSelectedCountries() {
       }
     })
     .style("fill", "purple");
+    
 }

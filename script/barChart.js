@@ -73,6 +73,7 @@ function createBarChart(data, update) {
     .attr("height", (d) => height - margin.bottom - y(d.hf_score))
     .attr("width", x.bandwidth())
     .attr("id", "removeOnUpdate")
+    .on("mousemove", handleMouseMove)
     .on("mouseover", handleMouseOver)
     .on("mouseleave", handleMouseLeave)
     .on("click", handleClickBarChart);
