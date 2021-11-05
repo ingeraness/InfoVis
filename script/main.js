@@ -38,7 +38,7 @@ function saveDropdownCountry(i) {
   } else if (i == 2) {
     chosenCountry2 = document.getElementById("dropdown_country2").value;
   }
-  d3.select("div#scatterPlot").select("svg").remove(); //Remove old chart
+  d3.select("div#scatterPlot").select("svg").selectAll("#removeOnUpdate").remove(); //Remove old chart
   // Check if it should draw the lineChart or barChart
   removeCharts(showingBarChart);
   d3.csv("data/data.csv")
