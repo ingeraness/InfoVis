@@ -9,6 +9,12 @@ h1 {
 
 h2 {
   text-align: center;
+  margin-bottom: -40px;
+}
+h3 {
+  text-align: center;
+  font-size: 18px;
+  margin-bottom: -10px;
 }
 
 .tooltip{
@@ -81,12 +87,21 @@ div {
   margin-bottom: -3;*/
 }
 
-#headerBarAndLineChart {
-  margin-bottom: -10px;
+#headerBarChart {
+  margin-bottom: -20px;
 }
 
 #lineChart {
+  display: grid;
+  grid-template-columns: 50% 50%;
   margin-bottom: -20px;
+}
+
+#headerLineChart1 {
+  margin-bottom: -70px;
+}
+#headerLineChart2 {
+  margin-bottom: -70px;
 }
 
 /*
