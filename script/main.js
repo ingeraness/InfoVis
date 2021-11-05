@@ -96,6 +96,15 @@ function saveDropdownYear() {
 }
 
 function saveDropdownAttribute(i) {
+  if(document.getElementById("dropdown_attribute1").value == chosenAttributeY || document.getElementById("dropdown_attribute2").value == chosenAttributeX ){
+    if(i == 1){
+      document.getElementById("dropdown_attribute1").value = chosenAttributeX;
+    }
+    else {
+      document.getElementById("dropdown_attribute2").value = chosenAttributeY;
+    }
+    return;
+  }
   d3.select("div#scatterPlot")
     .selectAll("svg")
     .selectAll("#removeOnUpdate")
