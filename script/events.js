@@ -140,9 +140,16 @@ function handleClickBarChart(event, d) {
   saveDropdownCountry(3);
 }
 
-// Change selected country when bar is clicked on in scatterplot
+// Change selected country when circle is clicked on in scatterplot
 function handleClickScatterplot(event, d) {
   chosenCountry1 = d.country;
+  document.getElementById("optionC1").innerHTML = chosenCountry1;
+  saveDropdownYear();
+}
+
+// Change selected country when country is clicked on in choropleth
+function handleClickChoropleth(event, d) {
+  chosenCountry1 = d.properties.NAME;
   document.getElementById("optionC1").innerHTML = chosenCountry1;
   saveDropdownYear();
 }
@@ -150,6 +157,7 @@ function handleClickScatterplot(event, d) {
 function markSelectedCountries() {
   //Marks the countries selected in the drop down menus
   scatterPlot = d3.select("div#scatterPlot").select("svg");
+  choroplethMap = d3.select("div#choropleth").select("svg");
 
   scatterPlot
     .selectAll("circle")
@@ -159,5 +167,16 @@ function markSelectedCountries() {
         return b;
       }
     })
-    .style("fill", "purple");
+  .style("fill", "purple");
+
+
+  choroplethMap
+    .selectAll(".country")
+    .style("stroke", "none")
+    .filter(function(b) {
+      if(b.properties.NAME == chosenCountry1 || b.properties.NAME == chosenCountry2) {
+        return b;
+      }
+    })
+    .style("stroke", "black");
 }
