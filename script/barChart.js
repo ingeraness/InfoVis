@@ -24,7 +24,12 @@ function createBarChart(data, update) {
     if (d.year == chosenYear.valueOf()) {
       return d;
     }
+  }).sort((a,b) => {
+    return d3.ascending(a.hf_score, b.hf_score)
   });
+
+  
+  
 
   y = d3
     .scaleLinear()
