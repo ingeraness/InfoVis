@@ -50,12 +50,12 @@ function createClevelandPlot(data, update) {
     .selectAll("line")
     .data(data)
     .join("line")
+    .filter((d) => d.year.valueOf() == 2008 || d.year.valueOf() == 2018)
     .attr("x1", function (d) {
-      console.log("YEEAR: " + d.year);
       return x(d[attributesDict[chosenAttributeX]]);
     })
     .attr("x2", function (d) {
-      return x(d[attributesDict[chosenAttributeY]]); //MÅ ENDRES!!
+      return x(d[attributesDict[chosenAttributeY]]);
     })
     .attr("y1", function (d) {
       return y(d.ISO_code);
@@ -64,9 +64,9 @@ function createClevelandPlot(data, update) {
       return y(d.ISO_code);
     })
     .attr("stroke", "grey")
-    .attr("stroke-width", "1px");
-  //.on("moveover", handleMouseOver)
-  //.on("mouseleave", handleMouseLeave);
+    .attr("stroke-width", "1px")
+    .on("mouseover", handleMouseOver)
+    .on("mouseleave", handleMouseLeave);
 
   // Circles for 2008
   svg
@@ -80,24 +80,11 @@ function createClevelandPlot(data, update) {
     .attr("cy", function (d) {
       return y(d.ISO_code);
     })
+    .attr("id", function (d) {
+      return d.country;
+    })
     .attr("r", "4")
     .style("fill", "#69b3a2");
-
-  // Circles for 2013
-  /*svg
-    .selectAll("mycircle")
-    .data(data)
-    .join("circle")
-    .attr("cx", function (d) {
-      if (d.year == 2013) {
-        return x(d[attributesDict[chosenAttributeX]]);
-      }
-    })
-    .attr("cy", function (d) {
-      return y(d.ISO_code);
-    })
-    .attr("r", "6")
-    .style("fill", "#4C4082");*/
 
   // Circles for 2018
   svg
@@ -110,6 +97,9 @@ function createClevelandPlot(data, update) {
     })
     .attr("cy", function (d) {
       return y(d.ISO_code);
+    })
+    .attr("id", function (d) {
+      return d.country;
     })
     .attr("r", "4")
     .style("fill", "pink");

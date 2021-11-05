@@ -18,10 +18,10 @@ var handleMouseMove = function (d) {
 };
 
 function handleMouseOver(event, d) {
-  lineChart = d3.select("div#lineChart").select("svg");
-  scatterPlot = d3.select("div#scatterPlot").select("svg");
-  barChart = d3.select("div#barChart").select("svg");
-  clevelandPlot = d3.select("div#clevelandPlot").select("svg");
+  let lineChart = d3.select("div#lineChart").select("svg");
+  let scatterPlot = d3.select("div#scatterPlot").select("svg");
+  let barChart = d3.select("div#barChart").select("svg");
+  let clevelandPlot = d3.select("div#clevelandPlot").select("svg");
 
   tooltip.style("opacity", 1);
 
@@ -40,7 +40,7 @@ function handleMouseOver(event, d) {
     .selectAll("circle")
     .filter(function (b) {
       if (d.country == b.country) {
-        console.log("Info om dette landet: " + b.country);
+        /*console.log("Info om dette landet: " + b.country);
         console.log("Year: " + b.year);
         console.log("Freedom index: " + b.hf_score);
         console.log("Freedom rank: " + b.hf_rank);
@@ -48,7 +48,7 @@ function handleMouseOver(event, d) {
         console.log("Security and Safety: " + b.pf_ss);
         console.log("Police Reliability: " + b.ef_legal_police);
         console.log("Criminal trends: " + b.pf_ss_disappearances_violent);
-        console.log("Religious Freedom: " + b.pf_religion_freedom);
+        console.log("Religious Freedom: " + b.pf_religion_freedom);*/
         return b;
       }
     })
@@ -63,14 +63,14 @@ function handleMouseOver(event, d) {
     })
     .style("fill", "red");
 
-  /*clevelandPlot
-    .selectAll("line")
+  clevelandPlot
+    .selectAll("circle")
     .filter(function (b) {
-      if (d.ISO_code == b.ISO_code) {
+      if (event.path[0].id == b.country || b == d) {
         return b;
       }
     })
-    .style("fill", "red");*/
+    .style("fill", "red");
 }
 
 function handleMouseLeave(event, d) {
@@ -122,8 +122,15 @@ function handleMouseLeave(event, d) {
 
   d3.select("div#clevelandPlot")
     .select("svg")
-    .selectAll("line")
-    .style("fill", "steelblue");
+    .selectAll("circle")
+    .filter((d) => d.year == 2008)
+    .style("fill", "#69b3a2");
+
+  d3.select("div#clevelandPlot")
+    .select("svg")
+    .selectAll("circle")
+    .filter((d) => d.year == 2018)
+    .style("fill", "pink");
 }
 
 // Change selected country when bar is clicked on in bar chart
