@@ -133,25 +133,60 @@ function handleMouseLeave(event, d) {
     .style("fill", "pink");
 }
 
+var chosenCountryNumber = 0;
+
 // Change selected country when bar is clicked on in bar chart
 function handleClickBarChart(event, d) {
-  chosenCountry1 = d.country;
-  document.getElementById("optionC1").innerHTML = chosenCountry1;
-  saveDropdownCountry(3);
+  if(chosenCountry1 != d.country && chosenCountry2 != d.country){
+    if(chosenCountryNumber % 2 == 0){
+      chosenCountry1 = d.country;
+      document.getElementById("optionC1").innerHTML = chosenCountry1;
+      saveDropdownCountry(3);
+      chosenCountryNumber++;
+    }
+    else {
+      chosenCountry2 = d.country;
+      document.getElementById("optionC2").innerHTML = chosenCountry2;
+      saveDropdownCountry(3);
+      chosenCountryNumber++;
+    }
+  }
 }
 
 // Change selected country when circle is clicked on in scatterplot
 function handleClickScatterplot(event, d) {
-  chosenCountry1 = d.country;
-  document.getElementById("optionC1").innerHTML = chosenCountry1;
-  saveDropdownYear();
+  if(chosenCountry1 != d.country && chosenCountry2 != d.country){
+    if(chosenCountryNumber % 2 == 0){
+      chosenCountry1 = d.country;
+      document.getElementById("optionC1").innerHTML = chosenCountry1;
+      saveDropdownYear();
+      chosenCountryNumber++;
+    }
+    else {
+      chosenCountry2 = d.country;
+      document.getElementById("optionC2").innerHTML = chosenCountry2;
+      saveDropdownYear();
+      chosenCountryNumber++;
+    }
+  }
 }
 
 // Change selected country when country is clicked on in choropleth
 function handleClickChoropleth(event, d) {
-  chosenCountry1 = d.properties.NAME;
-  document.getElementById("optionC1").innerHTML = chosenCountry1;
-  saveDropdownYear();
+  if(chosenCountry1 != d.properties.NAME && chosenCountry2 != d.properties.NAME){
+    if(chosenCountryNumber % 2 == 0){
+      chosenCountry1 = d.properties.NAME;
+      document.getElementById("optionC1").innerHTML = chosenCountry1;
+      saveDropdownYear();
+      chosenCountryNumber++;
+    }
+    else {
+      chosenCountry2 = d.properties.NAME;
+      document.getElementById("optionC2").innerHTML = chosenCountry2;
+      saveDropdownYear();
+      chosenCountryNumber++;
+    }
+  }
 }
 
 function markSelectedCountries() {
@@ -168,7 +203,6 @@ function markSelectedCountries() {
       }
     })
   .style("fill", "purple");
-
 
   choroplethMap
     .selectAll(".country")

@@ -33,12 +33,21 @@ function init() {
 }
 
 function saveDropdownCountry(i) {
+  if((document.getElementById("dropdown_country1").value == chosenCountry2 && document.getElementById("dropdown_country1").value != "") 
+    || (document.getElementById("dropdown_country2").value == chosenCountry1 && document.getElementById("dropdown_country2").value != "")){
+    if(i == 1){
+      document.getElementById("dropdown_country1").value = chosenCountry1;
+    }
+    else {
+      document.getElementById("dropdown_country2").value = chosenCountry2;
+    }
+    return;
+  }
   if (i == 1) {
     chosenCountry1 = document.getElementById("dropdown_country1").value;
   } else if (i == 2) {
     chosenCountry2 = document.getElementById("dropdown_country2").value;
   }
-  // d3.select("div#scatterPlot").select("svg").selectAll("#removeOnUpdate").remove(); //Remove old chart
   // Check if it should draw the lineChart or barChart
   removeCharts(showingBarChart);
   d3.csv("data/data.csv")
@@ -97,7 +106,6 @@ function saveDropdownAttribute(i) {
     chosenAttributeY = document.getElementById("dropdown_attribute2").value;
   }
   d3.csv("data/data.csv").then((data) => {
-    // d3.select("div#scatterPlot").selectAll("svg").select("g#circles").remove(); //Remove old chart
     createScatterPlot(data, true);
     markSelectedCountries();
     if (i == 1) {
