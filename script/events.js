@@ -43,19 +43,19 @@ function handleMouseOver(event, d) {
     .style("fill", "red");
 
   scatterPlot
-    .selectAll("circle")
-    .selectAll("dataScatter")
+    .selectAll("circle#dataScatter")
+    // .selectAll("#dataScatter")
     .filter(function (b) {
       if (d.country == b.country) {
-        console.log("Info om dette landet: " + b.country);
-        console.log("Year: " + b.year);
-        console.log("Freedom index: " + b.hf_score);
-        console.log("Freedom rank: " + b.hf_rank);
-        console.log("Women’s Freedom: " + b.pf_ss_women);
-        console.log("Security and Safety: " + b.pf_ss);
-        console.log("Police Reliability: " + b.ef_legal_police);
-        console.log("Criminal trends: " + b.pf_ss_disappearances_violent);
-        console.log("Religious Freedom: " + b.pf_religion_freedom);
+        // console.log("Info om dette landet: " + b.country);
+        // console.log("Year: " + b.year);
+        // console.log("Freedom index: " + b.hf_score);
+        // console.log("Freedom rank: " + b.hf_rank);
+        // console.log("Women’s Freedom: " + b.pf_ss_women);
+        // console.log("Security and Safety: " + b.pf_ss);
+        // console.log("Police Reliability: " + b.ef_legal_police);
+        // console.log("Criminal trends: " + b.pf_ss_disappearances_violent);
+        // console.log("Religious Freedom: " + b.pf_religion_freedom);
         return b;
       }
     })
@@ -81,10 +81,10 @@ function handleMouseOver(event, d) {
   
     );
    
-    console.log(d.chosenAttributeX);
-    console.log(chosenAttributeX);
-    console.log(d.pf_religion_freedom);
-    console.log(d);
+    // console.log(d.chosenAttributeX);
+    // console.log(chosenAttributeX);
+    // console.log(d.pf_religion_freedom);
+    // console.log(d);
 
 }
 
