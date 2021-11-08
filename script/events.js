@@ -44,7 +44,7 @@ function handleMouseOver(event, d) {
 
   scatterPlot
     .selectAll("circle")
-    //.selectAll("dataScatter")
+    .selectAll("dataScatter")
     .filter(function (b) {
       if (d.country == b.country) {
         console.log("Info om dette landet: " + b.country);
@@ -163,9 +163,9 @@ function markSelectedCountries() {
     .selectAll("circle#dataScatter")
     .style("fill", "steelblue")
     .filter(function (b) {
-      console.log("COUNTRY: " + b.country);
-      console.log("COUNTRY1: " + chosenCountry1);
-      console.log("COUNTRY2: " + chosenCountry2);
+      // console.log("COUNTRY: " + b.country);
+      // console.log("COUNTRY1: " + chosenCountry1);
+      // console.log("COUNTRY2: " + chosenCountry2);
       if (b.country == chosenCountry1 || b.country == chosenCountry2) {
         return b;
       }

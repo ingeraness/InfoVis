@@ -128,6 +128,7 @@ function createLineChart(data, update, attribute, div) {
     .attr("cy", (d) => y(d[attributesDict[attribute]]))
     .attr("r", 3)
     .attr("id", "one")
+    .on("mousemove", handleMouseMove)
     .on("mouseover", handleMouseOver)
     .on("mouseleave", handleMouseLeave);
 
@@ -154,6 +155,7 @@ function createLineChart(data, update, attribute, div) {
     .attr("cy", (d) => y(d[attributesDict[attribute]]))
     .attr("r", 3)
     .attr("id", "two")
+    .on("mousemove", handleMouseMove)
     .on("mouseover", handleMouseOver)
     .on("mouseleave", handleMouseLeave);
 
