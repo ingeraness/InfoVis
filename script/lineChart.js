@@ -1,6 +1,7 @@
 var country;
 var dataSet;
 
+
 function createLineChart(data, update, attribute, div) {
   margin = { top: 20, right: 20, bottom: 20, left: 40 };
   width = 500;
@@ -27,14 +28,21 @@ function createLineChart(data, update, attribute, div) {
   document.getElementById(headerString).innerHTML = labelsDict[attribute];
 
   var dataC1 = data.filter(function (d) {
-    if (d.country == chosenCountry1) {
+    if ((d.country == chosenCountry1) && (d.year>= chosenYear && d.year<=chosenYear2)){
       return d;
     }
   });
 
   var dataC2 = data.filter(function (d) {
-    if (d.country == chosenCountry2) {
+    if ((d.country == chosenCountry2) && (d.year>= chosenYear && d.year<=chosenYear2)) {
       return d;
+    }
+  });
+
+  var yearsChosen = data.filter(function(d){
+    if(d.year>= chosenYear && d.year<=chosenYear2 && d.country=="Portugal"){
+      return d;
+
     }
   });
 
@@ -46,7 +54,7 @@ function createLineChart(data, update, attribute, div) {
 
   x = d3
     .scaleLinear()
-    .domain(d3.extent(data, (d) => d.year))
+    .domain(d3.extent(yearsChosen, (d) => d.year))
     .range([margin.left, width - margin.right]);
 
   y = d3
@@ -59,7 +67,8 @@ function createLineChart(data, update, attribute, div) {
       d3
         .axisBottom(x)
         .tickFormat((x) => x)
-        .tickSizeOuter(0)
+        .ticks(yearsChosen.length - 1)
+        //.tickSizeOuter(0)
     );
 
   yAxis = (g) =>
@@ -128,6 +137,7 @@ function createLineChart(data, update, attribute, div) {
     .attr("cy", (d) => y(d[attributesDict[attribute]]))
     .attr("r", 3)
     .attr("id", "one")
+    .on("mousemove", handleMouseMove)
     .on("mouseover", handleMouseOver)
     .on("mouseleave", handleMouseLeave);
 
@@ -154,6 +164,7 @@ function createLineChart(data, update, attribute, div) {
     .attr("cy", (d) => y(d[attributesDict[attribute]]))
     .attr("r", 3)
     .attr("id", "two")
+    .on("mousemove", handleMouseMove)
     .on("mouseover", handleMouseOver)
     .on("mouseleave", handleMouseLeave);
 
