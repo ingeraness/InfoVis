@@ -46,16 +46,25 @@ function createClevelandPlot(data, update) {
   svg.append("g").call(d3.axisLeft(y));
 
   // Lines
+  // This is the part not working. I want to draw the line between x1 = the chosen attribute for 2008 and x2 = the chosen attribute for 2018
   svg
     .selectAll("line")
     .data(data)
     .join("line")
     .filter((d) => d.year.valueOf() == 2008 || d.year.valueOf() == 2018)
     .attr("x1", function (d) {
-      return x(d[attributesDict[chosenAttributeX]]);
+      if (d.year == 2008) {
+        console.log(d.year);
+        console.log(d[attributesDict[chosenAttributeX]]);
+        return x(d[attributesDict[chosenAttributeX]]);
+      }
     })
     .attr("x2", function (d) {
-      return x(d[attributesDict[chosenAttributeY]]);
+      if (d.year == 2018) {
+        console.log(d.year);
+        console.log(d[attributesDict[chosenAttributeX]]);
+        return x(d[attributesDict[chosenAttributeX]]);
+      }
     })
     .attr("y1", function (d) {
       return y(d.ISO_code);
