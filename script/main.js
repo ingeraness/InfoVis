@@ -1,7 +1,8 @@
 // const countries = ['Albania', 'Austria', 'Belgium', 'Bosnia and Herzegovina','Bulgaria', 'Croatia','Cyprus', 'Czech Rebublic', 'Denmark', 'Estonia', 'Finland', 'France', 'Germany', 'Greece', 'Hungary', 'Iceland', 'Ireland', 'Italy', 'Latvia', 'Lithuania', 'Luxembourg', 'Malta', 'Moldova', 'Montenegro', 'Netherlands', 'North Macedonia', 'Norway', 'Poland', 'Portugal', 'Romania', 'Russian Federation',  'Serbia', 'Sloavk Rebublic', 'Slovenia', 'Spain', 'Sweden', 'Switzerland', 'Ukraine', 'United Kingdom' ];
 var chosenCountry1;
 var chosenCountry2;
-var chosenYear = 2018;
+var chosenYear = 2008;
+var chosenYear2 = 2018;
 var chosenAttributeY = "pf_ss";
 var chosenAttributeX = "pf_religion_freedom";
 var update = false;
@@ -64,10 +65,15 @@ function saveDropdownCountry(i) {
     });
 }
 
-function saveDropdownYear() {
-  chosenYear = document.getElementById("dropdown_years").value;
-  document.getElementById("titleH1").innerHTML =
-    "Freedom Ranking Europe " + chosenYear;
+function saveDropdownYear(i) {
+  if (i == 1) {
+    chosenYear = document.getElementById("dropdown_year1").value;
+  } else if (i == 2) {
+    chosenYear2 = document.getElementById("dropdown_year2").value;
+  }
+ 
+  //document.getElementById("titleH1").innerHTML =
+    //"Freedom Ranking Europe from " + chosenYear + " to " + chosenYear2;
   // Check if it should draw the lineChart or barChart
   removeCharts(showingBarChart);
   d3.csv("data/data.csv").then((data) => {
