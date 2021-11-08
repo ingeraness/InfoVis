@@ -60,7 +60,6 @@
   <body onload="init()">
     <div class="grid">
       <div id="header" class="header">
-        
         <div id="title"><h1 id="titleH1"> Freedom Ranking Europe 2018</h1></div>
 
         <div class="options">
@@ -89,9 +88,14 @@
     </form>
 
     <form id="selected_year" class="option">
+      <div data-role="doubleslider">
       <label>Year: 
-        <select id="dropdown_years" onchange="saveDropdownYear()">
-          <option id="selectedYear" value="2018">2018</option>
+        
+          <input data-role="doubleslider" id="selectedYear"  min="2018" max="2018" >
+
+          <!--<select id="dropdown_years" onchange="saveDropdownYear()">
+            
+            <option id="selectedYear" value="2018">2018</option>
                 <option id="selectedYear" value="2017">2017</option>
                 <option id="selectedYear" value="2016">2016</option>
                 <option id="selectedYear" value="2015">2015</option>
@@ -102,8 +106,8 @@
                 <option id="selectedYear" value="2010">2010</option>
                 <option id="selectedYear" value="2009">2009</option>
                 <option id="selectedYear" value="2008">2008</option>
-        </select>
-      </label>
+        </select>-->
+    </div>
     </form>
 
     <form id="selected_country2" class="option">
@@ -131,7 +135,6 @@
   </div>
   </div>
   <div class = "plots">
-    
     <div class ="first-row">
   
     <div id = "choroplot"  >
@@ -152,8 +155,6 @@
           </div>
         </div>
       </div>
-      <div class="tooltip" style="visibility: hidden; background-color: white; border: 1px solid; border-radius: 5px; padding: 10px;"></div>
     </div>
-    
   </body>
 </html>
