@@ -131,7 +131,7 @@ function handleMouseLeave(event, d) {
         return b;
       }
     })
-    .style("fill", "purple");
+    .style("fill", (d) => (d.country == chosenCountry1 ? "purple" : "green"));
 
   d3.select("div#barChart")
     .select("svg")
@@ -142,14 +142,14 @@ function handleMouseLeave(event, d) {
 // Change selected country when bar is clicked on in bar chart
 function handleClickBarChart(event, d) {
   chosenCountry1 = d.country;
-  document.getElementById("optionC1").innerHTML = chosenCountry1;
+  document.getElementById("dropdown_country1").value = chosenCountry1;
   saveDropdownCountry(3);
 }
 
 // Change selected country when bar is clicked on in scatterplot
 function handleClickScatterplot(event, d) {
   chosenCountry1 = d.country;
-  document.getElementById("optionC1").innerHTML = chosenCountry1;
+  document.getElementById("dropdown_country1").value = chosenCountry1;
   saveDropdownYear();
 }
 
