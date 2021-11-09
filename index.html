@@ -23,6 +23,11 @@
       src="script/main.js"
     ></script>
     <script
+    language="JavaScript"
+    type="text/javascript"
+    src="libs/topojson.v3.min.js"
+    ></script>
+    <script
       language="JavaScript"
       type="text/javascript"
       src="script/map.js"
@@ -51,6 +56,16 @@
       language="JavaScript"
       type="text/javascript"
       src="script/events.js"
+    ></script>
+    <script
+      language="JavaScript"
+      type="text/javascript"
+      src="script/choropleth.js"
+    ></script>
+    <script
+      language="JavaScript"
+      type="text/javascript"
+      src="script/clevelandPlot.js"
     ></script>
 
     <!-- CSS -->
@@ -155,13 +170,11 @@
   <div class = "plots">
     <div class ="first-row">
   
-    <div id = "choroplot"  >
-      <img src="data/map.jpg" width="400" height="400"/>
+    <div id = "choropleth" width="400" height="400">
     </div>
     <div id="scatterPlot" ><h3 id="headerScatter"></h3></div>
   </div>
-    <div id= "cleveland-dot-plot" >
-      <img src="data/cleveland-dot-plot.jpg"  width="300" height="730"/>
+    <div id= "clevelandPlot" >
     </div>
  
   <div class="second-row">
