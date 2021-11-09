@@ -16,6 +16,7 @@ function createChoroplethMap() {
     Promise.all([d3.json(map), d3.csv(data_source)]).then(function ([map, data]) {
     topology = map;
     dataset = data;
+    dataset = dataset.filter((c) => c.year == chosenYear);
     choropleth();
     // addZoom();
 })
