@@ -155,15 +155,16 @@ function createScatterPlot(data, update) {
     // Add color dots for legends for selected country 1
     svg
       .append("circle")
+      .attr("id", "removeOnUpdate")
       .attr("cx", 60)
       .attr("cy", height - 115)
       .attr("r", 3)
-      .attr("id", "legendScatter")
       .style("fill", colorsScatter[0]);
 
     // Add labels for legends for selected country 1
     svg
       .append("text")
+      .attr("id", "removeOnUpdate")
       .attr("x", 70)
       .attr("y", height - 115)
       .text(scatterLabels[0])
@@ -174,14 +175,15 @@ function createScatterPlot(data, update) {
     //Dots for legends for selected country 2
     svg
       .append("circle")
+      .attr("id", "removeOnUpdate")
       .attr("cx", 60)
       .attr("cy", height - 100)
       .attr("r", 3)
-      .attr("id", "legendScatter")
       .style("fill", colorsScatter[1]);
     // Add labels for legends for selected country 2
     svg
       .append("text")
+      .attr("id", "removeOnUpdate")
       .attr("x", 70)
       .attr("y", height - 100)
       .text(scatterLabels[1])

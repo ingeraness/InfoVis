@@ -25,7 +25,7 @@ function init() {
       createBarChart(data, false);
       markSelectedCountries();
       createDropDownMenus();
-      createChoroplethMap();
+      createChoroplethMap(false);
       createClevelandPlot(data, false);
     })
     .catch((error) => {
@@ -53,7 +53,7 @@ function saveDropdownCountry(i) {
     chosenCountry2 = document.getElementById("dropdown_country2").value;
   }
   // Check if it should draw the lineChart or barChart
-  removeCharts(showingBarChart);
+  removeCharts(showingBarChart, false);
   d3.csv("data/data.csv")
     .then((data) => {
       createScatterPlot(data, false);
@@ -79,7 +79,7 @@ function saveDropdownCountry(i) {
     });
 }
 
-function saveDropdownYear(i) {
+function saveDropdownYear(yearChanged, i) {
   if (i == 1) {
     chosenYear = document.getElementById("dropdown_year1").value;
   } else if (i == 2) {
@@ -89,9 +89,10 @@ function saveDropdownYear(i) {
   //document.getElementById("titleH1").innerHTML =
   //"Freedom Ranking Europe from " + chosenYear + " to " + chosenYear2;
   // Check if it should draw the lineChart or barChart
-  removeCharts(showingBarChart);
+  removeCharts(showingBarChart, yearChanged);
   d3.csv("data/data.csv").then((data) => {
     createScatterPlot(data, true);
+    createChoroplethMap(true);
     createClevelandPlot(data, true);
     markSelectedCountries();
     if (
@@ -163,7 +164,7 @@ function clearHeaders() {
   document.getElementById("headerLineChart2").innerHTML = "";
 }
 
-function removeCharts(showingBarChart) {
+function removeCharts(showingBarChart, yearChanged) {
   d3.select("div#scatterPlot")
     .selectAll("svg")
     .selectAll("#removeOnUpdate")
@@ -188,5 +189,8 @@ function removeCharts(showingBarChart) {
     d3.select("div#lineChart1").select("svg").remove(); //Remove old chart
     d3.select("div#lineChart2").select("svg").remove(); //Remove old chart
     d3.select("div#barChart").select("svg").remove(); //Remove old chart
+  }
+  if(yearChanged){
+    d3.select("div#choropleth").select("svg").selectAll(".country").remove();
   }
 }

@@ -11,8 +11,6 @@ function handleMouseOver(event, d) {
   let barChart = d3.select("div#barChart").select("svg");
   let clevelandPlot = d3.select("div#clevelandPlot").select("svg");
 
-  // tooltip.style("opacity", 1);
-
   markSelectedCountries(); //Mark the countries selected in the drop down menus
 
   lineChart1
@@ -35,23 +33,13 @@ function handleMouseOver(event, d) {
 
   scatterPlot
     .selectAll("circle#dataScatter")
-    // .selectAll("#dataScatter")
     .filter(function (b) {
       if (d.country == b.country) {
-        // console.log("Info om dette landet: " + b.country);
-        // console.log("Year: " + b.year);
-        // console.log("Freedom index: " + b.hf_score);
-        // console.log("Freedom rank: " + b.hf_rank);
-        // console.log("Women’s Freedom: " + b.pf_ss_women);
-        // console.log("Security and Safety: " + b.pf_ss);
-        // console.log("Police Reliability: " + b.ef_legal_police);
-        // console.log("Criminal trends: " + b.pf_ss_disappearances_violent);
-        // console.log("Religious Freedom: " + b.pf_religion_freedom);
         return b;
       }
     })
     .style("fill", "red");
-
+    
   barChart
     .selectAll("rect")
     .filter(function (b) {
@@ -94,7 +82,6 @@ function handleMouseOver(event, d) {
 
     if(d.country != undefined) {
       d3.select(".tooltip").style("visibility", "visible")
-      //.style("top", (event.x  ) + "px").style("left", (event.y )+"px")
        .html("Country: " +  d.country + 
        "</br> Year: " + d.year + 
        "</br>"+labelsDict[chosenAttributeX]+": " + d[chosenAttributeX]
@@ -105,21 +92,12 @@ function handleMouseOver(event, d) {
     else {
       var country = dataset.filter((c) => c.country == d.properties.NAME && c.year == chosenYear)
       d3.select(".tooltip").style("visibility", "visible")
-      //.style("top", (event.x  ) + "px").style("left", (event.y )+"px")
        .html("Country: " +  country[0].country + 
        "</br> Year: " + country[0].year + 
        "</br>"+labelsDict[chosenAttributeX]+": " + country[0][chosenAttributeX]
        +  "</br>"+labelsDict[chosenAttributeY]+": " + country[0][chosenAttributeY]
-     
        );
     }
-
-
-
-  // console.log(d.chosenAttributeX);
-  // console.log(chosenAttributeX);
-  // console.log(d.pf_religion_freedom);
-  // console.log(d);
 }
 
 function handleMouseLeave(event, d) {
@@ -207,12 +185,12 @@ function handleClickScatterplot(event, d) {
     if (chosenCountryNumber % 2 == 0) {
       chosenCountry1 = d.country;
       document.getElementById("dropdown_country1").value = chosenCountry1;
-      saveDropdownYear();
+      saveDropdownYear(false);
       chosenCountryNumber++;
     } else {
       chosenCountry2 = d.country;
       document.getElementById("dropdown_country2").value = chosenCountry2;
-      saveDropdownYear();
+      saveDropdownYear(false);
       chosenCountryNumber++;
     }
   }
@@ -227,12 +205,12 @@ function handleClickChoropleth(event, d) {
     if (chosenCountryNumber % 2 == 0) {
       chosenCountry1 = d.properties.NAME;
       document.getElementById("dropdown_country1").value = chosenCountry1;
-      saveDropdownYear();
+      saveDropdownYear(false);
       chosenCountryNumber++;
     } else {
       chosenCountry2 = d.properties.NAME;
       document.getElementById("dropdown_country2").value = chosenCountry2;
-      saveDropdownYear();
+      saveDropdownYear(false);
       chosenCountryNumber++;
     }
   }
@@ -247,9 +225,6 @@ function markSelectedCountries() {
     .selectAll("circle#dataScatter")
     .style("fill", "steelblue")
     .filter(function (b) {
-      // console.log("COUNTRY: " + b.country);
-      // console.log("COUNTRY1: " + chosenCountry1);
-      // console.log("COUNTRY2: " + chosenCountry2);
       if (b.country == chosenCountry1 || b.country == chosenCountry2) {
         return b;
       }
@@ -267,5 +242,7 @@ function markSelectedCountries() {
         return b;
       }
     })
-    .style("stroke", "black");
+    .style("stroke-width", 3)
+    .style("stroke", (d) => (d.properties.NAME == chosenCountry1 ? "purple" : "green"));
+    // .style("stroke", "black");
 }
