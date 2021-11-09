@@ -1,33 +1,43 @@
-// Add a tooltip div. Here I define the general feature of the tooltip: stuff that do not depend on the data point.
-// Its opacity is set to 0: we don't see it by default.
-var tooltip = d3
-  .select("div#scatterPlot")
-  .append("div")
-  .style("opacity", 0)
-  .attr("class", "tooltip")
-  .style("background-color", "white")
-  .style("border", "solid")
-  .style("border-width", "1px")
-  .style("border-radius", "5px")
-  .style("padding", "10px");
 
-var handleMouseMove = function (d) {
-  tooltip.html("Country: " + d.year);
-  //.style("left", (d3.pointer(this)[0]+90) + "px") // It is important to put the +90: other wise the tooltip is exactly where the point is an it creates a weird effect
-  //.style("top", (d3.pointer(this)[1]) + "px")
+var handleMouseMove = function (event, d) {
+
+  d3.select(".tooltip").style("left", (event.pageX + 20) + "px").style("top", (event.pageY - 150)+"px");
+  
 };
 
 function handleMouseOver(event, d) {
-  let lineChart = d3.select("div#lineChart").select("svg");
+  lineChart1 = d3.select("div#lineChart1").select("svg");
+  lineChart2 = d3.select("div#lineChart2").select("svg");
   let scatterPlot = d3.select("div#scatterPlot").select("svg");
   let barChart = d3.select("div#barChart").select("svg");
   let clevelandPlot = d3.select("div#clevelandPlot").select("svg");
 
   tooltip.style("opacity", 1);
 
+/*
+  const keys = Object.keys(d[0]);
+
+  let attributesDict = {
+    pf_ss: keys[8].valueOf(),
+    pf_ss_women: keys[9].valueOf(),
+    ef_legal_police: keys[10].valueOf(),
+    pf_ss_disappearances_violent: keys[6].valueOf(),
+    pf_religion_freedom: keys[7].valueOf(),
+    hf_score: keys[4].valueOf(),
+  };*/
+ 
   markSelectedCountries(); //Mark the countries selected in the drop down menus
 
-  lineChart
+  lineChart1
+    .selectAll(event.path[0].id == "" ? "circle" : `circle#${event.path[0].id}`)
+    .filter(function (b) {
+      if (d.country == b.country && d.year == b.year) {
+        return b;
+      }
+    })
+    .style("fill", "red");
+
+  lineChart2
     .selectAll(event.path[0].id == "" ? "circle" : `circle#${event.path[0].id}`)
     .filter(function (b) {
       if (d.country == b.country && d.year == b.year) {
@@ -37,22 +47,25 @@ function handleMouseOver(event, d) {
     .style("fill", "red");
 
   scatterPlot
-    .selectAll("circle")
+    .selectAll("circle#dataScatter")
+    // .selectAll("#dataScatter")
     .filter(function (b) {
       if (d.country == b.country) {
-        /*console.log("Info om dette landet: " + b.country);
-        console.log("Year: " + b.year);
-        console.log("Freedom index: " + b.hf_score);
-        console.log("Freedom rank: " + b.hf_rank);
-        console.log("Women’s Freedom: " + b.pf_ss_women);
-        console.log("Security and Safety: " + b.pf_ss);
-        console.log("Police Reliability: " + b.ef_legal_police);
-        console.log("Criminal trends: " + b.pf_ss_disappearances_violent);
-        console.log("Religious Freedom: " + b.pf_religion_freedom);*/
+        // console.log("Info om dette landet: " + b.country);
+        // console.log("Year: " + b.year);
+        // console.log("Freedom index: " + b.hf_score);
+        // console.log("Freedom rank: " + b.hf_rank);
+        // console.log("Women’s Freedom: " + b.pf_ss_women);
+        // console.log("Security and Safety: " + b.pf_ss);
+        // console.log("Police Reliability: " + b.ef_legal_police);
+        // console.log("Criminal trends: " + b.pf_ss_disappearances_violent);
+        // console.log("Religious Freedom: " + b.pf_religion_freedom);
         return b;
       }
     })
     .style("fill", "red");
+   
+    
 
   barChart
     .selectAll("rect")
@@ -71,49 +84,66 @@ function handleMouseOver(event, d) {
       }
     })
     .style("fill", "red");
+    d3.select(".tooltip").style("visibility", "visible")
+   //.style("top", (event.x  ) + "px").style("left", (event.y )+"px")
+    .html("Country: " +  d.country + 
+    "</br> Year: " + d.year + 
+    "</br>"+labelsDict[chosenAttributeX]+": " + d[chosenAttributeX]
+    +  "</br>"+labelsDict[chosenAttributeY]+": " + d[chosenAttributeY]
+  
+    );
+   
+    // console.log(d.chosenAttributeX);
+    // console.log(chosenAttributeX);
+    // console.log(d.pf_religion_freedom);
+    // console.log(d);
+
 }
 
+
 function handleMouseLeave(event, d) {
-  tooltip.transition().duration(600).style("opacity", 0);
+
+  d3.select(".tooltip").style("visibility", "hidden");
+
 
   if (event.path[0].id == "one") {
-    d3.select("div#lineChart")
+    d3.select("div#lineChart1")
       .select("svg")
       .selectAll(`circle#${event.path[0].id}`)
-      .style("fill", "steelblue");
+      .style("fill", "purple");
   }
 
   if (event.path[0].id == "two") {
-    d3.select("div#lineChart")
+    d3.select("div#lineChart1")
       .select("svg")
       .selectAll(`circle#${event.path[0].id}`)
-      .style("fill", "blue");
+      .style("fill", "green");
   }
 
-  if (event.path[0].id == "three") {
-    d3.select("div#lineChart")
+  if (event.path[0].id == "one") {
+    d3.select("div#lineChart2")
       .select("svg")
       .selectAll(`circle#${event.path[0].id}`)
-      .style("fill", "PaleVioletRed");
+      .style("fill", "purple");
   }
 
-  if (event.path[0].id == "four") {
-    d3.select("div#lineChart")
+  if (event.path[0].id == "two") {
+    d3.select("div#lineChart2")
       .select("svg")
       .selectAll(`circle#${event.path[0].id}`)
-      .style("fill", "pink");
+      .style("fill", "green");
   }
 
   d3.select("div#scatterPlot")
     .select("svg")
-    .selectAll(`circle`)
+    .selectAll("circle#dataScatter")
     .style("fill", "steelblue")
     .filter(function (b) {
       if (b.country == chosenCountry1 || b.country == chosenCountry2) {
         return b;
       }
     })
-    .style("fill", "purple");
+    .style("fill", (d) => (d.country == chosenCountry1 ? "purple" : "green"));
 
   d3.select("div#barChart")
     .select("svg")
@@ -194,15 +224,20 @@ function markSelectedCountries() {
   scatterPlot = d3.select("div#scatterPlot").select("svg");
   choroplethMap = d3.select("div#choropleth").select("svg");
 
+ 
+
   scatterPlot
-    .selectAll("circle")
+    .selectAll("circle#dataScatter")
     .style("fill", "steelblue")
     .filter(function (b) {
+      // console.log("COUNTRY: " + b.country);
+      // console.log("COUNTRY1: " + chosenCountry1);
+      // console.log("COUNTRY2: " + chosenCountry2);
       if (b.country == chosenCountry1 || b.country == chosenCountry2) {
         return b;
       }
     })
-  .style("fill", "purple");
+    .style("fill", (d) => (d.country == chosenCountry1 ? "purple" : "green"));
 
   choroplethMap
     .selectAll(".country")
@@ -214,3 +249,5 @@ function markSelectedCountries() {
     })
     .style("stroke", "black");
 }
+
+

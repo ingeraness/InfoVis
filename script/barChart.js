@@ -17,14 +17,19 @@ function createBarChart(data, update) {
   svg.selectAll("*").remove(); // Remove the old vis before drawing the new vis with new countries
 
   // Set header
-  document.getElementById("headerBarAndLineChart").innerHTML =
-    "Freedom Index Europe " + chosenYear;
+  document.getElementById("headerBarChart").innerHTML =
+    "Freedom Index Europe from " + chosenYear ;
 
   var filtered_data = data.filter(function (d) {
     if (d.year == chosenYear.valueOf()) {
       return d;
     }
+  }).sort((a,b) => {
+    return d3.ascending(a.hf_score, b.hf_score)
   });
+
+  
+  
 
   y = d3
     .scaleLinear()
@@ -73,6 +78,7 @@ function createBarChart(data, update) {
     .attr("height", (d) => height - margin.bottom - y(d.hf_score))
     .attr("width", x.bandwidth())
     .attr("id", "removeOnUpdate")
+    .on("mousemove", handleMouseMove)
     .on("mouseover", handleMouseOver)
     .on("mouseleave", handleMouseLeave)
     .on("click", handleClickBarChart);
