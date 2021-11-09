@@ -25,7 +25,7 @@ function init() {
       createBarChart(data, false);
       markSelectedCountries();
       createDropDownMenus();
-      createChoroplethMap();
+      createChoroplethMap(false);
       createClevelandPlot(data, false);
     })
     .catch((error) => {
@@ -76,7 +76,7 @@ function saveDropdownCountry(i) {
     });
 }
 
-function saveDropdownYear(i) {
+function saveDropdownYear(yearChanged, i) {
   if (i == 1) {
     chosenYear = document.getElementById("dropdown_year1").value;
   } else if (i == 2) {
@@ -86,10 +86,10 @@ function saveDropdownYear(i) {
   //document.getElementById("titleH1").innerHTML =
     //"Freedom Ranking Europe from " + chosenYear + " to " + chosenYear2;
   // Check if it should draw the lineChart or barChart
-  removeCharts(showingBarChart, true);
+  removeCharts(showingBarChart, yearChanged);
   d3.csv("data/data.csv").then((data) => {
     createScatterPlot(data, true);
-    createChoroplethMap();
+    createChoroplethMap(true);
     markSelectedCountries();
     if (
       (chosenCountry1 == undefined || chosenCountry1 == "") &&
@@ -173,7 +173,6 @@ function removeCharts(showingBarChart, yearChanged) {
     d3.select("div#barChart").select("svg").remove(); //Remove old chart
   }
   if(yearChanged){
-    d3.select("div#choropleth").select("svg").remove();
-
+    d3.select("div#choropleth").select("svg").selectAll(".country").remove();
   }
 }

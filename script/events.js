@@ -164,13 +164,13 @@ function handleClickScatterplot(event, d) {
     if(chosenCountryNumber % 2 == 0){
       chosenCountry1 = d.country;
       document.getElementById("dropdown_country1").value = chosenCountry1;
-      saveDropdownYear();
+      saveDropdownYear(false);
       chosenCountryNumber++;
     }
     else {
       chosenCountry2 = d.country;
       document.getElementById("dropdown_country2").value = chosenCountry2;
-      saveDropdownYear();
+      saveDropdownYear(false);
       chosenCountryNumber++;
     }
   }
@@ -182,13 +182,13 @@ function handleClickChoropleth(event, d) {
     if(chosenCountryNumber % 2 == 0){
       chosenCountry1 = d.properties.NAME;
       document.getElementById("dropdown_country1").value = chosenCountry1;
-      saveDropdownYear();
+      saveDropdownYear(false);
       chosenCountryNumber++;
     }
     else {
       chosenCountry2 = d.properties.NAME;
       document.getElementById("dropdown_country2").value = chosenCountry2;
-      saveDropdownYear();
+      saveDropdownYear(false);
       chosenCountryNumber++;
     }
   }
