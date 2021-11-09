@@ -6,25 +6,25 @@ var handleMouseMove = function (event, d) {
 };
 
 function handleMouseOver(event, d) {
-  lineChart1 = d3.select("div#lineChart1").select("svg");
-  lineChart2 = d3.select("div#lineChart2").select("svg");
+  let lineChart1 = d3.select("div#lineChart1").select("svg");
+  let lineChart2 = d3.select("div#lineChart2").select("svg");
   let scatterPlot = d3.select("div#scatterPlot").select("svg");
   let barChart = d3.select("div#barChart").select("svg");
   let clevelandPlot = d3.select("div#clevelandPlot").select("svg");
 
-  tooltip.style("opacity", 1);
+  // tooltip.style("opacity", 1);
 
-/*
-  const keys = Object.keys(d[0]);
 
-  let attributesDict = {
-    pf_ss: keys[8].valueOf(),
-    pf_ss_women: keys[9].valueOf(),
-    ef_legal_police: keys[10].valueOf(),
-    pf_ss_disappearances_violent: keys[6].valueOf(),
-    pf_religion_freedom: keys[7].valueOf(),
-    hf_score: keys[4].valueOf(),
-  };*/
+  // const keys = Object.keys(d[0]);
+
+  // let attributesDict = {
+  //   pf_ss: keys[8].valueOf(),
+  //   pf_ss_women: keys[9].valueOf(),
+  //   ef_legal_police: keys[10].valueOf(),
+  //   pf_ss_disappearances_violent: keys[6].valueOf(),
+  //   pf_religion_freedom: keys[7].valueOf(),
+  //   hf_score: keys[4].valueOf(),
+  // };
  
   markSelectedCountries(); //Mark the countries selected in the drop down menus
 
@@ -84,6 +84,8 @@ function handleMouseOver(event, d) {
       }
     })
     .style("fill", "red");
+
+
     d3.select(".tooltip").style("visibility", "visible")
    //.style("top", (event.x  ) + "px").style("left", (event.y )+"px")
     .html("Country: " +  d.country + 

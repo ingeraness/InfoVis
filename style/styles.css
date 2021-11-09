@@ -17,7 +17,7 @@ h3 {
   margin-bottom: -10px;
 }
 
-.tooltip{
+.tooltip {
   width: max-content;
   height: min-content;
   position: fixed;
@@ -50,7 +50,6 @@ h3 {
 div {
   width: 100%;
   float: left;
-
 }
 
 .grid {
@@ -60,12 +59,12 @@ div {
 .plots {
   display: grid;
   grid-template-columns: 2fr 1fr 2fr;
-  height: 80%;
+  /* height: 80%; */
 }
 .second-row {
   grid-column: 1 / 3;
   grid-row: 2 / 3;
-  height: 40%;
+  /* height: 40%; */
 }
 
 /*

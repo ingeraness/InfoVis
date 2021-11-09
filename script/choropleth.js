@@ -57,7 +57,9 @@ function choropleth() {
                 return d;
             }
           })
-        .on("mouseover", mouse)
+        .on("mousemove", handleMouseMove)
+        .on("mouseover", handleMouseOver)
+        .on("mouseleave", handleMouseLeave)
         .on("click", handleClickChoropleth)
         .attr("class", "country")
         .attr("d", path)
