@@ -73,11 +73,7 @@ function choropleth(update) {
         })
         .attr("id", function(d, i) {
             return d.properties.NAME;
-        })
-        .append("title")
-        .text(function(d) {
-            return d.properties.NAME;
-        })
+        });
 
     if(!update){
         var l_domain = [min, max];
