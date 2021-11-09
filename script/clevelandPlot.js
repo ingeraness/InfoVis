@@ -64,9 +64,7 @@ function createClevelandPlot(data, update) {
       return y(d.ISO_code);
     })
     .attr("stroke", "grey")
-    .attr("stroke-width", "1px")
-    .on("mouseover", handleMouseOver)
-    .on("mouseleave", handleMouseLeave);
+    .attr("stroke-width", "1px");
 
   // Circles for 2008
   svg
@@ -84,7 +82,10 @@ function createClevelandPlot(data, update) {
       return d.country;
     })
     .attr("r", "4")
-    .style("fill", "#69b3a2");
+    .style("fill", "#69b3a2")
+    .on("mousemove", handleMouseMove)
+    .on("mouseover", handleMouseOver)
+    .on("mouseleave", handleMouseLeave);
 
   // Circles for 2018
   svg
@@ -102,5 +103,8 @@ function createClevelandPlot(data, update) {
       return d.country;
     })
     .attr("r", "4")
-    .style("fill", "pink");
+    .style("fill", "pink")
+    .on("mousemove", handleMouseMove)
+    .on("mouseover", handleMouseOver)
+    .on("mouseleave", handleMouseLeave);
 }
