@@ -1,8 +1,5 @@
-
 var handleMouseMove = function (event, d) {
-
   d3.select(".tooltip").style("left", (event.pageX + 20) + "px").style("top", (event.pageY - 50)+"px");
-  
 };
 
 function handleMouseOver(event, d) {
@@ -12,20 +9,6 @@ function handleMouseOver(event, d) {
   let barChart = d3.select("div#barChart").select("svg");
   let clevelandPlot = d3.select("div#clevelandPlot").select("svg");
 
-  // tooltip.style("opacity", 1);
-
-
-  // const keys = Object.keys(d[0]);
-
-  // let attributesDict = {
-  //   pf_ss: keys[8].valueOf(),
-  //   pf_ss_women: keys[9].valueOf(),
-  //   ef_legal_police: keys[10].valueOf(),
-  //   pf_ss_disappearances_violent: keys[6].valueOf(),
-  //   pf_religion_freedom: keys[7].valueOf(),
-  //   hf_score: keys[4].valueOf(),
-  // };
- 
   markSelectedCountries(); //Mark the countries selected in the drop down menus
 
   lineChart1
@@ -48,25 +31,13 @@ function handleMouseOver(event, d) {
 
   scatterPlot
     .selectAll("circle#dataScatter")
-    // .selectAll("#dataScatter")
     .filter(function (b) {
       if (d.country == b.country) {
-        // console.log("Info om dette landet: " + b.country);
-        // console.log("Year: " + b.year);
-        // console.log("Freedom index: " + b.hf_score);
-        // console.log("Freedom rank: " + b.hf_rank);
-        // console.log("Women’s Freedom: " + b.pf_ss_women);
-        // console.log("Security and Safety: " + b.pf_ss);
-        // console.log("Police Reliability: " + b.ef_legal_police);
-        // console.log("Criminal trends: " + b.pf_ss_disappearances_violent);
-        // console.log("Religious Freedom: " + b.pf_religion_freedom);
         return b;
       }
     })
     .style("fill", "red");
    
-    
-
   barChart
     .selectAll("rect")
     .filter(function (b) {
@@ -87,7 +58,6 @@ function handleMouseOver(event, d) {
 
     if(d.country != undefined) {
       d3.select(".tooltip").style("visibility", "visible")
-      //.style("top", (event.x  ) + "px").style("left", (event.y )+"px")
        .html("Country: " +  d.country + 
        "</br> Year: " + d.year + 
        "</br>"+labelsDict[chosenAttributeX]+": " + d[chosenAttributeX]
@@ -98,29 +68,18 @@ function handleMouseOver(event, d) {
     else {
       var country = dataset.filter((c) => c.country == d.properties.NAME && c.year == chosenYear)
       d3.select(".tooltip").style("visibility", "visible")
-      //.style("top", (event.x  ) + "px").style("left", (event.y )+"px")
        .html("Country: " +  country[0].country + 
        "</br> Year: " + country[0].year + 
        "</br>"+labelsDict[chosenAttributeX]+": " + country[0][chosenAttributeX]
        +  "</br>"+labelsDict[chosenAttributeY]+": " + country[0][chosenAttributeY]
-     
        );
     }
-
-
-   
-    // console.log(d.chosenAttributeX);
-    // console.log(chosenAttributeX);
-    // console.log(d.pf_religion_freedom);
-    // console.log(d);
-
 }
 
 
 function handleMouseLeave(event, d) {
 
   d3.select(".tooltip").style("visibility", "hidden");
-
 
   if (event.path[0].id == "one") {
     d3.select("div#lineChart1")
@@ -246,9 +205,6 @@ function markSelectedCountries() {
     .selectAll("circle#dataScatter")
     .style("fill", "steelblue")
     .filter(function (b) {
-      // console.log("COUNTRY: " + b.country);
-      // console.log("COUNTRY1: " + chosenCountry1);
-      // console.log("COUNTRY2: " + chosenCountry2);
       if (b.country == chosenCountry1 || b.country == chosenCountry2) {
         return b;
       }
