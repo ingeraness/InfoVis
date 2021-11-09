@@ -1,4 +1,3 @@
-// const countries = ['Albania', 'Austria', 'Belgium', 'Bosnia and Herzegovina','Bulgaria', 'Croatia','Cyprus', 'Czech Rebublic', 'Denmark', 'Estonia', 'Finland', 'France', 'Germany', 'Greece', 'Hungary', 'Iceland', 'Ireland', 'Italy', 'Latvia', 'Lithuania', 'Luxembourg', 'Malta', 'Moldova', 'Montenegro', 'Netherlands', 'North Macedonia', 'Norway', 'Poland', 'Portugal', 'Romania', 'Russian Federation',  'Serbia', 'Sloavk Rebublic', 'Slovenia', 'Spain', 'Sweden', 'Switzerland', 'Ukraine', 'United Kingdom' ];
 var chosenCountry1;
 var chosenCountry2;
 var chosenYear = 2008;
@@ -80,6 +79,17 @@ function saveDropdownCountry(i) {
 }
 
 function saveDropdownYear(yearChanged, i) {
+  if (document.getElementById("dropdown_year1").value > document.getElementById("dropdown_year2").value){
+    if (i == 1) {
+      document.getElementById("dropdown_year1").value = chosenYear;
+    } else {
+      document.getElementById("dropdown_year2").value = chosenYear2;
+    }
+    return;
+    }
+  
+
+
   if (i == 1) {
     chosenYear = document.getElementById("dropdown_year1").value;
   } else if (i == 2) {
@@ -99,8 +109,6 @@ function saveDropdownYear(yearChanged, i) {
       (chosenCountry1 == undefined || chosenCountry1 == "") &&
       (chosenCountry2 == undefined || chosenCountry2 == "")
     ) {
-      //d3.select("div#lineChart1").select("svg").remove(); //Remove old chart
-      //d3.select("div#barChart").select("svg").remove(); //Remove old chart
       clearHeaders();
       createBarChart(data, false);
       showingBarChart = true;
