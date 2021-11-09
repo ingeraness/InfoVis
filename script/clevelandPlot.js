@@ -18,13 +18,17 @@ function createClevelandPlot(data, update) {
   };
 
   // append the svg object to the body of the page
-  const svg = d3
+  if (!update) {
+    d3.select("div#clevelandPlot")
+      .append("svg")
+      .append("g")
+      .attr("transform", `translate(${margin.left}, ${margin.top})`);
+  }
+  svg = d3
     .select("div#clevelandPlot")
-    .append("svg")
+    .select("svg")
     .attr("width", width + margin.left + margin.right)
-    .attr("height", height + margin.top + margin.bottom)
-    .append("g")
-    .attr("transform", `translate(${margin.left}, ${margin.top})`);
+    .attr("height", height + margin.top + margin.bottom);
 
   // Add X axis
   const x = d3.scaleLinear().domain([0, 10]).range([0, width]);
@@ -51,7 +55,9 @@ function createClevelandPlot(data, update) {
     .selectAll("line")
     .data(data)
     .join("line")
-    .filter((d) => d.year.valueOf() == 2008 || d.year.valueOf() == 2018)
+    .filter(
+      (d) => d.year.valueOf() == chosenYear || d.year.valueOf() == chosenYear2
+    )
     .attr("x1", function (d) {
       if (d.year == 2008) {
         console.log(d.year);
@@ -74,42 +80,45 @@ function createClevelandPlot(data, update) {
     })
     .attr("stroke", "grey")
     .attr("stroke-width", "1px")
+    .attr("id", "linesCleveland");
+
+  // Circles for selected year 1
+  svg
+    .selectAll("mycircle")
+    .data(data)
+    .join("circle")
+    .filter((d) => d.year == chosenYear)
+    .attr("cx", function (d) {
+      return x(d[attributesDict[chosenAttributeX]]);
+    })
+    .attr("cy", function (d) {
+      return y(d.ISO_code);
+    })
+    .attr("r", "4")
+    .style("fill", "#69b3a2")
+    .attr("id", "dotsClevelandYear1")
+    .on("mousemove", handleMouseMove)
     .on("mouseover", handleMouseOver)
-    .on("mouseleave", handleMouseLeave);
+    .on("mouseleave", handleMouseLeave)
+    .on("click", handleClickCleveland);
 
-  // Circles for 2008
+  // Circles for selected year 2
   svg
     .selectAll("mycircle")
     .data(data)
     .join("circle")
-    .filter((d) => d.year == 2008)
+    .filter((d) => d.year == chosenYear2)
     .attr("cx", function (d) {
       return x(d[attributesDict[chosenAttributeX]]);
     })
     .attr("cy", function (d) {
       return y(d.ISO_code);
     })
-    .attr("id", function (d) {
-      return d.country;
-    })
     .attr("r", "4")
-    .style("fill", "#69b3a2");
-
-  // Circles for 2018
-  svg
-    .selectAll("mycircle")
-    .data(data)
-    .join("circle")
-    .filter((d) => d.year == 2018)
-    .attr("cx", function (d) {
-      return x(d[attributesDict[chosenAttributeX]]);
-    })
-    .attr("cy", function (d) {
-      return y(d.ISO_code);
-    })
-    .attr("id", function (d) {
-      return d.country;
-    })
-    .attr("r", "4")
-    .style("fill", "pink");
+    .style("fill", "pink")
+    .attr("id", "dotsClevelandYear2")
+    .on("mousemove", handleMouseMove)
+    .on("mouseover", handleMouseOver)
+    .on("mouseleave", handleMouseLeave)
+    .on("click", handleClickCleveland);
 }

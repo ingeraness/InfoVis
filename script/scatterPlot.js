@@ -1,6 +1,7 @@
 function createScatterPlot(data, update) {
   const width = 400;
   const height = 400;
+  
 
   // TODO: endre til dynamisk bredde og høyde. Også i transform!
 
@@ -12,6 +13,8 @@ function createScatterPlot(data, update) {
     }
   });
 
+
+
   const keys = Object.keys(data[0]);
 
   let attributesDict = {
@@ -22,6 +25,9 @@ function createScatterPlot(data, update) {
     pf_religion_freedom: keys[7].valueOf(),
     hf_score: keys[4].valueOf(),
   };
+
+  document.getElementById("headerScatter").innerHTML =
+    labelsDict[chosenAttributeX] + " VS. " + labelsDict[chosenAttributeY];
 
   x = d3
     .scaleLinear()
@@ -108,6 +114,7 @@ function createScatterPlot(data, update) {
     .attr("id", "removeOnUpdate")
     .text(labelsDict[chosenAttributeY]);
 
+  
   // Add dots
   svg
     .append("g")
@@ -124,12 +131,12 @@ function createScatterPlot(data, update) {
     })
     .attr("r", 4)
     .style("fill", "steelblue")
+    .on("mousemove", handleMouseMove)
     .on("mouseover", handleMouseOver)
     .on("mouseleave", handleMouseLeave)
-    //.on("mouseover", mouseover )
-    //.on("mousemove", mousemove )
-    //.on("mouseleave", handleMouseMove)
-    .on("click", handleClickScatterplot);
+    .on("click", handleClickScatterplot)
+    .attr("id", "dataScatter");
+
 
   if (!update) {
     svg.append("g").attr("class", "scatterXAxis");
@@ -141,4 +148,46 @@ function createScatterPlot(data, update) {
   d3.select("g.scatterYAxis").call(yAxis);
 
   markSelectedCountries(); //Mark the countries selected in the drop down menus
+
+  var scatterLabels = ["" + chosenCountry1, "" + chosenCountry2];
+  var colorsScatter = ["purple", "green"]; //This will be changed to other colors in CP5
+  if (chosenCountry1 != undefined && chosenCountry1 != "") {
+    // Add color dots for legends for selected country 1
+    svg
+      .append("circle")
+      .attr("id", "removeOnUpdate")
+      .attr("cx", 60)
+      .attr("cy", height - 115)
+      .attr("r", 3)
+      .style("fill", colorsScatter[0]);
+
+    // Add labels for legends for selected country 1
+    svg
+      .append("text")
+      .attr("id", "removeOnUpdate")
+      .attr("x", 70)
+      .attr("y", height - 115)
+      .text(scatterLabels[0])
+      .style("font-size", "10px")
+      .attr("alignment-baseline", "middle");
+  }
+  if (chosenCountry2 != undefined && chosenCountry2 != "") {
+    //Dots for legends for selected country 2
+    svg
+      .append("circle")
+      .attr("id", "removeOnUpdate")
+      .attr("cx", 60)
+      .attr("cy", height - 100)
+      .attr("r", 3)
+      .style("fill", colorsScatter[1]);
+    // Add labels for legends for selected country 2
+    svg
+      .append("text")
+      .attr("id", "removeOnUpdate")
+      .attr("x", 70)
+      .attr("y", height - 100)
+      .text(scatterLabels[1])
+      .style("font-size", "10px")
+      .attr("alignment-baseline", "middle");
+  }
 }
