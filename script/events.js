@@ -1,7 +1,7 @@
 
 var handleMouseMove = function (event, d) {
 
-  d3.select(".tooltip").style("left", (event.pageX + 20) + "px").style("top", (event.pageY - 150)+"px");
+  d3.select(".tooltip").style("left", (event.pageX + 20) + "px").style("top", (event.pageY - 50)+"px");
   
 };
 

@@ -20,7 +20,7 @@ h3 {
 .tooltip {
   width: max-content;
   height: min-content;
-  position: fixed;
+  position: absolute;
 }
 
 .first-row {
