@@ -34,12 +34,15 @@ function init() {
 }
 
 function saveDropdownCountry(i) {
-  if((document.getElementById("dropdown_country1").value == chosenCountry2 && document.getElementById("dropdown_country1").value != "") 
-    || (document.getElementById("dropdown_country2").value == chosenCountry1 && document.getElementById("dropdown_country2").value != "")){
-    if(i == 1){
+  if (
+    (document.getElementById("dropdown_country1").value == chosenCountry2 &&
+      document.getElementById("dropdown_country1").value != "") ||
+    (document.getElementById("dropdown_country2").value == chosenCountry1 &&
+      document.getElementById("dropdown_country2").value != "")
+  ) {
+    if (i == 1) {
       document.getElementById("dropdown_country1").value = chosenCountry1;
-    }
-    else {
+    } else {
       document.getElementById("dropdown_country2").value = chosenCountry2;
     }
     return;
@@ -82,14 +85,15 @@ function saveDropdownYear(yearChanged, i) {
   } else if (i == 2) {
     chosenYear2 = document.getElementById("dropdown_year2").value;
   }
- 
+
   //document.getElementById("titleH1").innerHTML =
-    //"Freedom Ranking Europe from " + chosenYear + " to " + chosenYear2;
+  //"Freedom Ranking Europe from " + chosenYear + " to " + chosenYear2;
   // Check if it should draw the lineChart or barChart
   removeCharts(showingBarChart, yearChanged);
   d3.csv("data/data.csv").then((data) => {
     createScatterPlot(data, true);
     createChoroplethMap(true);
+    createClevelandPlot(data, true);
     markSelectedCountries();
     if (
       (chosenCountry1 == undefined || chosenCountry1 == "") &&
@@ -110,11 +114,13 @@ function saveDropdownYear(yearChanged, i) {
 }
 
 function saveDropdownAttribute(i) {
-  if(document.getElementById("dropdown_attribute1").value == chosenAttributeY || document.getElementById("dropdown_attribute2").value == chosenAttributeX ){
-    if(i == 1){
+  if (
+    document.getElementById("dropdown_attribute1").value == chosenAttributeY ||
+    document.getElementById("dropdown_attribute2").value == chosenAttributeX
+  ) {
+    if (i == 1) {
       document.getElementById("dropdown_attribute1").value = chosenAttributeX;
-    }
-    else {
+    } else {
       document.getElementById("dropdown_attribute2").value = chosenAttributeY;
     }
     return;
@@ -163,6 +169,18 @@ function removeCharts(showingBarChart, yearChanged) {
     .selectAll("svg")
     .selectAll("#removeOnUpdate")
     .remove(); //Remove old chart
+  d3.selectAll("div#clevelandPlot")
+    .selectAll("svg")
+    .selectAll("circle#dotsClevelandYear1")
+    .remove();
+  d3.selectAll("div#clevelandPlot")
+    .selectAll("svg")
+    .selectAll("circle#dotsClevelandYear2")
+    .remove();
+  d3.selectAll("div#clevelandPlot")
+    .selectAll("svg")
+    .selectAll("circle#linesCleveland")
+    .remove();
   if (showingBarChart) {
     d3.select("div#lineChart1").select("svg").remove(); //Remove old chart
     d3.select("div#lineChart2").select("svg").remove(); //Remove old chart
