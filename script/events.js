@@ -13,17 +13,6 @@ function handleMouseOver(event, d) {
 
   // tooltip.style("opacity", 1);
 
-  // const keys = Object.keys(d[0]);
-
-  // let attributesDict = {
-  //   pf_ss: keys[8].valueOf(),
-  //   pf_ss_women: keys[9].valueOf(),
-  //   ef_legal_police: keys[10].valueOf(),
-  //   pf_ss_disappearances_violent: keys[6].valueOf(),
-  //   pf_religion_freedom: keys[7].valueOf(),
-  //   hf_score: keys[4].valueOf(),
-  // };
-
   markSelectedCountries(); //Mark the countries selected in the drop down menus
 
   lineChart1
@@ -72,14 +61,17 @@ function handleMouseOver(event, d) {
     })
     .style("fill", "red");
 
-  clevelandPlot
-    .selectAll("circle")
-    .filter(function (b) {
-      if (d.country == b.country || b == d) {
-        return b;
-      }
-    })
-    .style("fill", "red");
+  if (d.year == chosenYear) {
+    clevelandPlot
+      .selectAll("circle#dotsClevelandYear1")
+      .filter((b) => b.country == d.country)
+      .style("fill", "red");
+  } else {
+    clevelandPlot
+      .selectAll("circle#dotsClevelandYear2")
+      .filter((b) => b.country == d.country)
+      .style("fill", "red");
+  }
 
   d3.select(".tooltip")
     .style("visibility", "visible")
@@ -155,13 +147,13 @@ function handleMouseLeave(event, d) {
   d3.select("div#clevelandPlot")
     .select("svg")
     .selectAll("circle")
-    .filter((d) => d.year == 2008)
+    .filter((d) => d.year == chosenYear)
     .style("fill", "#69b3a2");
 
   d3.select("div#clevelandPlot")
     .select("svg")
     .selectAll("circle")
-    .filter((d) => d.year == 2018)
+    .filter((d) => d.year == chosenYear2)
     .style("fill", "pink");
 }
 
