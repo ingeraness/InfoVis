@@ -47,7 +47,7 @@ function handleMouseOver(event, d) {
       }
     })
     .style("fill", "red");
-    
+
   barChart
     .selectAll("rect")
     .filter(function (b) {
@@ -239,6 +239,22 @@ function handleClickChoropleth(event, d) {
   }
 }
 
+function handleClickCleveland(event, d) {
+  if (chosenCountry1 != d.country && chosenCountry2 != d.country) {
+    if (chosenCountryNumber % 2 == 0) {
+      chosenCountry1 = d.country;
+      document.getElementById("dropdown_country1").value = chosenCountry1;
+      saveDropdownYear(false);
+      chosenCountryNumber++;
+    } else {
+      chosenCountry2 = d.country;
+      document.getElementById("dropdown_country2").value = chosenCountry2;
+      saveDropdownYear(false);
+      chosenCountryNumber++;
+    }
+  }
+}
+
 function markSelectedCountries() {
   //Marks the countries selected in the drop down menus
   scatterPlot = d3.select("div#scatterPlot").select("svg");
@@ -266,6 +282,8 @@ function markSelectedCountries() {
       }
     })
     .style("stroke-width", 3)
-    .style("stroke", (d) => (d.properties.NAME == chosenCountry1 ? "purple" : "green"));
-    // .style("stroke", "black");
+    .style("stroke", (d) =>
+      d.properties.NAME == chosenCountry1 ? "purple" : "green"
+    );
+  // .style("stroke", "black");
 }

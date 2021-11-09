@@ -90,7 +90,8 @@ function createClevelandPlot(data, update) {
     .attr("id", "dotsClevelandYear1")
     .on("mousemove", handleMouseMove)
     .on("mouseover", handleMouseOver)
-    .on("mouseleave", handleMouseLeave);
+    .on("mouseleave", handleMouseLeave)
+    .on("click", handleClickCleveland);
 
   // Circles for selected year 2
   svg
@@ -109,5 +110,6 @@ function createClevelandPlot(data, update) {
     .attr("id", "dotsClevelandYear2")
     .on("mousemove", handleMouseMove)
     .on("mouseover", handleMouseOver)
-    .on("mouseleave", handleMouseLeave);
+    .on("mouseleave", handleMouseLeave)
+    .on("click", handleClickCleveland);
 }
