@@ -79,16 +79,17 @@ function saveDropdownCountry(i) {
 }
 
 function saveDropdownYear(yearChanged, i) {
-  if (document.getElementById("dropdown_year1").value > document.getElementById("dropdown_year2").value){
+  if (
+    document.getElementById("dropdown_year1").value >
+    document.getElementById("dropdown_year2").value
+  ) {
     if (i == 1) {
       document.getElementById("dropdown_year1").value = chosenYear;
     } else {
       document.getElementById("dropdown_year2").value = chosenYear2;
     }
     return;
-    }
-  
-
+  }
 
   if (i == 1) {
     chosenYear = document.getElementById("dropdown_year1").value;
@@ -177,18 +178,7 @@ function removeCharts(showingBarChart, yearChanged) {
     .selectAll("svg")
     .selectAll("#removeOnUpdate")
     .remove(); //Remove old chart
-  d3.selectAll("div#clevelandPlot")
-    .selectAll("svg")
-    .selectAll("circle#dotsClevelandYear1")
-    .remove();
-  d3.selectAll("div#clevelandPlot")
-    .selectAll("svg")
-    .selectAll("circle#dotsClevelandYear2")
-    .remove();
-  d3.selectAll("div#clevelandPlot")
-    .selectAll("svg")
-    .selectAll("circle#linesCleveland")
-    .remove();
+
   if (showingBarChart) {
     d3.select("div#lineChart1").select("svg").remove(); //Remove old chart
     d3.select("div#lineChart2").select("svg").remove(); //Remove old chart
@@ -198,7 +188,19 @@ function removeCharts(showingBarChart, yearChanged) {
     d3.select("div#lineChart2").select("svg").remove(); //Remove old chart
     d3.select("div#barChart").select("svg").remove(); //Remove old chart
   }
-  if(yearChanged){
+  if (yearChanged) {
     d3.select("div#choropleth").select("svg").selectAll(".country").remove();
+    d3.selectAll("div#clevelandPlot")
+      .selectAll("svg")
+      .selectAll("circle#linesCleveland")
+      .remove();
+    d3.selectAll("div#clevelandPlot")
+      .selectAll("svg")
+      .selectAll("circle#dotsClevelandYear2")
+      .remove();
+    d3.selectAll("div#clevelandPlot")
+      .selectAll("svg")
+      .selectAll("circle#dotsClevelandYear1")
+      .remove();
   }
 }
