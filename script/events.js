@@ -199,8 +199,6 @@ function markSelectedCountries() {
   scatterPlot = d3.select("div#scatterPlot").select("svg");
   choroplethMap = d3.select("div#choropleth").select("svg");
 
- 
-
   scatterPlot
     .selectAll("circle#dataScatter")
     .style("fill", "steelblue")
@@ -219,7 +217,9 @@ function markSelectedCountries() {
         return b;
       }
     })
-    .style("stroke", "black");
+    .style("stroke-width", 3)
+    .style("stroke", (d) => (d.properties.NAME == chosenCountry1 ? "purple" : "green"));
+    // .style("stroke", "black");
 }
 
 
