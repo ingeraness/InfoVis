@@ -91,6 +91,31 @@ function handleMouseOver(event, d) {
         d[chosenAttributeY]
     );
 
+
+    if(d.country != undefined) {
+      d3.select(".tooltip").style("visibility", "visible")
+      //.style("top", (event.x  ) + "px").style("left", (event.y )+"px")
+       .html("Country: " +  d.country + 
+       "</br> Year: " + d.year + 
+       "</br>"+labelsDict[chosenAttributeX]+": " + d[chosenAttributeX]
+       +  "</br>"+labelsDict[chosenAttributeY]+": " + d[chosenAttributeY]
+     
+       );
+    }
+    else {
+      var country = dataset.filter((c) => c.country == d.properties.NAME && c.year == chosenYear)
+      d3.select(".tooltip").style("visibility", "visible")
+      //.style("top", (event.x  ) + "px").style("left", (event.y )+"px")
+       .html("Country: " +  country[0].country + 
+       "</br> Year: " + country[0].year + 
+       "</br>"+labelsDict[chosenAttributeX]+": " + country[0][chosenAttributeX]
+       +  "</br>"+labelsDict[chosenAttributeY]+": " + country[0][chosenAttributeY]
+     
+       );
+    }
+
+
+
   // console.log(d.chosenAttributeX);
   // console.log(chosenAttributeX);
   // console.log(d.pf_religion_freedom);
