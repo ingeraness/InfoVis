@@ -17,7 +17,6 @@ function createClevelandPlot(data, update) {
     hf_score: keys[4].valueOf(),
   };
 
-  let dataShown = [];
   let temp = [];
   for (let i = 0; i < data.length; i++) {
     if (data[i].year == chosenYear) {
@@ -30,46 +29,28 @@ function createClevelandPlot(data, update) {
       a[attributesDict[chosenAttributeX]] - b[attributesDict[chosenAttributeX]]
     );
   });
-  let newTemp = temp.slice(0, 20); // Only pick bottom 20 countries
+  let dataShown = temp.slice(0, 20); // Only pick bottom 20 countries
   let i = 0;
   while (i < data.length) {
     // Add data for both years
-    if (newTemp.includes(data[i])) {
+    if (dataShown.includes(data[i])) {
       diff = chosenYear2 - chosenYear;
-      newTemp.push(data[i - diff]);
+      dataShown.push(data[i - diff]);
     } else if (
       (data[i].country == chosenCountry1 ||
         data[i].country == chosenCountry2) &&
       (data[i].year == chosenYear || data[i].year == chosenYear2)
     ) {
       console.log("In else if");
-      newTemp.push(data[i]);
+      dataShown.push(data[i]);
     }
     i++;
   }
 
-  newTemp.sort(function (a, b) {
+  dataShown.sort(function (a, b) {
     // Sort array so that countries are next to each other
     return a.ISO_code.localeCompare(b.ISO_code);
   });
-
-  /* for (let i = 0; i < data.length; i++) {
-    if (newTemp.includes(data[i]) && data[i].year == chosenYear) {
-      console.log("In first if");
-      dataShown.push(data[i]);
-    } else if (newTemp.includes(data[i]) && data[i].year == chosenYear2) {
-      console.log("In second  if");
-      dataShown.push(data[i]);
-    } else if (
-      (data[i].country == chosenCountry1 ||
-        data[i].country == chosenCountry2) &&
-      (data[i].year == chosenYear || data[i].year == chosenYear2)
-    ) {
-      console.log("In else if");
-      dataShown.push(data[i]);
-    }
-  }
-  console.log("DATA SHOWN: " + dataShown);*/
 
   // append the svg object to the body of the page
   if (!update) {
@@ -96,7 +77,7 @@ function createClevelandPlot(data, update) {
     .scaleBand()
     .range([0, height])
     .domain(
-      newTemp.map(function (d) {
+      dataShown.map(function (d) {
         return d.ISO_code;
       })
     )
@@ -107,7 +88,7 @@ function createClevelandPlot(data, update) {
   // This is the part not working. I want to draw the line between x1 = the chosen attribute for 2008 and x2 = the chosen attribute for 2018
   svg
     .selectAll("line")
-    .data(newTemp)
+    .data(dataShown)
     .join("line")
     .attr("x1", function (d) {
       if (d.year == 2008) {
@@ -118,8 +99,6 @@ function createClevelandPlot(data, update) {
     })
     .attr("x2", function (d) {
       if (d.year == 2018) {
-        //console.log(d.year);
-        //console.log(d[attributesDict[chosenAttributeX]]);
         return x(d[attributesDict[chosenAttributeX]]);
       }
     })
@@ -136,7 +115,7 @@ function createClevelandPlot(data, update) {
   // Circles for selected year 1
   svg
     .selectAll("mycircle")
-    .data(newTemp)
+    .data(dataShown)
     .join("circle")
     .filter((d) => d.year == chosenYear)
     .attr("cx", function (d) {
@@ -156,7 +135,7 @@ function createClevelandPlot(data, update) {
   // Circles for selected year 2
   svg
     .selectAll("mycircle")
-    .data(newTemp)
+    .data(dataShown)
     .join("circle")
     .filter((d) => d.year == chosenYear2)
     .attr("cx", function (d) {
