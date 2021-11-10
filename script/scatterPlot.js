@@ -149,6 +149,12 @@ function createScatterPlot(data, update) {
 
   markSelectedCountries(); //Mark the countries selected in the drop down menus
 
+  svg1 = d3
+  .select("div#scatterPlot-box")
+  .select("svg")
+  .attr("width", width)
+  .attr("height", height);
+
   var scatterLabels = ["" + chosenCountry1, "" + chosenCountry2];
   var colorsScatter = ["purple", "green"]; //This will be changed to other colors in CP5
   if (chosenCountry1 != undefined && chosenCountry1 != "") {
@@ -166,7 +172,7 @@ function createScatterPlot(data, update) {
       .append("text")
       .attr("id", "removeOnUpdate")
       .attr("x", 70)
-      .attr("y", height - 115)
+      .attr("y", height - 115).style("background-color", "red")
       .text(scatterLabels[0])
       .style("font-size", "10px")
       .attr("alignment-baseline", "middle");

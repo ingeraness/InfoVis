@@ -200,7 +200,32 @@ function handleClickBarChart(event, d) {
 
 // Change selected country when circle is clicked on in scatterplot
 function handleClickScatterplot(event, d) {
+  d3.select(".scatterPlot-box")
+  .style("visibility", "visible")
+  .style("left",  60+"px")
+  .style("top", "115px")
+  .html(event.path[0]);
+  /*if(chosenCountry2=undefined){
+    d3.select(".scatterPlot-box")
+  .style("visibility", "visible")
+  .style("left",  60+"px")
+  .style("top", "115px")  
+  .style("font-size", "10px")
+  .html(chosenCountry1 )    
+  ;
+  }else{
+    d3.select(".scatterPlot-box")
+  .style("visibility", "visible")
+  .style("left",  60+"px")
+  .style("top", "115px")  
+  .style("font-size", "10px")
+  .html(chosenCountry1 + "</br>" + chosenCountry2)    
+  ;
+  }*/
   if (chosenCountry1 != d.country && chosenCountry2 != d.country) {
+    console.log(chosenCountry1);
+    console.log(chosenCountry2);
+    console.log(event);
     if (chosenCountryNumber % 2 == 0) {
       chosenCountry1 = d.country;
       document.getElementById("dropdown_country1").value = chosenCountry1;
@@ -213,6 +238,7 @@ function handleClickScatterplot(event, d) {
       chosenCountryNumber++;
     }
   }
+  
 }
 
 // Change selected country when country is clicked on in choropleth
