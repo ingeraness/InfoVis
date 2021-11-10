@@ -96,7 +96,7 @@ function createClevelandPlot(data, update) {
     .scaleBand()
     .range([0, height])
     .domain(
-      data.map(function (d) {
+      newTemp.map(function (d) {
         return d.ISO_code;
       })
     )
