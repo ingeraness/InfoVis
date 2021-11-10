@@ -203,5 +203,15 @@ h3 {
 }
 
 .header-lineChart {
-  margin-bottom: 0px;
+  margin-top: 130px;
+  margin-bottom: -70px;
+}
+
+.graph-header {
+  text-align: center;
+}
+
+.header-barChart {
+  margin-top: 50px;
+  margin-bottom: -40px;
 }

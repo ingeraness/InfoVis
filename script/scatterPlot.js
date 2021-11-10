@@ -27,7 +27,7 @@ function createScatterPlot(data, update) {
   };
 
   document.getElementById("headerScatter").innerHTML =
-    labelsDict[chosenAttributeX] + " VS. " + labelsDict[chosenAttributeY];
+    labelsDict[chosenAttributeX] + " VS. " + labelsDict[chosenAttributeY] + " " + chosenYear;
 
   x = d3
     .scaleLinear()

@@ -25,7 +25,7 @@ function createLineChart(data, update, attribute, div) {
   svg.selectAll("*").remove(); // Remove the old vis before drawing the new vis with new countries
 
   // Set header
-  document.getElementById(headerString).innerHTML = labelsDict[attribute];
+  document.getElementById(headerString).innerHTML = labelsDict[attribute] + " from " + chosenYear + " to " + chosenYear2;
 
   var dataC1 = data.filter(function (d) {
     if ((d.country == chosenCountry1) && (d.year>= chosenYear && d.year<=chosenYear2)){

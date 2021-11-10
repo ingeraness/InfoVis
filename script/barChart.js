@@ -8,7 +8,7 @@ function createBarChart(data, update) {
 
   // Set header
   document.getElementById("headerBarChart").innerHTML =
-    "Freedom Index Europe from " + chosenYear ;
+    "Freedom Index Europe " + chosenYear ;
 
   var filtered_data = data.filter(function (d) {
     if (d.year == chosenYear.valueOf()) {

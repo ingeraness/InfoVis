@@ -34,20 +34,20 @@ function createClevelandPlot(data, update) {
   const x = d3.scaleLinear().domain([0, 10]).range([0, width]);
   svg
     .append("g")
-    .attr("transform", `translate(0, ${height})`)
+    .attr("transform", `translate(${margin.left}, ${height})`)
     .call(d3.axisBottom(x));
 
   // Y axis
   const y = d3
     .scaleBand()
-    .range([0, height])
     .domain(
       data.map(function (d) {
         return d.ISO_code;
       })
     )
+    .range([margin.bottom, height-margin.top])
     .padding(1);
-  svg.append("g").call(d3.axisLeft(y));
+  svg.append("g").attr("transform", `translate(${margin.left}, 0)`).call(d3.axisLeft(y));
 
   // Lines
   svg
@@ -112,4 +112,8 @@ function createClevelandPlot(data, update) {
     .on("mouseover", handleMouseOver)
     .on("mouseleave", handleMouseLeave)
     .on("click", handleClickCleveland);
+
+  // Set header
+  document.getElementById("headerClevelandPlot").innerHTML =
+  labelsDict[chosenAttributeX] + " from " + chosenYear + " to " + chosenYear2;
 }
