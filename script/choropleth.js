@@ -4,9 +4,6 @@ var data_source = "data/data.csv";
 var topology;
 var dataset;
 
-var width = 400;
-var height = 400;
-
 var min = 5.9;
 var max = 9.1;
 
@@ -28,10 +25,10 @@ function createChoroplethMap(update) {
 function choropleth(update) {
     var projection = d3
         .geoMercator()
-        .scale(600/2)
+        .scale(850/2)
         .rotate([0, 0])
         .center([0, 0])
-        .translate([220, 550]);
+        .translate([300, 770]);
 
     var path = d3.geoPath().projection(projection);
 
@@ -46,8 +43,8 @@ function choropleth(update) {
     if(!update){
         d3.select("div#choropleth")
         .append("svg")
-        .attr("width", 400)
-        .attr("height", 400);
+        .attr("width", 800)
+        .attr("height", 500);
     }
 
     d3.select("div#choropleth")

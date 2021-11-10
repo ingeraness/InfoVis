@@ -4,7 +4,7 @@ var dataSet;
 
 function createLineChart(data, update, attribute, div) {
   margin = { top: 20, right: 20, bottom: 20, left: 40 };
-  width = 500;
+  width = 700;
   height = 300;
 
   let divString = "div#lineChart" + div;
