@@ -48,6 +48,11 @@ function createClevelandPlot(data, update) {
     i++;
   }
 
+  newTemp.sort(function (a, b) {
+    // Sort array after value for chosen attribute x for chosenYear
+    return a.ISO_code - b.ISO_code;
+  });
+  console.log("PUSHED: " + newTemp);
   /* for (let i = 0; i < data.length; i++) {
     if (newTemp.includes(data[i]) && data[i].year == chosenYear) {
       console.log("In first if");
@@ -104,9 +109,6 @@ function createClevelandPlot(data, update) {
     .selectAll("line")
     .data(newTemp)
     .join("line")
-    .filter(
-      (d) => d.year.valueOf() == chosenYear || d.year.valueOf() == chosenYear2
-    )
     .attr("x1", function (d) {
       if (d.year == 2008) {
         //console.log(d.year);
