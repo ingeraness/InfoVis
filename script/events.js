@@ -79,6 +79,7 @@ function handleMouseOver(event, d) {
       .style("fill", "red");
   }
 
+  //Check if hovered plot is not chororplethMap
   if(d.country != undefined) {
     d3.select(".tooltip").style("visibility", "visible")
       .html("Country: " +  d.country + 
