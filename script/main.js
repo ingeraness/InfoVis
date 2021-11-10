@@ -160,7 +160,7 @@ function saveDropdownAttribute(i) {
         showingBarChart = true;
       } else {
         clearHeaders(1);
-        createLineChart(data, false, chosenAttributeX, 1);
+        createLineChart(data, true, chosenAttributeX, 1);
         showingBarChart = false;
       }
     } else if (i == 2) {
@@ -175,7 +175,7 @@ function saveDropdownAttribute(i) {
         showingBarChart = true;
       } else {
         clearHeaders(2);
-        createLineChart(data, false, chosenAttributeY, 2);
+        createLineChart(data, true, chosenAttributeY, 2);
         showingBarChart = false;
       }
     }
