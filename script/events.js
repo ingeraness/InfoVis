@@ -5,11 +5,12 @@ var handleMouseMove = function (event, d) {
 };
 
 function handleMouseOver(event, d) {
-
   let hoveredCountry;
   let hoveredCountryName;
 
-  d.country != undefined ? hoveredCountryName = d.country : hoveredCountryName = d.properties.NAME;
+  d.country != undefined
+    ? (hoveredCountryName = d.country)
+    : (hoveredCountryName = d.properties.NAME);
   hoveredCountry = dataset.filter((c) => c.country == hoveredCountryName);
 
   let lineChart1 = d3.select("div#lineChart1").select("svg");
@@ -60,22 +61,22 @@ function handleMouseOver(event, d) {
   choroplethMap
     .selectAll(".country")
     .filter(function (b) {
-      if (b.properties.NAME == hoveredCountryName ) {
+      if (b.properties.NAME == hoveredCountryName) {
         return b;
       }
     })
     .style("stroke-width", 2)
     .style("stroke", "red");
 
-  if (hoveredCountry[0].year == chosenYear) {
+  if (d.year == chosenYear) {
     clevelandPlot
       .selectAll("circle#dotsClevelandYear1")
-      .filter((b) => b.country == hoveredCountryName)
+      .filter((b) => b.country == d.country)
       .style("fill", "red");
   } else {
     clevelandPlot
       .selectAll("circle#dotsClevelandYear2")
-      .filter((b) => b.country == hoveredCountryName)
+      .filter((b) => b.country == d.country)
       .style("fill", "red");
   }
 
@@ -96,28 +97,27 @@ function handleMouseOver(event, d) {
         hoveredCountry[0][chosenAttributeY]
     );
 
+  // if(d.country != undefined) {
+  //   d3.select(".tooltip").style("visibility", "visible")
+  //    .html("Country: " +  d.country +
+  //    "</br> Year: " + d.year +
+  //    "</br>"+labelsDict[chosenAttributeX]+": " + d[chosenAttributeX]
+  //    +  "</br>"+labelsDict[chosenAttributeY]+": " + d[chosenAttributeY]
 
-    // if(d.country != undefined) {
-    //   d3.select(".tooltip").style("visibility", "visible")
-    //    .html("Country: " +  d.country + 
-    //    "</br> Year: " + d.year + 
-    //    "</br>"+labelsDict[chosenAttributeX]+": " + d[chosenAttributeX]
-    //    +  "</br>"+labelsDict[chosenAttributeY]+": " + d[chosenAttributeY]
-     
-    //    );
-    // }
-    // else {
-    //   var country = dataset.filter((c) => c.country == d.properties.NAME && c.year == chosenYear)
-    //   d3.select(".tooltip").style("visibility", "visible")
-    //    .html("Country: " +  country[0].country + 
-    //    "</br> Year: " + country[0].year + 
-    //    "</br>"+labelsDict[chosenAttributeX]+": " + country[0][chosenAttributeX]
-    //    +  "</br>"+labelsDict[chosenAttributeY]+": " + country[0][chosenAttributeY]
-    //    );
-    // }
+  //    );
+  // }
+  // else {
+  //   var country = dataset.filter((c) => c.country == d.properties.NAME && c.year == chosenYear)
+  //   d3.select(".tooltip").style("visibility", "visible")
+  //    .html("Country: " +  country[0].country +
+  //    "</br> Year: " + country[0].year +
+  //    "</br>"+labelsDict[chosenAttributeX]+": " + country[0][chosenAttributeX]
+  //    +  "</br>"+labelsDict[chosenAttributeY]+": " + country[0][chosenAttributeY]
+  //    );
+  // }
 }
 
-function handleMouseLeave(event, d) {  
+function handleMouseLeave(event, d) {
   d3.select(".tooltip").style("visibility", "hidden");
 
   if (event.path[0].id == "one") {
@@ -175,7 +175,6 @@ function handleMouseLeave(event, d) {
     .selectAll("circle")
     .filter((d) => d.year == chosenYear2)
     .style("fill", "pink");
-
 
   d3.select("div#choropleth")
     .select("svg")
