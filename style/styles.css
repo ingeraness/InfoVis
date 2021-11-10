@@ -201,3 +201,7 @@ h3 {
   justify-content: space-between;
   align-items: center;
 }
+
+.header-lineChart {
+  margin-bottom: 0px;
+}

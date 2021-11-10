@@ -109,7 +109,7 @@ function createLineChart(data, update, attribute, div) {
 
   svg
     .append("text") // text label for the y axis
-    .attr("x", width - 420)
+    .attr("x", width - 620)
     .attr("y", 100)
     .style("text-anchor", "middle")
     .text(labelsDict[attribute]); //ENDRE!
