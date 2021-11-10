@@ -180,7 +180,19 @@ function handleMouseLeave(event, d) {
   d3.select("div#choropleth")
     .select("svg")
     .selectAll(".country")
-    .style("stroke", "none");
+    .style("stroke", "none")
+    .filter(function (b) {
+      if (
+        b.properties.NAME == chosenCountry1 ||
+        b.properties.NAME == chosenCountry2
+      ) {
+        return b;
+      }
+    })
+    .style("stroke-width", 3)
+    .style("stroke", (d) =>
+      d.properties.NAME == chosenCountry1 ? "purple" : "green"
+    );
 }
 
 var chosenCountryNumber = 0;
@@ -285,5 +297,4 @@ function markSelectedCountries() {
     .style("stroke", (d) =>
       d.properties.NAME == chosenCountry1 ? "purple" : "green"
     );
-  // .style("stroke", "black");
 }
