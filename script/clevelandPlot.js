@@ -49,10 +49,10 @@ function createClevelandPlot(data, update) {
   }
 
   newTemp.sort(function (a, b) {
-    // Sort array after value for chosen attribute x for chosenYear
-    return a.ISO_code - b.ISO_code;
+    // Sort array so that countries are next to each other
+    return a.ISO_code.localeCompare(b.ISO_code);
   });
-  console.log("PUSHED: " + newTemp);
+
   /* for (let i = 0; i < data.length; i++) {
     if (newTemp.includes(data[i]) && data[i].year == chosenYear) {
       console.log("In first if");
