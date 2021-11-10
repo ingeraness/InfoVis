@@ -5,11 +5,12 @@ var handleMouseMove = function (event, d) {
 };
 
 function handleMouseOver(event, d) {
-
   let hoveredCountry;
   let hoveredCountryName;
 
-  d.country != undefined ? hoveredCountryName = d.country : hoveredCountryName = d.properties.NAME;
+  d.country != undefined
+    ? (hoveredCountryName = d.country)
+    : (hoveredCountryName = d.properties.NAME);
   hoveredCountry = dataset.filter((c) => c.country == hoveredCountryName && c.year == chosenYear);
 
   let lineChart1 = d3.select("div#lineChart1").select("svg");
@@ -60,22 +61,22 @@ function handleMouseOver(event, d) {
   choroplethMap
     .selectAll(".country")
     .filter(function (b) {
-      if (b.properties.NAME == hoveredCountryName ) {
+      if (b.properties.NAME == hoveredCountryName) {
         return b;
       }
     })
     .style("stroke-width", 2)
     .style("stroke", "red");
 
-  if (hoveredCountry[0].year == chosenYear) {
+  if (d.year == chosenYear) {
     clevelandPlot
       .selectAll("circle#dotsClevelandYear1")
-      .filter((b) => b.country == hoveredCountryName)
+      .filter((b) => b.country == d.country)
       .style("fill", "red");
   } else {
     clevelandPlot
       .selectAll("circle#dotsClevelandYear2")
-      .filter((b) => b.country == hoveredCountryName)
+      .filter((b) => b.country == d.country)
       .style("fill", "red");
   }
 
@@ -109,7 +110,7 @@ function handleMouseOver(event, d) {
   }
 }
 
-function handleMouseLeave(event, d) {  
+function handleMouseLeave(event, d) {
   d3.select(".tooltip").style("visibility", "hidden");
 
   if (event.path[0].id == "one") {
@@ -167,7 +168,6 @@ function handleMouseLeave(event, d) {
     .selectAll("circle")
     .filter((d) => d.year == chosenYear2)
     .style("fill", "pink");
-
 
   d3.select("div#choropleth")
     .select("svg")

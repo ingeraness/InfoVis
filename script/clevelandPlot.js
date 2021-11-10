@@ -17,6 +17,60 @@ function createClevelandPlot(data, update) {
     hf_score: keys[4].valueOf(),
   };
 
+  let dataShown = [];
+  let temp = [];
+  for (let i = 0; i < data.length; i++) {
+    if (data[i].year == chosenYear) {
+      temp.push(data[i]);
+    }
+  }
+  temp.sort(function (a, b) {
+    // Sort array after value for chosen attribute x for chosenYear
+    return (
+      a[attributesDict[chosenAttributeX]] - b[attributesDict[chosenAttributeX]]
+    );
+  });
+  let newTemp = temp.slice(0, 20); // Only pick bottom 20 countries
+  let i = 0;
+  while (i < data.length) {
+    // Add data for both years
+    if (newTemp.includes(data[i])) {
+      diff = chosenYear2 - chosenYear;
+      newTemp.push(data[i - diff]);
+    } else if (
+      (data[i].country == chosenCountry1 ||
+        data[i].country == chosenCountry2) &&
+      (data[i].year == chosenYear || data[i].year == chosenYear2)
+    ) {
+      console.log("In else if");
+      newTemp.push(data[i]);
+    }
+    i++;
+  }
+
+  newTemp.sort(function (a, b) {
+    // Sort array so that countries are next to each other
+    return a.ISO_code.localeCompare(b.ISO_code);
+  });
+
+  /* for (let i = 0; i < data.length; i++) {
+    if (newTemp.includes(data[i]) && data[i].year == chosenYear) {
+      console.log("In first if");
+      dataShown.push(data[i]);
+    } else if (newTemp.includes(data[i]) && data[i].year == chosenYear2) {
+      console.log("In second  if");
+      dataShown.push(data[i]);
+    } else if (
+      (data[i].country == chosenCountry1 ||
+        data[i].country == chosenCountry2) &&
+      (data[i].year == chosenYear || data[i].year == chosenYear2)
+    ) {
+      console.log("In else if");
+      dataShown.push(data[i]);
+    }
+  }
+  console.log("DATA SHOWN: " + dataShown);*/
+
   // append the svg object to the body of the page
   if (!update) {
     d3.select("div#clevelandPlot")
@@ -41,7 +95,7 @@ function createClevelandPlot(data, update) {
   const y = d3
     .scaleBand()
     .domain(
-      data.map(function (d) {
+      newTemp.map(function (d) {
         return d.ISO_code;
       })
     )
@@ -50,18 +104,24 @@ function createClevelandPlot(data, update) {
   svg.append("g").attr("transform", `translate(${margin.left}, 0)`).call(d3.axisLeft(y));
 
   // Lines
+  // This is the part not working. I want to draw the line between x1 = the chosen attribute for 2008 and x2 = the chosen attribute for 2018
   svg
     .selectAll("line")
-    .data(data)
+    .data(newTemp)
     .join("line")
-    .filter(
-      (d) => d.year.valueOf() == chosenYear || d.year.valueOf() == chosenYear2
-    )
     .attr("x1", function (d) {
-      return x(d[attributesDict[chosenAttributeX]]);
+      if (d.year == 2008) {
+        //console.log(d.year);
+        //console.log(d[attributesDict[chosenAttributeX]]);
+        return x(d[attributesDict[chosenAttributeX]]);
+      }
     })
     .attr("x2", function (d) {
-      return x(d[attributesDict[chosenAttributeY]]);
+      if (d.year == 2018) {
+        //console.log(d.year);
+        //console.log(d[attributesDict[chosenAttributeX]]);
+        return x(d[attributesDict[chosenAttributeX]]);
+      }
     })
     .attr("y1", function (d) {
       return y(d.ISO_code);
@@ -76,7 +136,7 @@ function createClevelandPlot(data, update) {
   // Circles for selected year 1
   svg
     .selectAll("mycircle")
-    .data(data)
+    .data(newTemp)
     .join("circle")
     .filter((d) => d.year == chosenYear)
     .attr("cx", function (d) {
@@ -85,7 +145,7 @@ function createClevelandPlot(data, update) {
     .attr("cy", function (d) {
       return y(d.ISO_code);
     })
-    .attr("r", "4")
+    .attr("r", "6")
     .style("fill", "#69b3a2")
     .attr("id", "dotsClevelandYear1")
     .on("mousemove", handleMouseMove)
@@ -96,7 +156,7 @@ function createClevelandPlot(data, update) {
   // Circles for selected year 2
   svg
     .selectAll("mycircle")
-    .data(data)
+    .data(newTemp)
     .join("circle")
     .filter((d) => d.year == chosenYear2)
     .attr("cx", function (d) {
@@ -105,7 +165,7 @@ function createClevelandPlot(data, update) {
     .attr("cy", function (d) {
       return y(d.ISO_code);
     })
-    .attr("r", "4")
+    .attr("r", "6")
     .style("fill", "pink")
     .attr("id", "dotsClevelandYear2")
     .on("mousemove", handleMouseMove)
