@@ -91,15 +91,9 @@ function createLineChart(data, update, attribute, div) {
     .attr("width", width)
     .attr("height", height);
 
-  if (!update) {
-    svg.append("g").attr("class", "lineXAxis");
-    svg.append("g").attr("class", "lineYAxis");
-  }
-
-  svg.select("g.lineXAxis").call(xAxis);
-
-  svg.select("g.lineYAxis").call(yAxis);
-
+  svg.append("g").attr("class", "lineXAxis").call(xAxis);
+  svg.append("g").attr("class", "lineYAxis").call(yAxis);
+  
   svg
     .append("text") // text label for the x axis
     .attr("x", width - 20)
