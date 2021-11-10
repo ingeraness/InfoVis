@@ -55,7 +55,7 @@ function saveDropdownCountry(i) {
   removeCharts(showingBarChart, false);
   d3.csv("data/data.csv")
     .then((data) => {
-      createScatterPlot(data, false);
+      createScatterPlot(data, true);
       createClevelandPlot(data, true);
       markSelectedCountries();
       if (
@@ -90,8 +90,8 @@ function saveDropdownYear(yearChanged, i) {
       document.getElementById("dropdown_year2").value = chosenYear2;
     }
     return;
-  }
-
+    }
+  
   if (i == 1) {
     chosenYear = document.getElementById("dropdown_year1").value;
   } else if (i == 2) {

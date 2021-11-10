@@ -4,7 +4,7 @@ var dataSet;
 
 function createLineChart(data, update, attribute, div) {
   margin = { top: 20, right: 20, bottom: 20, left: 40 };
-  width = 500;
+  width = 700;
   height = 300;
 
   let divString = "div#lineChart" + div;
@@ -25,7 +25,7 @@ function createLineChart(data, update, attribute, div) {
   svg.selectAll("*").remove(); // Remove the old vis before drawing the new vis with new countries
 
   // Set header
-  document.getElementById(headerString).innerHTML = labelsDict[attribute];
+  document.getElementById(headerString).innerHTML = labelsDict[attribute] + " from " + chosenYear + " to " + chosenYear2;
 
   var dataC1 = data.filter(function (d) {
     if ((d.country == chosenCountry1) && (d.year>= chosenYear && d.year<=chosenYear2)){
@@ -109,7 +109,7 @@ function createLineChart(data, update, attribute, div) {
 
   svg
     .append("text") // text label for the y axis
-    .attr("x", width - 420)
+    .attr("x", width - 620)
     .attr("y", 100)
     .style("text-anchor", "middle")
     .text(labelsDict[attribute]); //ENDRE!

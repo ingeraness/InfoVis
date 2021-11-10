@@ -4,7 +4,7 @@ function createClevelandPlot(data, update) {
   // set the dimensions and margins of the graph
   const margin = { top: 10, right: 30, bottom: 30, left: 30 };
   const width = 300;
-  const height = 730;
+  const height = 850;
 
   const keys = Object.keys(data[0]);
 
@@ -88,20 +88,20 @@ function createClevelandPlot(data, update) {
   const x = d3.scaleLinear().domain([0, 10]).range([0, width]);
   svg
     .append("g")
-    .attr("transform", `translate(0, ${height})`)
+    .attr("transform", `translate(${margin.left}, ${height})`)
     .call(d3.axisBottom(x));
 
   // Y axis
   const y = d3
     .scaleBand()
-    .range([0, height])
     .domain(
       newTemp.map(function (d) {
         return d.ISO_code;
       })
     )
+    .range([margin.bottom, height-margin.top])
     .padding(1);
-  svg.append("g").call(d3.axisLeft(y));
+  svg.append("g").attr("transform", `translate(${margin.left}, 0)`).call(d3.axisLeft(y));
 
   // Lines
   // This is the part not working. I want to draw the line between x1 = the chosen attribute for 2008 and x2 = the chosen attribute for 2018
@@ -172,4 +172,8 @@ function createClevelandPlot(data, update) {
     .on("mouseover", handleMouseOver)
     .on("mouseleave", handleMouseLeave)
     .on("click", handleClickCleveland);
+
+  // Set header
+  document.getElementById("headerClevelandPlot").innerHTML =
+  labelsDict[chosenAttributeX] + " from " + chosenYear + " to " + chosenYear2;
 }

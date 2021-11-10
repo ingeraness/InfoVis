@@ -1,16 +1,6 @@
-// function init() {
-//     d3.csv("data/data.csv").then((data) => {
-//         createBarChart(data);
-//     })
-//     .catch((error) => {
-//         console.log(error);
-//     });
-// }
-
 function createBarChart(data, update) {
-  width = 1000;
-  height = 300;
-
+  width = 1300;
+  height = 350;
   margin = { top: 20, right: 20, bottom: 40, left: 40 };
 
   var svg = d3.select("div#barChart").select("svg");
@@ -18,7 +8,7 @@ function createBarChart(data, update) {
 
   // Set header
   document.getElementById("headerBarChart").innerHTML =
-    "Freedom Index Europe from " + chosenYear ;
+    "Freedom Index Europe " + chosenYear ;
 
   var filtered_data = data.filter(function (d) {
     if (d.year == chosenYear.valueOf()) {
@@ -27,9 +17,6 @@ function createBarChart(data, update) {
   }).sort((a,b) => {
     return d3.ascending(a.hf_score, b.hf_score)
   });
-
-  
-  
 
   y = d3
     .scaleLinear()

@@ -1,6 +1,6 @@
 function createScatterPlot(data, update) {
-  const width = 400;
-  const height = 400;
+  const width = 500;
+  const height = 500;
   
 
   // TODO: endre til dynamisk bredde og høyde. Også i transform!
@@ -27,7 +27,7 @@ function createScatterPlot(data, update) {
   };
 
   document.getElementById("headerScatter").innerHTML =
-    labelsDict[chosenAttributeX] + " VS. " + labelsDict[chosenAttributeY];
+    labelsDict[chosenAttributeX] + " VS. " + labelsDict[chosenAttributeY] + " " + chosenYear;
 
   x = d3
     .scaleLinear()
@@ -42,7 +42,7 @@ function createScatterPlot(data, update) {
 
   xAxis = (g) =>
     g
-      .attr("transform", "translate(0, 360)")
+      .attr("transform", "translate(0, 460)")
       .call(
         d3
           .axisBottom(x)
@@ -53,7 +53,7 @@ function createScatterPlot(data, update) {
 
   yAxis = (g) =>
     g
-      .attr("transform", "translate(20, 0)")
+      .attr("transform", "translate(40, 0)")
       .call(d3.axisLeft(y))
       .call((g) => g.select(".domain").remove());
 
