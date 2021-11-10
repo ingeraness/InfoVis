@@ -79,7 +79,10 @@ function saveDropdownCountry(i) {
 }
 
 function saveDropdownYear(yearChanged, i) {
-  if (document.getElementById("dropdown_year1").value > document.getElementById("dropdown_year2").value){
+  if (
+    document.getElementById("dropdown_year1").value >
+    document.getElementById("dropdown_year2").value
+  ) {
     if (i == 1) {
       document.getElementById("dropdown_year1").value = chosenYear;
     } else {
@@ -174,6 +177,7 @@ function removeCharts(showingBarChart, yearChanged) {
   d3.select("div#scatterPlot")
     .selectAll("svg")
     .selectAll("#removeOnUpdate")
+    .remove(); //Remove old chart
 
   if (showingBarChart) {
     d3.select("div#lineChart1").select("svg").remove(); //Remove old chart
@@ -184,8 +188,7 @@ function removeCharts(showingBarChart, yearChanged) {
     d3.select("div#lineChart2").select("svg").remove(); //Remove old chart
     d3.select("div#barChart").select("svg").remove(); //Remove old chart
   }
-  
-  if(yearChanged){
+  if (yearChanged) {
     d3.select("div#choropleth").select("svg").selectAll(".country").remove();
     d3.selectAll("div#clevelandPlot")
       .selectAll("svg")
