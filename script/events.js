@@ -10,7 +10,7 @@ function handleMouseOver(event, d) {
   let hoveredCountryName;
 
   d.country != undefined ? hoveredCountryName = d.country : hoveredCountryName = d.properties.NAME;
-  hoveredCountry = dataset.filter((c) => c.country == hoveredCountryName);
+  hoveredCountry = dataset.filter((c) => c.country == hoveredCountryName && c.year == chosenYear);
 
   let lineChart1 = d3.select("div#lineChart1").select("svg");
   let lineChart2 = d3.select("div#lineChart2").select("svg");
@@ -79,7 +79,17 @@ function handleMouseOver(event, d) {
       .style("fill", "red");
   }
 
-  d3.select(".tooltip")
+  if(d.country != undefined) {
+    d3.select(".tooltip").style("visibility", "visible")
+      .html("Country: " +  d.country + 
+      "</br> Year: " + d.year + 
+      "</br>"+labelsDict[chosenAttributeX]+": " + d[chosenAttributeX]
+      +  "</br>"+labelsDict[chosenAttributeY]+": " + d[chosenAttributeY]
+    
+      );
+  }
+  else {
+    d3.select(".tooltip")
     .style("visibility", "visible")
     .html(
       "Country: " +
@@ -95,26 +105,7 @@ function handleMouseOver(event, d) {
         ": " +
         hoveredCountry[0][chosenAttributeY]
     );
-
-
-    // if(d.country != undefined) {
-    //   d3.select(".tooltip").style("visibility", "visible")
-    //    .html("Country: " +  d.country + 
-    //    "</br> Year: " + d.year + 
-    //    "</br>"+labelsDict[chosenAttributeX]+": " + d[chosenAttributeX]
-    //    +  "</br>"+labelsDict[chosenAttributeY]+": " + d[chosenAttributeY]
-     
-    //    );
-    // }
-    // else {
-    //   var country = dataset.filter((c) => c.country == d.properties.NAME && c.year == chosenYear)
-    //   d3.select(".tooltip").style("visibility", "visible")
-    //    .html("Country: " +  country[0].country + 
-    //    "</br> Year: " + country[0].year + 
-    //    "</br>"+labelsDict[chosenAttributeX]+": " + country[0][chosenAttributeX]
-    //    +  "</br>"+labelsDict[chosenAttributeY]+": " + country[0][chosenAttributeY]
-    //    );
-    // }
+  }
 }
 
 function handleMouseLeave(event, d) {  
