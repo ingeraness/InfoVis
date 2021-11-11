@@ -23,9 +23,9 @@
       src="script/main.js"
     ></script>
     <script
-    language="JavaScript"
-    type="text/javascript"
-    src="libs/topojson.v3.min.js"
+      language="JavaScript"
+      type="text/javascript"
+      src="libs/topojson.v3.min.js"
     ></script>
     <script
       language="JavaScript"
@@ -70,19 +70,23 @@
 
     <!-- CSS -->
     <link rel="stylesheet" href="style/styles.css" />
-
   </head>
 
   <body onload="init()">
     <div class="flex-container">
-
       <div class="header">
-        <div id="title"><h1 id="titleH1" class="title-1"> Freedom Ranking Europe </h1></div>
+        <div id="title">
+          <h1 id="titleH1" class="title-1">Freedom Ranking Europe</h1>
+        </div>
         <div class="drop-down-pair">
           <form id="selected_country1" class="drop-down-menu">
             <label
               >Country:
-              <select id="dropdown_country1" class="drop-down-element" onchange="saveDropdownCountry(1)">
+              <select
+                id="dropdown_country1"
+                class="drop-down-element"
+                onchange="saveDropdownCountry(1)"
+              >
                 <option id="optionC1" value="">No country selected</option>
               </select>
             </label>
@@ -91,48 +95,76 @@
           <form id="selected_country2" class="drop-down-menu">
             <label
               >Country:
-              <select id="dropdown_country2" class="drop-down-element" onchange="saveDropdownCountry(2)">
+              <select
+                id="dropdown_country2"
+                class="drop-down-element"
+                onchange="saveDropdownCountry(2)"
+              >
                 <option value="">No country selected</option>
               </select>
             </label>
-          </form>  
-        </div>  
+          </form>
+        </div>
 
         <div class="drop-down-pair">
-          <form id="selected_attribute" class="drop-down-menu" onchange="saveDropdownAttribute()">
+          <form
+            id="selected_attribute"
+            class="drop-down-menu"
+            onchange="saveDropdownAttribute()"
+          >
             <label
               >Attribute:
-              <select id="dropdown_attribute1" class="drop-down-element" onchange="saveDropdownAttribute(1)">
+              <select
+                id="dropdown_attribute1"
+                class="drop-down-element"
+                onchange="saveDropdownAttribute(1)"
+              >
+                <option value="hf_score">Freedom Index</option>
                 <option value="pf_religion_freedom">Religious Freedom</option>
                 <option value="pf_ss">Safety and Security</option>
                 <option value="pf_ss_women">Women’s Freedom</option>
                 <option value="ef_legal_police">Police Reliability</option>
-                <option value="pf_ss_disappearances_violent">Criminal Trends</option>
-                <option value="hf_score">Freedom Index</option>
+                <option value="pf_ss_disappearances_violent">
+                  Criminal Trends
+                </option>
               </select>
             </label>
           </form>
 
-          <form id="selected_attribute" class = "drop-down-menu" onchange="saveDropdownAttribute()">
+          <form
+            id="selected_attribute"
+            class="drop-down-menu"
+            onchange="saveDropdownAttribute()"
+          >
             <label>
               Attribute:
-              <select id="dropdown_attribute2" class="drop-down-element" onchange="saveDropdownAttribute(2)">
+              <select
+                id="dropdown_attribute2"
+                class="drop-down-element"
+                onchange="saveDropdownAttribute(2)"
+              >
                 <option value="pf_ss">Safety and Security</option>
                 <option value="pf_ss_women">Women’s Freedom</option>
                 <option value="ef_legal_police">Police Reliability</option>
-                <option value="pf_ss_disappearances_violent">Criminal Trends</option>
+                <option value="pf_ss_disappearances_violent">
+                  Criminal Trends
+                </option>
                 <option value="pf_religion_freedom">Religious Freedom</option>
                 <option value="hf_score">Freedom Index</option>
               </select>
             </label>
-          </form> 
-        </div> 
+          </form>
+        </div>
 
         <div class="drop-down-pair">
           <form id="selected_year1" class="drop-down-menu">
             <label>
-              Year from: 
-              <select id="dropdown_year1" class="drop-down-element" onchange="saveDropdownYear(true, 1)">
+              Year from:
+              <select
+                id="dropdown_year1"
+                class="drop-down-element"
+                onchange="saveDropdownYear(true, 1)"
+              >
                 <option id="selectedYear" value="2018">2018</option>
                 <option id="selectedYear" value="2017">2017</option>
                 <option id="selectedYear" value="2016">2016</option>
@@ -150,8 +182,12 @@
 
           <form id="selected_year2" class="drop-down-menu">
             <label>
-              Year to: 
-              <select id="dropdown_year2" class="drop-down-element" onchange="saveDropdownYear(true, 2)">
+              Year to:
+              <select
+                id="dropdown_year2"
+                class="drop-down-element"
+                onchange="saveDropdownYear(true, 2)"
+              >
                 <option id="selectedYear" selected value="2018">2018</option>
                 <option id="selectedYear" value="2017">2017</option>
                 <option id="selectedYear" value="2016">2016</option>
@@ -165,27 +201,52 @@
                 <option id="selectedYear" value="2008">2008</option>
               </select>
             </label>
-          </form> 
-        </div>   
+          </form>
+        </div>
       </div>
-      
+
       <div class="graphs">
         <div class="column-1">
           <div class="row-1">
-            <div id="choropleth"><h3 id="header-choropleth" class="graph-header"></h3></div>
-            <div id="scatterPlot" ><h3 id="headerScatter" class="graph-header"></h3></div>
+            <div id="choropleth">
+              <h3 id="header-choropleth" class="graph-header"></h3>
+            </div>
+            <div id="scatterPlot">
+              <h3 id="headerScatter" class="graph-header"></h3>
+            </div>
           </div>
           <div class="row-2">
-            <div id="barChart"><h3 id="headerBarChart" class="graph-header header-barChart"></h3></div>
-            <div id="lineChart1"><h3 id="headerLineChart1" class="graph-header header-lineChart"></h3></div>
-            <div id="lineChart2"><h3 id="headerLineChart2" class="graph-header header-lineChart"></h3></div>
+            <div id="barChart">
+              <h3 id="headerBarChart" class="graph-header header-barChart"></h3>
+            </div>
+            <div id="lineChart1">
+              <h3
+                id="headerLineChart1"
+                class="graph-header header-lineChart"
+              ></h3>
+            </div>
+            <div id="lineChart2">
+              <h3
+                id="headerLineChart2"
+                class="graph-header header-lineChart"
+              ></h3>
+            </div>
           </div>
         </div>
-        <div id="clevelandPlot"><h3 id="headerClevelandPlot" class="graph-header"></h3></div>
+        <div id="clevelandPlot">
+          <h3 id="headerClevelandPlot" class="graph-header"></h3>
+        </div>
       </div>
-      <div class="tooltip" style="visibility: hidden; background-color: white; border: 1px solid; border-radius: 5px; padding: 10px;"></div>
-
+      <div
+        class="tooltip"
+        style="
+          visibility: hidden;
+          background-color: white;
+          border: 1px solid;
+          border-radius: 5px;
+          padding: 10px;
+        "
+      ></div>
     </div>
-
   </body>
 </html>
