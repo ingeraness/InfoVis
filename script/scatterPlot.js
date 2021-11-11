@@ -126,6 +126,7 @@ function createScatterPlot(data, update) {
     })
     .attr("r", 4)
     .style("fill", "steelblue")
+    .style("opacity", 0.9)
     .on("mousemove", handleMouseMove)
     .on("mouseover", handleMouseOver)
     .on("mouseleave", handleMouseLeave)
