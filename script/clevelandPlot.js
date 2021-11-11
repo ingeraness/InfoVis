@@ -86,10 +86,6 @@ function createClevelandPlot(data, update) {
 
   // Add X axis
   const x = d3.scaleLinear().domain([0, 10]).range([0, width]);
-  svg
-    .append("g")
-    .attr("transform", `translate(${margin.left}, ${height})`)
-    .call(d3.axisBottom(x));
 
   // Y axis
   const y = d3
@@ -101,10 +97,18 @@ function createClevelandPlot(data, update) {
     )
     .range([margin.bottom, height-margin.top])
     .padding(1);
-  svg.append("g").attr("transform", `translate(${margin.left}, 0)`).call(d3.axisLeft(y));
+
+  if(!update){
+    svg
+    .append("g")
+    .attr("transform", `translate(${margin.left}, ${height})`)
+    .call(d3.axisBottom(x));
+
+    svg.append("g").attr("transform", `translate(${margin.left}, 0)`).call(d3.axisLeft(y));
+
+  }
 
   // Lines
-  // This is the part not working. I want to draw the line between x1 = the chosen attribute for 2008 and x2 = the chosen attribute for 2018
   svg
     .selectAll("myline")
     .data(newTemp)
