@@ -22,7 +22,11 @@ function createScatterPlot(data, update) {
   };
 
   document.getElementById("headerScatter").innerHTML =
-    labelsDict[chosenAttributeX] + " VS. " + labelsDict[chosenAttributeY] + " " + chosenYear;
+    labelsDict[chosenAttributeX] +
+    " VS. " +
+    labelsDict[chosenAttributeY] +
+    " " +
+    chosenYear;
 
   x = d3
     .scaleLinear()
@@ -109,7 +113,6 @@ function createScatterPlot(data, update) {
     .attr("id", "removeOnUpdate")
     .text(labelsDict[chosenAttributeY]);
 
-  
   // Add dots
   svg
     .append("g")
@@ -131,8 +134,9 @@ function createScatterPlot(data, update) {
     .on("mouseover", handleMouseOver)
     .on("mouseleave", handleMouseLeave)
     .on("click", handleClickScatterplot)
-    .attr("id", "dataScatter");
-
+    .attr("id", "dataScatter")
+    .transition() //add smooth transition
+    .duration(750);
 
   if (!update) {
     svg.append("g").attr("class", "scatterXAxis");

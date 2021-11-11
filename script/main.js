@@ -3,7 +3,7 @@ var chosenCountry2;
 var chosenYear = 2008;
 var chosenYear2 = 2018;
 var chosenAttributeY = "pf_ss";
-var chosenAttributeX = "pf_religion_freedom";
+var chosenAttributeX = "hf_score";
 var update = false;
 
 var showingBarChart;
@@ -90,8 +90,8 @@ function saveDropdownYear(yearChanged, i) {
       document.getElementById("dropdown_year2").value = chosenYear2;
     }
     return;
-    }
-  
+  }
+
   if (i == 1) {
     chosenYear = document.getElementById("dropdown_year1").value;
   } else if (i == 2) {
