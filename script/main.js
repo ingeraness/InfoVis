@@ -98,9 +98,6 @@ function saveDropdownYear(yearChanged, i) {
     chosenYear2 = document.getElementById("dropdown_year2").value;
   }
 
-  //document.getElementById("titleH1").innerHTML =
-  //"Freedom Ranking Europe from " + chosenYear + " to " + chosenYear2;
-  // Check if it should draw the lineChart or barChart
   removeCharts(showingBarChart, yearChanged);
   d3.csv("data/data.csv").then((data) => {
     createScatterPlot(data, true);
@@ -152,7 +149,7 @@ function saveDropdownAttribute(i) {
     .select("svg")
     .selectAll("circle#dotsClevelandYear1")
     .remove();
-    
+
   if (i == 1) {
     chosenAttributeX = document.getElementById("dropdown_attribute1").value;
   } else {

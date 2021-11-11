@@ -42,7 +42,6 @@ function createLineChart(data, update, attribute, div) {
   var yearsChosen = data.filter(function(d){
     if(d.year>= chosenYear && d.year<=chosenYear2 && d.country=="Portugal"){
       return d;
-
     }
   });
 
@@ -68,7 +67,6 @@ function createLineChart(data, update, attribute, div) {
         .axisBottom(x)
         .tickFormat((x) => x)
         .ticks(yearsChosen.length - 1)
-        //.tickSizeOuter(0)
     );
 
   yAxis = (g) =>

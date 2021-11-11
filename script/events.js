@@ -263,6 +263,7 @@ function markSelectedCountries() {
   //Marks the countries selected in the drop down menus
   scatterPlot = d3.select("div#scatterPlot").select("svg");
   choroplethMap = d3.select("div#choropleth").select("svg");
+  clevelandPlot = d3.select("div#clevelandPlot").select("svg");
 
   scatterPlot
     .selectAll("circle#dataScatter")
@@ -288,5 +289,54 @@ function markSelectedCountries() {
     .style("stroke-width", 3)
     .style("stroke", (d) =>
       d.properties.NAME == chosenCountry1 ? "purple" : "green"
+    );
+
+    clevelandPlot
+    .selectAll("line#linesCleveland")
+    .attr("stroke", "grey")
+    .attr("stroke-width", "1px")    
+    .filter(function (b) {
+      if (
+        b.country == chosenCountry1 ||
+        b.country == chosenCountry2
+      ) {
+        return b;
+      }
+    })
+    .style("stroke-width", 2)
+    .style("stroke", (d) =>
+      d.country == chosenCountry1 ? "purple" : "green"
+    );
+
+    clevelandPlot
+    .selectAll("circle#dotsClevelandYear1")
+    .attr("stroke", "none")
+    .filter(function (b) {
+      if (
+        b.country == chosenCountry1 ||
+        b.country == chosenCountry2
+      ) {
+        return b;
+      }
+    })
+    .style("stroke-width", 2)
+    .style("stroke", (d) =>
+      d.country == chosenCountry1 ? "purple" : "green"
+    );
+
+    clevelandPlot
+    .selectAll("circle#dotsClevelandYear2")
+    .attr("stroke", "none")
+    .filter(function (b) {
+      if (
+        b.country == chosenCountry1 ||
+        b.country == chosenCountry2
+      ) {
+        return b;
+      }
+    })
+    .style("stroke-width", 2)
+    .style("stroke", (d) =>
+      d.country == chosenCountry1 ? "purple" : "green"
     );
 }

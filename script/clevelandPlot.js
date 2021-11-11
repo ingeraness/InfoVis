@@ -17,7 +17,6 @@ function createClevelandPlot(data, update) {
     hf_score: keys[4].valueOf(),
   };
 
-  let dataShown = [];
   let temp = [];
   for (let i = 0; i < data.length; i++) {
     if (data[i].year == chosenYear) {
@@ -53,24 +52,6 @@ function createClevelandPlot(data, update) {
     return a.ISO_code.localeCompare(b.ISO_code);
   });
 
-  /* for (let i = 0; i < data.length; i++) {
-    if (newTemp.includes(data[i]) && data[i].year == chosenYear) {
-      console.log("In first if");
-      dataShown.push(data[i]);
-    } else if (newTemp.includes(data[i]) && data[i].year == chosenYear2) {
-      console.log("In second  if");
-      dataShown.push(data[i]);
-    } else if (
-      (data[i].country == chosenCountry1 ||
-        data[i].country == chosenCountry2) &&
-      (data[i].year == chosenYear || data[i].year == chosenYear2)
-    ) {
-      console.log("In else if");
-      dataShown.push(data[i]);
-    }
-  }
-  console.log("DATA SHOWN: " + dataShown);*/
-
   // append the svg object to the body of the page
   if (!update) {
     d3.select("div#clevelandPlot")
@@ -103,9 +84,7 @@ function createClevelandPlot(data, update) {
     .append("g")
     .attr("transform", `translate(${margin.left}, ${height})`)
     .call(d3.axisBottom(x));
-
     svg.append("g").attr("transform", `translate(${margin.left}, 0)`).call(d3.axisLeft(y));
-
   }
 
   // Lines
