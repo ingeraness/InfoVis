@@ -139,6 +139,20 @@ function saveDropdownAttribute(i) {
     .selectAll("svg")
     .selectAll("#removeOnUpdate")
     .remove(); //Remove old chart
+
+    d3.selectAll("div#clevelandPlot")
+    .select("svg")
+    .selectAll("line#linesCleveland")
+    .remove();
+  d3.selectAll("div#clevelandPlot")
+    .select("svg")
+    .selectAll("circle#dotsClevelandYear2")
+    .remove();
+  d3.selectAll("div#clevelandPlot")
+    .select("svg")
+    .selectAll("circle#dotsClevelandYear1")
+    .remove();
+    
   if (i == 1) {
     chosenAttributeX = document.getElementById("dropdown_attribute1").value;
   } else {
@@ -201,16 +215,17 @@ function removeCharts(showingBarChart, yearChanged) {
     .selectAll("svg")
     .selectAll("#removeOnUpdate")
     .remove(); //Remove old chart
-  d3.selectAll("div#clevelandPlot")
-    .selectAll("svg")
-    .selectAll("circle#linesCleveland")
+
+    d3.selectAll("div#clevelandPlot")
+    .select("svg")
+    .selectAll("line#linesCleveland")
     .remove();
   d3.selectAll("div#clevelandPlot")
-    .selectAll("svg")
+    .select("svg")
     .selectAll("circle#dotsClevelandYear2")
     .remove();
   d3.selectAll("div#clevelandPlot")
-    .selectAll("svg")
+    .select("svg")
     .selectAll("circle#dotsClevelandYear1")
     .remove();
 
