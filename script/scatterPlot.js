@@ -102,7 +102,7 @@ function createScatterPlot(data, update) {
     .attr("x", width - 90)
     .attr("y", height - 10)
     .style("text-anchor", "middle")
-    .attr("id", "removeOnUpdate")
+    .attr("id", "TextRemoveOnUpdate")
     .text(labelsDict[chosenAttributeX]);
 
   svg // text label for the y axis
@@ -110,7 +110,7 @@ function createScatterPlot(data, update) {
     .attr("x", 70)
     .attr("y", 32)
     .style("text-anchor", "middle")
-    .attr("id", "removeOnUpdate")
+    .attr("id", "TextRemoveOnUpdate")
     .text(labelsDict[chosenAttributeY]);
 
   // Add dots
@@ -134,9 +134,7 @@ function createScatterPlot(data, update) {
     .on("mouseover", handleMouseOver)
     .on("mouseleave", handleMouseLeave)
     .on("click", handleClickScatterplot)
-    .attr("id", "dataScatter")
-    .transition() //add smooth transition
-    .duration(750);
+    .attr("id", "dataScatter");
 
   if (!update) {
     svg.append("g").attr("class", "scatterXAxis");
@@ -147,10 +145,10 @@ function createScatterPlot(data, update) {
   d3.select("g.scatterXAxis").call(xAxis);
   d3.select("g.scatterYAxis").call(yAxis);
 
-  markSelectedCountries(); //Mark the countries selected in the drop down menus
+  // markSelectedCountries(); //Mark the countries selected in the drop down menus
 
   var scatterLabels = ["" + chosenCountry1, "" + chosenCountry2];
-  var colorsScatter = ["purple", "green"]; //This will be changed to other colors in CP5
+  var colorsScatter = ["purple", "DarkOrange"]; //This will be changed to other colors in CP5
   if (chosenCountry1 != undefined && chosenCountry1 != "") {
     // Add color dots for legends for selected country 1
     svg
@@ -190,4 +188,85 @@ function createScatterPlot(data, update) {
       .style("font-size", "10px")
       .attr("alignment-baseline", "middle");
   }
+}
+
+
+function updateScatterPlot(data) {
+  const width = 500;
+  const height = 500;
+
+  const margin = { left: 40, top: 40, right: 40, bottom: 40 };
+
+  var data = data.filter(function (d) {
+    if (d.year == chosenYear) {
+      return d;
+    }
+  });
+
+  const keys = Object.keys(data[0]);
+
+  let attributesDict = {
+    pf_ss: keys[8].valueOf(),
+    pf_ss_women: keys[9].valueOf(),
+    ef_legal_police: keys[10].valueOf(),
+    pf_ss_disappearances_violent: keys[6].valueOf(),
+    pf_religion_freedom: keys[7].valueOf(),
+    hf_score: keys[4].valueOf(),
+  };
+
+  const x = d3
+  .scaleLinear()
+  .domain([0, 10])
+  .nice()
+  .range([margin.left, width - margin.right]);
+
+const y = d3
+  .scaleLinear()
+  .domain([0, 10])
+  .range([height - margin.bottom, margin.top]);
+
+  document.getElementById("headerScatter").innerHTML =
+    labelsDict[chosenAttributeX] +
+    " VS. " +
+    labelsDict[chosenAttributeY] +
+    " " +
+    chosenYear;
+
+    console.log(labelsDict[chosenAttributeX])
+  svg = d3
+  .select("div#scatterPlot")
+  .select("svg");
+  // .attr("width", width)
+  // .attr("height", height);
+
+  svg // text label for the x axis
+  .append("text")
+  .attr("x", width - 90)
+  .attr("y", height - 10)
+  .style("text-anchor", "middle")
+  .attr("id", "TextRemoveOnUpdate")
+  .text(labelsDict[chosenAttributeX]);
+
+svg // text label for the y axis
+  .append("text")
+  .attr("x", 70)
+  .attr("y", 32)
+  .style("text-anchor", "middle")
+  .attr("id", "TextRemoveOnUpdate")
+  .text(labelsDict[chosenAttributeY]);
+
+// Add dots
+svg
+  .select("g#removeOnUpdate")
+  // .enter()
+  .selectAll("circle")
+  .transition()
+  .duration(750)
+  .attr("cx", function (d) {
+    console.log(x(d[attributesDict[chosenAttributeX]]))
+    return x(d[attributesDict[chosenAttributeX]]);
+  })
+  .attr("cy", function (d) {
+    return y(d[attributesDict[chosenAttributeY]]);
+  })
 }

@@ -41,7 +41,7 @@ function createClevelandPlot(data, update) {
         data[i].country == chosenCountry2) &&
       (data[i].year == chosenYear || data[i].year == chosenYear2)
     ) {
-      console.log("In else if");
+      // console.log("In else if");
       newTemp.push(data[i]);
     }
     i++;
@@ -94,7 +94,6 @@ function createClevelandPlot(data, update) {
     .join("line")
     .attr("x1", function (d) {
       let i = newTemp.filter((c) => c.country == d.country && c.year == chosenYear);
-      console.log(i)
       return x(i[0][attributesDict[chosenAttributeX]]);
     })
     .attr("x2", function (d) {
