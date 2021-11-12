@@ -151,7 +151,7 @@ function createClevelandPlot(data, update) {
       return y(d.ISO_code);
     })
     .attr("r", "6")
-    .style("fill", "#69b3a2")
+    .style("fill", "#d39b63")
     .attr("id", "dotsClevelandYear1")
     .on("mousemove", handleMouseMove)
     .on("mouseover", handleMouseOver)
@@ -171,7 +171,7 @@ function createClevelandPlot(data, update) {
       return y(d.ISO_code);
     })
     .attr("r", "6")
-    .style("fill", "pink")
+    .style("fill", "#2171b5")
     .attr("id", "dotsClevelandYear2")
     .on("mousemove", handleMouseMove)
     .on("mouseover", handleMouseOver)

@@ -171,13 +171,13 @@ function handleMouseLeave(event, d) {
     .select("svg")
     .selectAll("circle")
     .filter((d) => d.year == chosenYear)
-    .style("fill", "#69b3a2");
+    .style("fill", "#d39b63");
 
   d3.select("div#clevelandPlot")
     .select("svg")
     .selectAll("circle")
     .filter((d) => d.year == chosenYear2)
-    .style("fill", "pink");
+    .style("fill", "#2171b5");
 
   d3.select("div#choropleth")
     .select("svg")
