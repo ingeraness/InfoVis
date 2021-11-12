@@ -3,8 +3,8 @@
 function createClevelandPlot(data, update) {
   // set the dimensions and margins of the graph
   const margin = { top: 10, right: 30, bottom: 30, left: 30 };
-  const width = 300;
-  const height = 850;
+  const width = 200;
+  const height = 600;
 
   const keys = Object.keys(data[0]);
 
@@ -95,17 +95,19 @@ function createClevelandPlot(data, update) {
         return d.ISO_code;
       })
     )
-    .range([margin.bottom, height-margin.top])
+    .range([margin.bottom, height - margin.top])
     .padding(1);
 
-  if(!update){
+  if (!update) {
     svg
-    .append("g")
-    .attr("transform", `translate(${margin.left}, ${height})`)
-    .call(d3.axisBottom(x));
+      .append("g")
+      .attr("transform", `translate(${margin.left}, ${height})`)
+      .call(d3.axisBottom(x));
 
-    svg.append("g").attr("transform", `translate(${margin.left}, 0)`).call(d3.axisLeft(y));
-
+    svg
+      .append("g")
+      .attr("transform", `translate(${margin.left}, 0)`)
+      .call(d3.axisLeft(y));
   }
 
   // Lines
@@ -114,12 +116,16 @@ function createClevelandPlot(data, update) {
     .data(newTemp)
     .join("line")
     .attr("x1", function (d) {
-      let i = newTemp.filter((c) => c.country == d.country && c.year == chosenYear);
-      console.log(i)
+      let i = newTemp.filter(
+        (c) => c.country == d.country && c.year == chosenYear
+      );
+      console.log(i);
       return x(i[0][attributesDict[chosenAttributeX]]);
     })
     .attr("x2", function (d) {
-      let i = newTemp.filter((c) => c.country == d.country && c.year == chosenYear2);
+      let i = newTemp.filter(
+        (c) => c.country == d.country && c.year == chosenYear2
+      );
       return x(i[0][attributesDict[chosenAttributeX]]);
     })
     .attr("y1", function (d) {
@@ -174,5 +180,5 @@ function createClevelandPlot(data, update) {
 
   // Set header
   document.getElementById("headerClevelandPlot").innerHTML =
-  labelsDict[chosenAttributeX] + " from " + chosenYear + " to " + chosenYear2;
+    labelsDict[chosenAttributeX] + " from " + chosenYear + " to " + chosenYear2;
 }

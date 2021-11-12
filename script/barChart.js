@@ -1,6 +1,6 @@
 function createBarChart(data, update) {
-  width = 1300;
-  height = 350;
+  width = 1000;
+  height = 200;
   margin = { top: 20, right: 20, bottom: 40, left: 40 };
 
   var svg = d3.select("div#barChart").select("svg");

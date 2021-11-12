@@ -1,6 +1,6 @@
 function createScatterPlot(data, update) {
-  const width = 500;
-  const height = 500;
+  const width = 400;
+  const height = 400;
 
   // TODO: endre til dynamisk bredde og høyde. Også i transform!
 
@@ -135,9 +135,7 @@ function createScatterPlot(data, update) {
     .on("mouseover", handleMouseOver)
     .on("mouseleave", handleMouseLeave)
     .on("click", handleClickScatterplot)
-    .attr("id", "dataScatter")
-    .transition() //add smooth transition
-    .duration(750);
+    .attr("id", "dataScatter");
 
   if (!update) {
     svg.append("g").attr("class", "scatterXAxis");

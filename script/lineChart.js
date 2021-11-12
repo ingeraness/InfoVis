@@ -1,11 +1,10 @@
 var country;
 var dataSet;
 
-
 function createLineChart(data, update, attribute, div) {
-  margin = { top: 20, right: 20, bottom: 20, left: 40 };
-  width = 700;
-  height = 300;
+  margin = { top: 10, right: 10, bottom: 10, left: 10 };
+  width = 450;
+  height = 100;
 
   let divString = "div#lineChart" + div;
   let headerString = "headerLineChart" + div;
@@ -25,24 +24,36 @@ function createLineChart(data, update, attribute, div) {
   svg.selectAll("*").remove(); // Remove the old vis before drawing the new vis with new countries
 
   // Set header
-  document.getElementById(headerString).innerHTML = labelsDict[attribute] + " from " + chosenYear + " to " + chosenYear2;
+  document.getElementById(headerString).innerHTML =
+    labelsDict[attribute] + " from " + chosenYear + " to " + chosenYear2;
 
   var dataC1 = data.filter(function (d) {
-    if ((d.country == chosenCountry1) && (d.year>= chosenYear && d.year<=chosenYear2)){
+    if (
+      d.country == chosenCountry1 &&
+      d.year >= chosenYear &&
+      d.year <= chosenYear2
+    ) {
       return d;
     }
   });
 
   var dataC2 = data.filter(function (d) {
-    if ((d.country == chosenCountry2) && (d.year>= chosenYear && d.year<=chosenYear2)) {
+    if (
+      d.country == chosenCountry2 &&
+      d.year >= chosenYear &&
+      d.year <= chosenYear2
+    ) {
       return d;
     }
   });
 
-  var yearsChosen = data.filter(function(d){
-    if(d.year>= chosenYear && d.year<=chosenYear2 && d.country=="Portugal"){
+  var yearsChosen = data.filter(function (d) {
+    if (
+      d.year >= chosenYear &&
+      d.year <= chosenYear2 &&
+      d.country == "Portugal"
+    ) {
       return d;
-
     }
   });
 
@@ -60,7 +71,7 @@ function createLineChart(data, update, attribute, div) {
   y = d3
     .scaleLinear()
     .domain([0, 10])
-    .range([height - margin.bottom - 15, margin.top + 100]);
+    .range([height - margin.bottom, margin.top]);
 
   xAxis = (g) =>
     g.attr("transform", `translate(0,${height - margin.bottom - 15})`).call(
@@ -68,7 +79,7 @@ function createLineChart(data, update, attribute, div) {
         .axisBottom(x)
         .tickFormat((x) => x)
         .ticks(yearsChosen.length - 1)
-        //.tickSizeOuter(0)
+      //.tickSizeOuter(0)
     );
 
   yAxis = (g) =>
@@ -93,7 +104,7 @@ function createLineChart(data, update, attribute, div) {
 
   svg.append("g").attr("class", "lineXAxis").call(xAxis);
   svg.append("g").attr("class", "lineYAxis").call(yAxis);
-  
+
   svg
     .append("text") // text label for the x axis
     .attr("x", width - 20)
