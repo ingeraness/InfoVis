@@ -43,7 +43,7 @@ function createScatterPlot(data, update) {
 
   xAxis = (g) =>
     g
-      .attr("transform", "translate(0, 460)")
+      .attr("transform", "translate(0, 410)")
       .call(
         d3
           .axisBottom(x)

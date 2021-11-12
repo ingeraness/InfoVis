@@ -79,7 +79,7 @@ function choropleth(update) {
     var l_domain = [min, max];
     var l_margin = 10;
     var l_spacing = 30;
-    var l_height = 5;
+    var l_height = 7;
     var l_width = 60;
     var c_b = d3.scaleSequential(l_domain, d3.interpolateBlues);
     const n_b = Math.min(c_b.domain().length, c_b.range().length);
@@ -118,7 +118,7 @@ function choropleth(update) {
       .style("fill", "url('#grad1')")
       .attr(
         "transform",
-        `translate(${l_margin + 170},${height - l_margin + 40})rotate(270)`
+        `translate(${l_margin + 170},${height - l_margin + 60})rotate(270)`
       );
 
     var l_title = "Freedom index";
@@ -127,8 +127,9 @@ function choropleth(update) {
       .text(l_title)
       .attr(
         "transform",
-        `translate(${l_margin + 125},${height - l_margin - l_width + 30})`
-      );
+        `translate(${l_margin + 125},${height - l_margin - l_width + 55})`
+      )
+      .style("font-size", "10px");
 
     var l_y = d3.scaleLinear().domain([5.9, 9.1]).range([l_width, 0]);
 
@@ -136,7 +137,7 @@ function choropleth(update) {
       .append("g")
       .attr(
         "transform",
-        `translate(${l_margin + 170},${height - l_margin - l_width + 40})`
+        `translate(${l_margin + 170},${height - l_margin - l_width + 60})`
       )
       .call(d3.axisLeft().scale(l_y));
   }
