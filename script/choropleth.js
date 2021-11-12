@@ -30,7 +30,7 @@ function choropleth(update) {
     .scale(650 / 2)
     .rotate([0, 0])
     .center([0, 0])
-    .translate([300, 570]);
+    .translate([280, 600]);
 
   var path = d3.geoPath().projection(projection);
 
@@ -47,7 +47,7 @@ function choropleth(update) {
     d3.select("div#choropleth")
       .append("svg")
       .attr("width", 600)
-      .attr("height", 400);
+      .attr("height", 450);
   }
 
   d3.select("div#choropleth")
@@ -118,7 +118,7 @@ function choropleth(update) {
       .style("fill", "url('#grad1')")
       .attr(
         "transform",
-        `translate(${l_margin + 90},${height - l_margin})rotate(270)`
+        `translate(${l_margin + 170},${height - l_margin + 40})rotate(270)`
       );
 
     var l_title = "Freedom index";
@@ -127,7 +127,7 @@ function choropleth(update) {
       .text(l_title)
       .attr(
         "transform",
-        `translate(${l_margin + 40},${height - l_margin - l_width - 30})`
+        `translate(${l_margin + 125},${height - l_margin - l_width + 30})`
       );
 
     var l_y = d3.scaleLinear().domain([5.9, 9.1]).range([l_width, 0]);
@@ -136,7 +136,7 @@ function choropleth(update) {
       .append("g")
       .attr(
         "transform",
-        `translate(${l_margin + 90},${height - l_margin - l_width + 30})`
+        `translate(${l_margin + 170},${height - l_margin - l_width + 40})`
       )
       .call(d3.axisLeft().scale(l_y));
   }

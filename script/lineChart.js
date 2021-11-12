@@ -3,8 +3,8 @@ var dataSet;
 
 function createLineChart(data, update, attribute, div) {
   margin = { top: 10, right: 10, bottom: 10, left: 10 };
-  width = 400;
-  height = 200;
+  width = 450;
+  height = 150;
 
   let divString = "div#lineChart" + div;
   let headerString = "headerLineChart" + div;

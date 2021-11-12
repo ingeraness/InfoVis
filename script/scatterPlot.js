@@ -1,6 +1,6 @@
 function createScatterPlot(data, update) {
-  const width = 400;
-  const height = 400;
+  const width = 450;
+  const height = 450;
 
   // TODO: endre til dynamisk bredde og høyde. Også i transform!
 
