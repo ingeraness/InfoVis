@@ -149,6 +149,7 @@ body {
   margin: 0;
   height: 100%;
   overflow: hidden;
+  background-color: #fff5ee;
 }
 
 .flex-container {
@@ -184,6 +185,7 @@ body {
 
 .drop-down-element {
   font-size: 15px;
+  background-color: #fff5ee;
 }
 
 .graphs {
