@@ -130,7 +130,7 @@ function createScatterPlot(data, update) {
       return y(d[attributesDict[chosenAttributeY]]);
     })
     .attr("r", 4)
-    .style("fill", "steelblue")
+    .style("fill", "#2171b5")
     .on("mousemove", handleMouseMove)
     .on("mouseover", handleMouseOver)
     .on("mouseleave", handleMouseLeave)

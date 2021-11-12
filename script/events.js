@@ -11,7 +11,9 @@ function handleMouseOver(event, d) {
   d.country != undefined
     ? (hoveredCountryName = d.country)
     : (hoveredCountryName = d.properties.NAME);
-  hoveredCountry = dataset.filter((c) => c.country == hoveredCountryName && c.year == chosenYear);
+  hoveredCountry = dataset.filter(
+    (c) => c.country == hoveredCountryName && c.year == chosenYear
+  );
 
   let lineChart1 = d3.select("div#lineChart1").select("svg");
   let lineChart2 = d3.select("div#lineChart2").select("svg");
@@ -81,32 +83,40 @@ function handleMouseOver(event, d) {
   }
 
   //Check if hovered plot is not chororplethMap
-  if(d.country != undefined) {
-    d3.select(".tooltip").style("visibility", "visible")
-      .html("Country: " +  d.country + 
-      "</br> Year: " + d.year + 
-      "</br>"+labelsDict[chosenAttributeX]+": " + d[chosenAttributeX]
-      +  "</br>"+labelsDict[chosenAttributeY]+": " + d[chosenAttributeY]
-    
-      );
-  }
-  else {
+  if (d.country != undefined) {
     d3.select(".tooltip")
-    .style("visibility", "visible")
-    .html(
-      "Country: " +
-        hoveredCountryName +
-        "</br> Year: " +
-        hoveredCountry[0].year +
-        "</br>" +
-        labelsDict[chosenAttributeX] +
-        ": " +
-        hoveredCountry[0][chosenAttributeX] +
-        "</br>" +
-        labelsDict[chosenAttributeY] +
-        ": " +
-        hoveredCountry[0][chosenAttributeY]
-    );
+      .style("visibility", "visible")
+      .html(
+        "Country: " +
+          d.country +
+          "</br> Year: " +
+          d.year +
+          "</br>" +
+          labelsDict[chosenAttributeX] +
+          ": " +
+          d[chosenAttributeX] +
+          "</br>" +
+          labelsDict[chosenAttributeY] +
+          ": " +
+          d[chosenAttributeY]
+      );
+  } else {
+    d3.select(".tooltip")
+      .style("visibility", "visible")
+      .html(
+        "Country: " +
+          hoveredCountryName +
+          "</br> Year: " +
+          hoveredCountry[0].year +
+          "</br>" +
+          labelsDict[chosenAttributeX] +
+          ": " +
+          hoveredCountry[0][chosenAttributeX] +
+          "</br>" +
+          labelsDict[chosenAttributeY] +
+          ": " +
+          hoveredCountry[0][chosenAttributeY]
+      );
   }
 }
 
@@ -144,7 +154,7 @@ function handleMouseLeave(event, d) {
   d3.select("div#scatterPlot")
     .select("svg")
     .selectAll("circle#dataScatter")
-    .style("fill", "steelblue")
+    .style("fill", "#2171b5")
     .filter(function (b) {
       if (b.country == chosenCountry1 || b.country == chosenCountry2) {
         return b;
@@ -155,7 +165,7 @@ function handleMouseLeave(event, d) {
   d3.select("div#barChart")
     .select("svg")
     .selectAll("rect")
-    .style("fill", "steelblue");
+    .style("fill", "#2171b5");
 
   d3.select("div#clevelandPlot")
     .select("svg")
@@ -266,7 +276,7 @@ function markSelectedCountries() {
 
   scatterPlot
     .selectAll("circle#dataScatter")
-    .style("fill", "steelblue")
+    .style("fill", "#2171b5")
     .filter(function (b) {
       if (b.country == chosenCountry1 || b.country == chosenCountry2) {
         return b;

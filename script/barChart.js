@@ -70,7 +70,7 @@ function createBarChart(data, update) {
   svg
     .append("g")
     .attr("class", "bars")
-    .attr("fill", "steelblue")
+    .attr("fill", "#2171b5")
     .selectAll("rect")
     .data(filtered_data, function (d) {
       return d[attributesDict[chosenAttributeX]];
