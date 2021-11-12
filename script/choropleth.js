@@ -46,7 +46,7 @@ function choropleth(update) {
   if (!update) {
     d3.select("div#choropleth")
       .append("svg")
-      .attr("width", 600)
+      .attr("width", 650)
       .attr("height", 450);
   }
 

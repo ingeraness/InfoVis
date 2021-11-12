@@ -4,7 +4,7 @@ var dataSet;
 function createLineChart(data, update, attribute, div) {
   margin = { top: 10, right: 10, bottom: 10, left: 10 };
   width = 450;
-  height = 150;
+  height = 180;
 
   let divString = "div#lineChart" + div;
   let headerString = "headerLineChart" + div;
@@ -173,26 +173,23 @@ function createLineChart(data, update, attribute, div) {
     .on("mouseover", handleMouseOver)
     .on("mouseleave", handleMouseLeave);
 
-  var lineLabels = [
-    "" + labelsDict[attribute] + ", " + chosenCountry1,
-    "" + labelsDict[attribute] + ", " + chosenCountry2,
-  ];
+  var lineLabels = [chosenCountry1, chosenCountry2];
   var colors = ["purple", "green"]; //This will be changed to other colors in CP5
 
   if (chosenCountry1 != undefined && chosenCountry1 != "") {
     // Add color dots for legends C1
     svg
       .append("circle")
-      .attr("cx", width - 200)
-      .attr("cy", 220)
+      .attr("cx", width - 137)
+      .attr("cy", 105)
       .attr("r", 3)
       .style("fill", colors[0]);
 
     // Add labels for legends C1
     svg
       .append("text")
-      .attr("x", width - 190)
-      .attr("y", 220)
+      .attr("x", width - 130)
+      .attr("y", 105)
       .text(lineLabels[0])
       .style("font-size", "10px")
       .attr("alignment-baseline", "middle");
@@ -202,16 +199,16 @@ function createLineChart(data, update, attribute, div) {
     //Dots for legends C2
     svg
       .append("circle")
-      .attr("cx", width - 200)
-      .attr("cy", 235)
+      .attr("cx", width - 137)
+      .attr("cy", 118)
       .attr("r", 3)
       .style("fill", colors[1]);
 
     // Add labels for legends C2
     svg
       .append("text")
-      .attr("x", width - 190)
-      .attr("y", 235)
+      .attr("x", width - 130)
+      .attr("y", 118)
       .text(lineLabels[1])
       .style("font-size", "10px")
       .attr("alignment-baseline", "middle");

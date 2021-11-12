@@ -3,7 +3,7 @@
 function createClevelandPlot(data, update) {
   // set the dimensions and margins of the graph
   const margin = { top: 10, right: 30, bottom: 30, left: 30 };
-  const width = 200;
+  const width = 240;
   const height = 648;
 
   const keys = Object.keys(data[0]);
