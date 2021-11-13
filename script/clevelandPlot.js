@@ -200,6 +200,7 @@ function createClevelandPlot(data, update) {
     .append("text")
     .attr("x", width - 183)
     .attr("y", 40)
+    .attr("id", "axisLabelCleveland")
     .text(chosenYear)
     .style("font-size", "10px")
     .attr("alignment-baseline", "middle");
@@ -217,6 +218,7 @@ function createClevelandPlot(data, update) {
     .append("text")
     .attr("x", width - 143)
     .attr("y", 40)
+    .attr("id", "axisLabelCleveland")
     .text(chosenYear2)
     .style("font-size", "10px")
     .attr("alignment-baseline", "middle");
