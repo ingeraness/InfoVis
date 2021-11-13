@@ -108,16 +108,19 @@ function createLineChart(data, update, attribute, div) {
   svg
     .append("text") // text label for the x axis
     .attr("x", width - 20)
-    .attr("y", height)
+    .attr("y", height + 5)
+    .style("font-size", "12px")
     .style("text-anchor", "middle")
     .text("Year");
 
   svg
     .append("text") // text label for the y axis
-    .attr("x", width - 620)
-    .attr("y", 100)
+    .attr("x", width - 420)
+    .attr("y", 8)
+    .style("font-size", "12px")
+
     .style("text-anchor", "middle")
-    .text(labelsDict[attribute]); //ENDRE!
+    .text(labelsDict[attribute]);
 
   // Drwaing line for country 1, attribute 1
   svg

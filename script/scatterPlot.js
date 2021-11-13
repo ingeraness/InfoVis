@@ -101,16 +101,19 @@ function createScatterPlot(data, update) {
 
   svg // text label for the x axis
     .append("text")
-    .attr("x", width - 90)
+    .attr("x", width - 80)
     .attr("y", height - 10)
     .style("text-anchor", "middle")
     .attr("id", "removeOnUpdate")
+    .style("font-size", "12px")
     .text(labelsDict[chosenAttributeX]);
 
   svg // text label for the y axis
     .append("text")
     .attr("x", 70)
     .attr("y", 32)
+    .style("font-size", "12px")
+
     .style("text-anchor", "middle")
     .attr("id", "removeOnUpdate")
     .text(labelsDict[chosenAttributeY]);
