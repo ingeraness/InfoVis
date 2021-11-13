@@ -207,16 +207,16 @@ function createClevelandPlot(data, update) {
   // Add color dots for legends Year2
   svg
     .append("circle")
-    .attr("cx", width - 190)
-    .attr("cy", 53)
+    .attr("cx", width - 150)
+    .attr("cy", 40)
     .attr("r", 3)
     .style("fill", "#2171b5");
 
   // Add labels for legends year 2
   svg
     .append("text")
-    .attr("x", width - 183)
-    .attr("y", 53)
+    .attr("x", width - 143)
+    .attr("y", 40)
     .text(chosenYear2)
     .style("font-size", "10px")
     .attr("alignment-baseline", "middle");
