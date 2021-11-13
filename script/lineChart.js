@@ -118,7 +118,6 @@ function createLineChart(data, update, attribute, div) {
     .attr("x", width - 420)
     .attr("y", 8)
     .style("font-size", "12px")
-
     .style("text-anchor", "middle")
     .text(labelsDict[attribute]);
 
