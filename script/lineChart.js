@@ -1,11 +1,10 @@
 var country;
 var dataSet;
 
-
 function createLineChart(data, update, attribute, div) {
-  margin = { top: 20, right: 20, bottom: 20, left: 40 };
-  width = 700;
-  height = 300;
+  margin = { top: 10, right: 10, bottom: 10, left: 10 };
+  width = 450;
+  height = 180;
 
   let divString = "div#lineChart" + div;
   let headerString = "headerLineChart" + div;
@@ -25,24 +24,36 @@ function createLineChart(data, update, attribute, div) {
   svg.selectAll("*").remove(); // Remove the old vis before drawing the new vis with new countries
 
   // Set header
-  document.getElementById(headerString).innerHTML = labelsDict[attribute] + " from " + chosenYear + " to " + chosenYear2;
+  document.getElementById(headerString).innerHTML =
+    labelsDict[attribute] + " from " + chosenYear + " to " + chosenYear2;
 
   var dataC1 = data.filter(function (d) {
-    if ((d.country == chosenCountry1) && (d.year>= chosenYear && d.year<=chosenYear2)){
+    if (
+      d.country == chosenCountry1 &&
+      d.year >= chosenYear &&
+      d.year <= chosenYear2
+    ) {
       return d;
     }
   });
 
   var dataC2 = data.filter(function (d) {
-    if ((d.country == chosenCountry2) && (d.year>= chosenYear && d.year<=chosenYear2)) {
+    if (
+      d.country == chosenCountry2 &&
+      d.year >= chosenYear &&
+      d.year <= chosenYear2
+    ) {
       return d;
     }
   });
 
-  var yearsChosen = data.filter(function(d){
-    if(d.year>= chosenYear && d.year<=chosenYear2 && d.country=="Portugal"){
+  var yearsChosen = data.filter(function (d) {
+    if (
+      d.year >= chosenYear &&
+      d.year <= chosenYear2 &&
+      d.country == "Portugal"
+    ) {
       return d;
-
     }
   });
 
@@ -60,7 +71,7 @@ function createLineChart(data, update, attribute, div) {
   y = d3
     .scaleLinear()
     .domain([0, 10])
-    .range([height - margin.bottom - 15, margin.top + 100]);
+    .range([height - margin.bottom, margin.top]);
 
   xAxis = (g) =>
     g.attr("transform", `translate(0,${height - margin.bottom - 15})`).call(
@@ -68,7 +79,7 @@ function createLineChart(data, update, attribute, div) {
         .axisBottom(x)
         .tickFormat((x) => x)
         .ticks(yearsChosen.length - 1)
-        //.tickSizeOuter(0)
+      //.tickSizeOuter(0)
     );
 
   yAxis = (g) =>
@@ -93,20 +104,22 @@ function createLineChart(data, update, attribute, div) {
 
   svg.append("g").attr("class", "lineXAxis").call(xAxis);
   svg.append("g").attr("class", "lineYAxis").call(yAxis);
-  
+
   svg
     .append("text") // text label for the x axis
     .attr("x", width - 20)
-    .attr("y", height)
+    .attr("y", height + 5)
+    .style("font-size", "12px")
     .style("text-anchor", "middle")
     .text("Year");
 
   svg
     .append("text") // text label for the y axis
-    .attr("x", width - 620)
-    .attr("y", 100)
+    .attr("x", width - 420)
+    .attr("y", 8)
+    .style("font-size", "12px")
     .style("text-anchor", "middle")
-    .text(labelsDict[attribute]); //ENDRE!
+    .text(labelsDict[attribute]);
 
   // Drwaing line for country 1, attribute 1
   svg
@@ -162,26 +175,23 @@ function createLineChart(data, update, attribute, div) {
     .on("mouseover", handleMouseOver)
     .on("mouseleave", handleMouseLeave);
 
-  var lineLabels = [
-    "" + labelsDict[attribute] + ", " + chosenCountry1,
-    "" + labelsDict[attribute] + ", " + chosenCountry2,
-  ];
+  var lineLabels = [chosenCountry1, chosenCountry2];
   var colors = ["purple", "green"]; //This will be changed to other colors in CP5
 
   if (chosenCountry1 != undefined && chosenCountry1 != "") {
     // Add color dots for legends C1
     svg
       .append("circle")
-      .attr("cx", width - 200)
-      .attr("cy", 220)
+      .attr("cx", width - 137)
+      .attr("cy", 105)
       .attr("r", 3)
       .style("fill", colors[0]);
 
     // Add labels for legends C1
     svg
       .append("text")
-      .attr("x", width - 190)
-      .attr("y", 220)
+      .attr("x", width - 130)
+      .attr("y", 105)
       .text(lineLabels[0])
       .style("font-size", "10px")
       .attr("alignment-baseline", "middle");
@@ -191,16 +201,16 @@ function createLineChart(data, update, attribute, div) {
     //Dots for legends C2
     svg
       .append("circle")
-      .attr("cx", width - 200)
-      .attr("cy", 235)
+      .attr("cx", width - 137)
+      .attr("cy", 118)
       .attr("r", 3)
       .style("fill", colors[1]);
 
     // Add labels for legends C2
     svg
       .append("text")
-      .attr("x", width - 190)
-      .attr("y", 235)
+      .attr("x", width - 130)
+      .attr("y", 118)
       .text(lineLabels[1])
       .style("font-size", "10px")
       .attr("alignment-baseline", "middle");

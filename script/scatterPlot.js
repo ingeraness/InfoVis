@@ -1,6 +1,6 @@
 function createScatterPlot(data, update) {
-  const width = 500;
-  const height = 500;
+  const width = 450;
+  const height = 450;
 
   // TODO: endre til dynamisk bredde og høyde. Også i transform!
 
@@ -43,7 +43,7 @@ function createScatterPlot(data, update) {
 
   xAxis = (g) =>
     g
-      .attr("transform", "translate(0, 460)")
+      .attr("transform", "translate(0, 410)")
       .call(
         d3
           .axisBottom(x)
@@ -101,16 +101,19 @@ function createScatterPlot(data, update) {
 
   svg // text label for the x axis
     .append("text")
-    .attr("x", width - 90)
+    .attr("x", width - 80)
     .attr("y", height - 10)
     .style("text-anchor", "middle")
     .attr("id", "removeOnUpdate")
+    .style("font-size", "12px")
     .text(labelsDict[chosenAttributeX]);
 
   svg // text label for the y axis
     .append("text")
     .attr("x", 70)
     .attr("y", 32)
+    .style("font-size", "12px")
+
     .style("text-anchor", "middle")
     .attr("id", "removeOnUpdate")
     .text(labelsDict[chosenAttributeY]);
@@ -130,14 +133,12 @@ function createScatterPlot(data, update) {
       return y(d[attributesDict[chosenAttributeY]]);
     })
     .attr("r", 4)
-    .style("fill", "steelblue")
+    .style("fill", "#2171b5")
     .on("mousemove", handleMouseMove)
     .on("mouseover", handleMouseOver)
     .on("mouseleave", handleMouseLeave)
     .on("click", handleClickScatterplot)
-    .attr("id", "dataScatter")
-    .transition() //add smooth transition
-    .duration(750);
+    .attr("id", "dataScatter");
 
   if (!update) {
     svg.append("g").attr("class", "scatterXAxis");
