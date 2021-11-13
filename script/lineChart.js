@@ -4,7 +4,7 @@ var dataSet;
 function createLineChart(data, update, attribute, div) {
   margin = { top: 10, right: 10, bottom: 10, left: 10 };
   width = 450;
-  height = 180;
+  height = 150;
 
   let divString = "div#lineChart" + div;
   let headerString = "headerLineChart" + div;
@@ -66,12 +66,12 @@ function createLineChart(data, update, attribute, div) {
   x = d3
     .scaleLinear()
     .domain(d3.extent(yearsChosen, (d) => d.year))
-    .range([margin.left, width - margin.right]);
+    .range([margin.left + 10, width - margin.right - 15]);
 
   y = d3
     .scaleLinear()
     .domain([0, 10])
-    .range([height - margin.bottom, margin.top]);
+    .range([height - margin.bottom - 15, margin.top]);
 
   xAxis = (g) =>
     g.attr("transform", `translate(0,${height - margin.bottom - 15})`).call(
@@ -84,7 +84,7 @@ function createLineChart(data, update, attribute, div) {
 
   yAxis = (g) =>
     g
-      .attr("transform", `translate(${margin.left},0)`)
+      .attr("transform", `translate(${margin.left + 10},0)`)
       .call(d3.axisLeft(y).tickFormat((x) => x))
       .call((g) => g.select(".domain").remove())
       .call(d3.axisLeft(y));
@@ -109,15 +109,15 @@ function createLineChart(data, update, attribute, div) {
     .append("text") // text label for the x axis
     .attr("x", width - 20)
     .attr("y", height + 5)
-    .style("font-size", "12px")
+    .style("font-size", "10px")
     .style("text-anchor", "middle")
     .text("Year");
 
   svg
     .append("text") // text label for the y axis
-    .attr("x", width - 420)
-    .attr("y", 8)
-    .style("font-size", "12px")
+    .attr("x", width - 405)
+    .attr("y", 5)
+    .style("font-size", "10px")
     .style("text-anchor", "middle")
     .text(labelsDict[attribute]);
 
