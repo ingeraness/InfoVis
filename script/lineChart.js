@@ -108,15 +108,15 @@ function createLineChart(data, update, attribute, div) {
   svg
     .append("text") // text label for the x axis
     .attr("x", width - 20)
-    .attr("y", height + 5)
+    .attr("y", height)
     .style("font-size", "10px")
     .style("text-anchor", "middle")
     .text("Year");
 
   svg
     .append("text") // text label for the y axis
-    .attr("x", width - 405)
-    .attr("y", 5)
+    .attr("x", width - 400)
+    .attr("y", 7)
     .style("font-size", "10px")
     .style("text-anchor", "middle")
     .text(labelsDict[attribute]);
