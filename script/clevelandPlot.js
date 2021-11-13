@@ -178,6 +178,14 @@ function createClevelandPlot(data, update) {
     .on("mouseleave", handleMouseLeave)
     .on("click", handleClickCleveland);
 
+  svg
+    .append("text") // text label for the x axis
+    .attr("x", width + 20)
+    .attr("y", height + 25)
+    .style("font-size", "10px")
+    .style("text-anchor", "middle")
+    .text(labelsDict[chosenAttributeX]);
+
   // Set header
   document.getElementById("headerClevelandPlot").innerHTML =
     labelsDict[chosenAttributeX] + " from " + chosenYear + " to " + chosenYear2;
