@@ -247,3 +247,10 @@ body {
 #lineChart2 {
   margin-top: -60px;
 }
+
+#headerLineChart1 {
+  margin-bottom: 15px;
+}
+#headerLineChart2 {
+  margin-bottom: 15px;
+}
