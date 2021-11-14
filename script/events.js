@@ -134,7 +134,7 @@ function handleMouseLeave(event, d) {
     d3.select("div#lineChart1")
       .select("svg")
       .selectAll(`circle#${event.path[0].id}`)
-      .style("fill", "green");
+      .style("fill", "DarkOrange");
   }
 
   if (event.path[0].id == "one") {
@@ -148,7 +148,7 @@ function handleMouseLeave(event, d) {
     d3.select("div#lineChart2")
       .select("svg")
       .selectAll(`circle#${event.path[0].id}`)
-      .style("fill", "green");
+      .style("fill", "DarkOrange");
   }
 
   d3.select("div#scatterPlot")
@@ -160,7 +160,7 @@ function handleMouseLeave(event, d) {
         return b;
       }
     })
-    .style("fill", (d) => (d.country == chosenCountry1 ? "purple" : "green"));
+    .style("fill", (d) => (d.country == chosenCountry1 ? "purple" : "DarkOrange"));
 
   d3.select("div#barChart")
     .select("svg")
@@ -169,13 +169,13 @@ function handleMouseLeave(event, d) {
 
   d3.select("div#clevelandPlot")
     .select("svg")
-    .selectAll("circle")
+    .selectAll("circle#dotsClevelandYear1")
     .filter((d) => d.year == chosenYear)
-    .style("fill", "#d39b63");
+    .style("fill", "YellowGreen");
 
   d3.select("div#clevelandPlot")
     .select("svg")
-    .selectAll("circle")
+    .selectAll("circle#dotsClevelandYear2")
     .filter((d) => d.year == chosenYear2)
     .style("fill", "#2171b5");
 
@@ -193,7 +193,7 @@ function handleMouseLeave(event, d) {
     })
     .style("stroke-width", 3)
     .style("stroke", (d) =>
-      d.properties.NAME == chosenCountry1 ? "purple" : "green"
+      d.properties.NAME == chosenCountry1 ? "purple" : "DarkOrange"
     );
 }
 
@@ -287,6 +287,7 @@ function markSelectedCountries() {
   //Marks the countries selected in the drop down menus
   scatterPlot = d3.select("div#scatterPlot").select("svg");
   choroplethMap = d3.select("div#choropleth").select("svg");
+  clevelandPlot = d3.select("div#clevelandPlot").select("svg");
 
   scatterPlot
     .selectAll("circle#dataScatter")
@@ -296,7 +297,9 @@ function markSelectedCountries() {
         return b;
       }
     })
-    .style("fill", (d) => (d.country == chosenCountry1 ? "purple" : "green"));
+    .style("fill", (d) => (d.country == chosenCountry1 ? "purple" : "DarkOrange"))
+    .style("opacity", 1)
+    .attr("r", 6);
 
   choroplethMap
     .selectAll(".country")
@@ -311,6 +314,55 @@ function markSelectedCountries() {
     })
     .style("stroke-width", 3)
     .style("stroke", (d) =>
-      d.properties.NAME == chosenCountry1 ? "purple" : "green"
+      d.properties.NAME == chosenCountry1 ? "purple" : "DarkOrange"
+    );
+
+    clevelandPlot
+    .selectAll("line#linesCleveland")
+    .attr("stroke", "grey")
+    .attr("stroke-width", "1px")    
+    .filter(function (b) {
+      if (
+        b.country == chosenCountry1 ||
+        b.country == chosenCountry2
+      ) {
+        return b;
+      }
+    })
+    .style("stroke-width", 3)
+    .style("stroke", (d) =>
+      d.country == chosenCountry1 ? "purple" : "DarkOrange"
+    );
+
+    clevelandPlot
+    .selectAll("circle#dotsClevelandYear1")
+    .attr("stroke", "none")
+    .filter(function (b) {
+      if (
+        b.country == chosenCountry1 ||
+        b.country == chosenCountry2
+      ) {
+        return b;
+      }
+    })
+    .style("stroke-width", 3)
+    .style("stroke", (d) =>
+      d.country == chosenCountry1 ? "purple" : "DarkOrange"
+    );
+
+    clevelandPlot
+    .selectAll("circle#dotsClevelandYear2")
+    .attr("stroke", "none")
+    .filter(function (b) {
+      if (
+        b.country == chosenCountry1 ||
+        b.country == chosenCountry2
+      ) {
+        return b;
+      }
+    })
+    .style("stroke-width", 3)
+    .style("stroke", (d) =>
+      d.country == chosenCountry1 ? "purple" : "DarkOrange"
     );
 }

@@ -103,12 +103,13 @@ function createClevelandPlot(data, update) {
       .append("g")
       .attr("transform", `translate(${margin.left}, ${height})`)
       .call(d3.axisBottom(x));
-
-    svg
-      .append("g")
-      .attr("transform", `translate(${margin.left}, 0)`)
-      .call(d3.axisLeft(y));
   }
+
+  svg
+  .append("g")
+  .attr("id", "clevelandYAxis")
+  .attr("transform", `translate(${margin.left}, 0)`)
+  .call(d3.axisLeft(y));
 
   // Lines
   svg
@@ -151,7 +152,7 @@ function createClevelandPlot(data, update) {
       return y(d.ISO_code);
     })
     .attr("r", "6")
-    .style("fill", "#d39b63")
+    .style("fill", "YellowGreen")
     .attr("id", "dotsClevelandYear1")
     .on("mousemove", handleMouseMove)
     .on("mouseover", handleMouseOver)
@@ -177,6 +178,51 @@ function createClevelandPlot(data, update) {
     .on("mouseover", handleMouseOver)
     .on("mouseleave", handleMouseLeave)
     .on("click", handleClickCleveland);
+
+  svg
+    .append("text") // text label for the x axis
+    .attr("x", width + 20)
+    .attr("y", height + 25)
+    .attr("id", "axisLabelCleveland")
+    .style("font-size", "10px")
+    .style("text-anchor", "middle")
+    .text(labelsDict[chosenAttributeX]);
+
+  // Add color dots for legends Year1
+  svg
+    .append("circle")
+    .attr("cx", width - 190)
+    .attr("cy", 30)
+    .attr("r", 3)
+    .style("fill", "YellowGreen");
+
+  // Add labels for legends year 1
+  svg
+    .append("text")
+    .attr("x", width - 183)
+    .attr("y", 30)
+    .attr("id", "axisLabelCleveland")
+    .text(chosenYear)
+    .style("font-size", "10px")
+    .attr("alignment-baseline", "middle");
+
+  // Add color dots for legends Year2
+  svg
+    .append("circle")
+    .attr("cx", width - 150)
+    .attr("cy", 30)
+    .attr("r", 3)
+    .style("fill", "#2171b5");
+
+  // Add labels for legends year 2
+  svg
+    .append("text")
+    .attr("x", width - 143)
+    .attr("y", 30)
+    .attr("id", "axisLabelCleveland")
+    .text(chosenYear2)
+    .style("font-size", "10px")
+    .attr("alignment-baseline", "middle");
 
   // Set header
   document.getElementById("headerClevelandPlot").innerHTML =
