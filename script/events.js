@@ -171,7 +171,7 @@ function handleMouseLeave(event, d) {
     .select("svg")
     .selectAll("circle#dotsClevelandYear1")
     .filter((d) => d.year == chosenYear)
-    .style("fill", "#d39b63");
+    .style("fill", "YellowGreen");
 
   d3.select("div#clevelandPlot")
     .select("svg")
@@ -285,7 +285,7 @@ function markSelectedCountries() {
     })
     .style("fill", (d) => (d.country == chosenCountry1 ? "purple" : "DarkOrange"))
     .style("opacity", 1)
-    .attr("r", 8);
+    .attr("r", 6);
 
   choroplethMap
     .selectAll(".country")
@@ -315,7 +315,7 @@ function markSelectedCountries() {
         return b;
       }
     })
-    .style("stroke-width", 2)
+    .style("stroke-width", 3)
     .style("stroke", (d) =>
       d.country == chosenCountry1 ? "purple" : "DarkOrange"
     );
@@ -331,7 +331,7 @@ function markSelectedCountries() {
         return b;
       }
     })
-    .style("stroke-width", 2)
+    .style("stroke-width", 3)
     .style("stroke", (d) =>
       d.country == chosenCountry1 ? "purple" : "DarkOrange"
     );
@@ -347,7 +347,7 @@ function markSelectedCountries() {
         return b;
       }
     })
-    .style("stroke-width", 2)
+    .style("stroke-width", 3)
     .style("stroke", (d) =>
       d.country == chosenCountry1 ? "purple" : "DarkOrange"
     );

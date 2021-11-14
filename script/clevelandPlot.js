@@ -84,12 +84,13 @@ function createClevelandPlot(data, update) {
       .append("g")
       .attr("transform", `translate(${margin.left}, ${height})`)
       .call(d3.axisBottom(x));
-
-    svg
-      .append("g")
-      .attr("transform", `translate(${margin.left}, 0)`)
-      .call(d3.axisLeft(y));
   }
+
+  svg
+  .append("g")
+  .attr("id", "clevelandYAxis")
+  .attr("transform", `translate(${margin.left}, 0)`)
+  .call(d3.axisLeft(y));
 
   // Lines
   svg
@@ -131,7 +132,7 @@ function createClevelandPlot(data, update) {
       return y(d.ISO_code);
     })
     .attr("r", "6")
-    .style("fill", "#d39b63")
+    .style("fill", "YellowGreen")
     .attr("id", "dotsClevelandYear1")
     .on("mousemove", handleMouseMove)
     .on("mouseover", handleMouseOver)
@@ -173,7 +174,7 @@ function createClevelandPlot(data, update) {
     .attr("cx", width - 190)
     .attr("cy", 30)
     .attr("r", 3)
-    .style("fill", "#d39b63");
+    .style("fill", "YellowGreen");
 
   // Add labels for legends year 1
   svg
