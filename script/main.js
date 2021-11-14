@@ -116,14 +116,11 @@ function saveDropdownYear(yearChanged, i) {
   }
 
   removeCharts(showingBarChart, yearChanged);
- 
-
 
   d3.csv("data/data.csv").then((data) => {
     createScatterPlot(data, true);
     createChoroplethMap(true);
     createClevelandPlot(data, true);
-    markSelectedCountries();
     if (
       (chosenCountry1 == undefined || chosenCountry1 == "") &&
       (chosenCountry2 == undefined || chosenCountry2 == "")
@@ -137,6 +134,8 @@ function saveDropdownYear(yearChanged, i) {
       createLineChart(data, false, chosenAttributeY, 2);
       showingBarChart = false;
     }
+    markSelectedCountries();
+
   });
 }
 
@@ -153,6 +152,7 @@ function saveDropdownAttribute(i) {
     }
     return;
   }
+
   d3.select("div#scatterPlot")
     .selectAll("svg")
     .selectAll("#TextRemoveOnUpdate")
@@ -245,6 +245,11 @@ function removeCharts(showingBarChart, yearChanged) {
   d3.select("div#scatterPlot")
     .selectAll("svg")
     .selectAll("#removeOnUpdate")
+    .remove(); //Remove old chart
+
+    d3.select("div#scatterPlot")
+    .selectAll("svg")
+    .selectAll("#TextRemoveOnUpdate")
     .remove(); //Remove old chart
 
   d3.selectAll("div#clevelandPlot")
