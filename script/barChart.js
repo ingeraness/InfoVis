@@ -1,7 +1,7 @@
 function createBarChart(data, update) {
-  width = 1300;
-  height = 350;
-  margin = { top: 20, right: 20, bottom: 40, left: 40 };
+  width = 1000;
+  height = 200;
+  margin = { top: 10, right: 20, bottom: 40, left: 40 };
 
   var svg = d3.select("div#barChart").select("svg");
   svg.selectAll("*").remove(); // Remove the old vis before drawing the new vis with new countries
@@ -70,7 +70,7 @@ function createBarChart(data, update) {
   svg
     .append("g")
     .attr("class", "bars")
-    .attr("fill", "steelblue")
+    .attr("fill", "#2171b5")
     .selectAll("rect")
     .data(filtered_data, function (d) {
       return d[attributesDict[chosenAttributeX]];

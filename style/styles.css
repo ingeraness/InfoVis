@@ -21,6 +21,7 @@ h3 {
   width: max-content;
   height: min-content;
   position: absolute;
+  font-size: 10px;
 }
 
 /* .first-row {
@@ -144,40 +145,50 @@ h3 {
   justify-content: space-evenly;
 }
 */
+html,
+body {
+  margin: 0;
+  height: 100%;
+  overflow: hidden;
+  background-color: #e6faff;
+}
 
 .flex-container {
   display: flex;
   flex-direction: column;
   height: 100vh;
-  width: 100vw;
   font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
 }
 
 .header {
   display: flex;
   justify-content: space-evenly;
-  margin-bottom: 20px;
+  margin-bottom: 10px;
+  border-style: none none solid none;
+  background-color: #0c549c;
+  color: white;
 }
 
 .title-1 {
-  font-size: 40px;
+  font-size: 30px;
 }
 
 .drop-down-pair {
   display: flex;
   flex-direction: column;
   justify-content: space-evenly;
-  align-items: center;
+  align-items: left;
 }
 
 .drop-down-menu {
-  margin-top: 4px;
-  margin-bottom: 4px;
-  font-size: 22px;
+  margin-top: 2px;
+  margin-bottom: 2px;
+  font-size: 15px;
 }
 
 .drop-down-element {
-  font-size: 20px;
+  font-size: 15px;
+  background-color: #e6faff;
 }
 
 .graphs {
@@ -192,26 +203,55 @@ h3 {
 
 .row-1 {
   display: flex;
-  justify-content: space-between;
   align-items: center;
+  margin-left: -170px;
 }
 
 .row-2 {
   display: flex;
   justify-content: space-between;
   align-items: center;
+  margin-left: -110px;
 }
 
 .header-lineChart {
-  margin-top: 130px;
-  margin-bottom: -70px;
+  margin-bottom: -30px;
 }
 
 .graph-header {
   text-align: center;
+  font-size: 18px;
+  margin-bottom: -5px;
 }
 
 .header-barChart {
   margin-top: 50px;
   margin-bottom: -10px;
+}
+
+#clevelandPlot {
+  height: 720px;
+}
+
+#barChart {
+  height: 320px;
+  align-items: center;
+  margin-left: 60px;
+  margin-top: -28px;
+}
+
+#lineChart1 {
+  margin-left: -30px;
+  margin-top: -60px;
+}
+
+#lineChart2 {
+  margin-top: -60px;
+}
+
+#headerLineChart1 {
+  margin-bottom: 15px;
+}
+#headerLineChart2 {
+  margin-bottom: 15px;
 }
