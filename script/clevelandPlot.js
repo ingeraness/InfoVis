@@ -191,7 +191,7 @@ function createClevelandPlot(data, update) {
   svg
     .append("circle")
     .attr("cx", width - 190)
-    .attr("cy", 40)
+    .attr("cy", 30)
     .attr("r", 3)
     .style("fill", "#d39b63");
 
@@ -199,7 +199,7 @@ function createClevelandPlot(data, update) {
   svg
     .append("text")
     .attr("x", width - 183)
-    .attr("y", 40)
+    .attr("y", 30)
     .attr("id", "axisLabelCleveland")
     .text(chosenYear)
     .style("font-size", "10px")
@@ -209,7 +209,7 @@ function createClevelandPlot(data, update) {
   svg
     .append("circle")
     .attr("cx", width - 150)
-    .attr("cy", 40)
+    .attr("cy", 30)
     .attr("r", 3)
     .style("fill", "#2171b5");
 
@@ -217,7 +217,7 @@ function createClevelandPlot(data, update) {
   svg
     .append("text")
     .attr("x", width - 143)
-    .attr("y", 40)
+    .attr("y", 30)
     .attr("id", "axisLabelCleveland")
     .text(chosenYear2)
     .style("font-size", "10px")
