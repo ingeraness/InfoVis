@@ -1,7 +1,7 @@
 # Freedom Index Europe
-Project Information Visualization 2021.
+Project in the Information Visualization course at Instituto Superior Técnico in Lisbon 2021.
 
-Information visualization project developed by [Benedicte Kaltoft Hansen](https://github.com/benedictekh), [Solveig Grimstad](https://github.com/SolveigGrimstad) and [Inger-Ane Schefte](https://github.com/ingeraness) in the Information Visualization course at Instituto Superior Técnico, Lisbon.
+Project developed by [Benedicte Kaltoft Hansen](https://github.com/benedictekh), [Solveig Grimstad](https://github.com/SolveigGrimstad) and [Inger-Ane Schefte](https://github.com/ingeraness).
 
 The visualization can be viewed here: https://ingeraness.github.io/InfoVis/
 
