@@ -74,6 +74,8 @@ function saveDropdownCountry(i) {
       } else {
         showingBarChart = false;
         clearHeaders(3);
+        d3.select(".tooltip").style("visibility", "hidden");
+
         createLineChart(data, false, chosenAttributeX, 1);
         createLineChart(data, false, chosenAttributeY, 2);
       }
