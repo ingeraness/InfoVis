@@ -1,35 +1,38 @@
-// function init() {
-//     d3.csv("data/data.csv").then((data) => {
-//         createBarChart(data);
-//     })
-//     .catch((error) => {
-//         console.log(error);
-//     });
-// }
-
 function createBarChart(data, update) {
   width = 1000;
-  height = 300;
-
-  margin = { top: 20, right: 20, bottom: 40, left: 40 };
+  height = 200;
+  margin = { top: 10, right: 20, bottom: 40, left: 40 };
 
   var svg = d3.select("div#barChart").select("svg");
   svg.selectAll("*").remove(); // Remove the old vis before drawing the new vis with new countries
 
   // Set header
   document.getElementById("headerBarChart").innerHTML =
-    "Freedom Index Europe from " + chosenYear ;
+    labelsDict[chosenAttributeX] + " " + chosenYear;
 
-  var filtered_data = data.filter(function (d) {
-    if (d.year == chosenYear.valueOf()) {
-      return d;
-    }
-  }).sort((a,b) => {
-    return d3.ascending(a.hf_score, b.hf_score)
-  });
+  const keys = Object.keys(data[0]);
 
-  
-  
+  let attributesDict = {
+    pf_ss: keys[8].valueOf(),
+    pf_ss_women: keys[9].valueOf(),
+    ef_legal_police: keys[10].valueOf(),
+    pf_ss_disappearances_violent: keys[6].valueOf(),
+    pf_religion_freedom: keys[7].valueOf(),
+    hf_score: keys[4].valueOf(),
+  };
+
+  var filtered_data = data
+    .filter(function (d) {
+      if (d.year == chosenYear.valueOf()) {
+        return d;
+      }
+    })
+    .sort((a, b) => {
+      return (
+        a[attributesDict[chosenAttributeX]] -
+        b[attributesDict[chosenAttributeX]]
+      );
+    });
 
   y = d3
     .scaleLinear()
@@ -67,15 +70,18 @@ function createBarChart(data, update) {
   svg
     .append("g")
     .attr("class", "bars")
-    .attr("fill", "steelblue")
+    .attr("fill", "#2171b5")
     .selectAll("rect")
     .data(filtered_data, function (d) {
-      return d.hf_score;
+      return d[attributesDict[chosenAttributeX]];
     })
     .join("rect")
     .attr("x", (d, i) => x(d.ISO_code))
-    .attr("y", (d, i) => y(d.hf_score))
-    .attr("height", (d) => height - margin.bottom - y(d.hf_score))
+    .attr("y", (d, i) => y(d[attributesDict[chosenAttributeX]]))
+    .attr(
+      "height",
+      (d) => height - margin.bottom - y(d[attributesDict[chosenAttributeX]])
+    )
     .attr("width", x.bandwidth())
     .attr("id", "removeOnUpdate")
     .on("mousemove", handleMouseMove)

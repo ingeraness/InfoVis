@@ -1,10 +1,9 @@
-// const countries = ['Albania', 'Austria', 'Belgium', 'Bosnia and Herzegovina','Bulgaria', 'Croatia','Cyprus', 'Czech Rebublic', 'Denmark', 'Estonia', 'Finland', 'France', 'Germany', 'Greece', 'Hungary', 'Iceland', 'Ireland', 'Italy', 'Latvia', 'Lithuania', 'Luxembourg', 'Malta', 'Moldova', 'Montenegro', 'Netherlands', 'North Macedonia', 'Norway', 'Poland', 'Portugal', 'Romania', 'Russian Federation',  'Serbia', 'Sloavk Rebublic', 'Slovenia', 'Spain', 'Sweden', 'Switzerland', 'Ukraine', 'United Kingdom' ];
 var chosenCountry1;
 var chosenCountry2;
 var chosenYear = 2008;
 var chosenYear2 = 2018;
 var chosenAttributeY = "pf_ss";
-var chosenAttributeX = "pf_religion_freedom";
+var chosenAttributeX = "hf_score";
 var update = false;
 
 var showingBarChart;
@@ -73,7 +72,8 @@ function saveDropdownCountry(i) {
   removeCharts(showingBarChart, false);
   d3.csv("data/data.csv")
     .then((data) => {
-      createScatterPlot(data, false);
+      createScatterPlot(data, true);
+      createClevelandPlot(data, true);
       markSelectedCountries();
       if (
         (chosenCountry1 == undefined || chosenCountry1 == "") &&
@@ -81,12 +81,12 @@ function saveDropdownCountry(i) {
       ) {
         d3.select("div#lineChart1").select("svg").remove(); //Remove old chart
         d3.select("div#lineChart2").select("svg").remove(); //Remove old chart
-        clearHeaders();
+        clearHeaders(3);
         createBarChart(data, false);
         showingBarChart = true;
       } else {
         showingBarChart = false;
-        clearHeaders();
+        clearHeaders(3);
         createLineChart(data, false, chosenAttributeX, 1);
         createLineChart(data, false, chosenAttributeY, 2);
       }
@@ -97,6 +97,18 @@ function saveDropdownCountry(i) {
 }
 
 function saveDropdownYear(yearChanged, i) {
+  if (
+    document.getElementById("dropdown_year1").value >
+    document.getElementById("dropdown_year2").value
+  ) {
+    if (i == 1) {
+      document.getElementById("dropdown_year1").value = chosenYear;
+    } else {
+      document.getElementById("dropdown_year2").value = chosenYear2;
+    }
+    return;
+  }
+
   if (i == 1) {
     chosenYear = document.getElementById("dropdown_year1").value;
   } else if (i == 2) {
@@ -119,13 +131,11 @@ function saveDropdownYear(yearChanged, i) {
       (chosenCountry1 == undefined || chosenCountry1 == "") &&
       (chosenCountry2 == undefined || chosenCountry2 == "")
     ) {
-      //d3.select("div#lineChart1").select("svg").remove(); //Remove old chart
-      //d3.select("div#barChart").select("svg").remove(); //Remove old chart
-      clearHeaders();
+      clearHeaders(3);
       createBarChart(data, false);
       showingBarChart = true;
     } else {
-      clearHeaders();
+      clearHeaders(3);
       createLineChart(data, false, chosenAttributeX, 1);
       createLineChart(data, false, chosenAttributeY, 2);
       showingBarChart = false;
@@ -155,6 +165,20 @@ function saveDropdownAttribute(i) {
     .selectAll("p")
     .remove(); //Remove old div
  
+
+    d3.selectAll("div#clevelandPlot")
+    .select("svg")
+    .selectAll("line#linesCleveland")
+    .remove();
+  d3.selectAll("div#clevelandPlot")
+    .select("svg")
+    .selectAll("circle#dotsClevelandYear2")
+    .remove();
+  d3.selectAll("div#clevelandPlot")
+    .select("svg")
+    .selectAll("circle#dotsClevelandYear1")
+    .remove();
+    
   if (i == 1) {
     chosenAttributeX = document.getElementById("dropdown_attribute1").value;
   } else {
@@ -162,6 +186,7 @@ function saveDropdownAttribute(i) {
   }
   d3.csv("data/data.csv").then((data) => {
     createScatterPlot(data, true);
+    createClevelandPlot(data, true);
     markSelectedCountries();
     if (i == 1) {
       if (
@@ -169,25 +194,46 @@ function saveDropdownAttribute(i) {
         (chosenCountry2 == undefined || chosenCountry2 == "")
       ) {
         d3.select("div#lineChart1").select("svg").remove(); //Remove old chart
-        d3.select("div#lineChart2").select("svg").remove(); //Remove old chart
         d3.select("div#barChart").select("svg").remove(); //Remove old chart
-        clearHeaders();
+        clearHeaders(3);
         createBarChart(data, false);
         showingBarChart = true;
       } else {
-        clearHeaders();
-        createLineChart(data, false, chosenAttributeX, 1);
-        createLineChart(data, false, chosenAttributeY, 2);
+        clearHeaders(1);
+        createLineChart(data, true, chosenAttributeX, 1);
+        showingBarChart = false;
+      }
+    } else if (i == 2) {
+      if (
+        (chosenCountry1 == undefined || chosenCountry1 == "") &&
+        (chosenCountry2 == undefined || chosenCountry2 == "")
+      ) {
+        d3.select("div#lineChart2").select("svg").remove(); //Remove old chart
+        d3.select("div#barChart").select("svg").remove(); //Remove old chart
+        clearHeaders(3);
+        createBarChart(data, false);
+        showingBarChart = true;
+      } else {
+        clearHeaders(2);
+        createLineChart(data, true, chosenAttributeY, 2);
         showingBarChart = false;
       }
     }
   });
 }
 
-function clearHeaders() {
-  document.getElementById("headerBarChart").innerHTML = "";
-  document.getElementById("headerLineChart1").innerHTML = "";
-  document.getElementById("headerLineChart2").innerHTML = "";
+function clearHeaders(i) {
+  if (i == 1) {
+    document.getElementById("headerBarChart").innerHTML = "";
+    document.getElementById("headerLineChart1").innerHTML = "";
+  } else if (i == 2) {
+    document.getElementById("headerBarChart").innerHTML = "";
+    document.getElementById("headerLineChart2").innerHTML = "";
+  } else {
+    document.getElementById("headerBarChart").innerHTML = "";
+    document.getElementById("headerLineChart1").innerHTML = "";
+    document.getElementById("headerLineChart2").innerHTML = "";
+  }
 }
 
 function removeCharts(showingBarChart, yearChanged) {
@@ -195,17 +241,18 @@ function removeCharts(showingBarChart, yearChanged) {
     .selectAll("svg")
     .selectAll("#removeOnUpdate")
     .remove(); //Remove old chart
-  d3.selectAll("div#clevelandPlot")
-    .selectAll("svg")
-    .selectAll("circle#dotsClevelandYear1")
+
+    d3.selectAll("div#clevelandPlot")
+    .select("svg")
+    .selectAll("line#linesCleveland")
     .remove();
   d3.selectAll("div#clevelandPlot")
-    .selectAll("svg")
+    .select("svg")
     .selectAll("circle#dotsClevelandYear2")
     .remove();
   d3.selectAll("div#clevelandPlot")
-    .selectAll("svg")
-    .selectAll("circle#linesCleveland")
+    .select("svg")
+    .selectAll("circle#dotsClevelandYear1")
     .remove();
   d3.selectAll("div#scatterPlot-box")
     .selectAll("text#legendScatter")
@@ -213,6 +260,7 @@ function removeCharts(showingBarChart, yearChanged) {
 
   
   
+
   if (showingBarChart) {
     d3.select("div#lineChart1").select("svg").remove(); //Remove old chart
     d3.select("div#lineChart2").select("svg").remove(); //Remove old chart
@@ -222,7 +270,7 @@ function removeCharts(showingBarChart, yearChanged) {
     d3.select("div#lineChart2").select("svg").remove(); //Remove old chart
     d3.select("div#barChart").select("svg").remove(); //Remove old chart
   }
-  if(yearChanged){
+  if (yearChanged) {
     d3.select("div#choropleth").select("svg").selectAll(".country").remove();
   }
 }
