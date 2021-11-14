@@ -103,12 +103,13 @@ function createClevelandPlot(data, update) {
       .append("g")
       .attr("transform", `translate(${margin.left}, ${height})`)
       .call(d3.axisBottom(x));
-
-    svg
-      .append("g")
-      .attr("transform", `translate(${margin.left}, 0)`)
-      .call(d3.axisLeft(y));
   }
+
+  svg
+  .append("g")
+  .attr("id", "clevelandYAxis")
+  .attr("transform", `translate(${margin.left}, 0)`)
+  .call(d3.axisLeft(y));
 
   // Lines
   svg

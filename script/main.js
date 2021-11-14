@@ -156,6 +156,10 @@ function saveDropdownAttribute(i) {
     .select("svg")
     .selectAll("text#axisLabelCleveland")
     .remove();
+  d3.selectAll("div#clevelandPlot")
+    .select("svg")
+    .select("g#clevelandYAxis")
+    .remove();
 
   if (i == 1) {
     chosenAttributeX = document.getElementById("dropdown_attribute1").value;
@@ -235,6 +239,10 @@ function removeCharts(showingBarChart, yearChanged) {
   d3.selectAll("div#clevelandPlot")
     .select("svg")
     .selectAll("text#axisLabelCleveland")
+    .remove();
+  d3.selectAll("div#clevelandPlot")
+    .select("svg")
+    .selectAll("g#clevelandYAxis")
     .remove();
 
   if (showingBarChart) {
