@@ -151,43 +151,61 @@ function createScatterPlot(data, update) {
 
   markSelectedCountries(); //Mark the countries selected in the drop down menus
 
+  d3
+  .select("div#scatterPlot-box")
+    .selectAll("p")
+    .remove(); //Remove old div
+ 
+
+  divbox = d3
+  .select("div#scatterPlot-box")
+  .append("p")
+  .attr("id", "#scatterCountry1")
+  .append("svg")
+  .attr("width", 125)
+  .attr("height", 25);
+
+
+
+
   var scatterLabels = ["" + chosenCountry1, "" + chosenCountry2];
   var colorsScatter = ["purple", "DarkOrange"]; //This will be changed to other colors in CP5
   if (chosenCountry1 != undefined && chosenCountry1 != "") {
     // Add color dots for legends for selected country 1
-    svg
+    divbox
       .append("circle")
-      .attr("id", "removeOnUpdate")
-      .attr("cx", 60)
-      .attr("cy", height - 115)
+      .attr("id", "legendScatter")
+      .attr("cx", 10)
+      .attr("cy", 10)
       .attr("r", 3)
       .style("fill", colorsScatter[0]);
 
     // Add labels for legends for selected country 1
-    svg
+    divbox
       .append("text")
-      .attr("id", "removeOnUpdate")
-      .attr("x", 70)
-      .attr("y", height - 115)
-      .text(scatterLabels[0])
+      .attr("id", "legendScatter")
+      .attr("x", 15)
+      .attr("y", 10)
+      .text(scatterLabels[0] + " \n ")
       .style("font-size", "10px")
       .attr("alignment-baseline", "middle");
   }
   if (chosenCountry2 != undefined && chosenCountry2 != "") {
     //Dots for legends for selected country 2
-    svg
+    divbox
       .append("circle")
-      .attr("id", "removeOnUpdate")
-      .attr("cx", 60)
-      .attr("cy", height - 100)
+      .attr("id", "legendScatter")
+      .attr("cx", 10)
+      .attr("cy", 20)
       .attr("r", 3)
       .style("fill", colorsScatter[1]);
-    // Add labels for legends for selected country 2
-    svg
+
+      // Add labels for legends for selected country 2
+    divbox
       .append("text")
-      .attr("id", "removeOnUpdate")
-      .attr("x", 70)
-      .attr("y", height - 100)
+      .attr("id", "legendScatter")
+      .attr("x", 15)
+      .attr("y", 20)
       .text(scatterLabels[1])
       .style("font-size", "10px")
       .attr("alignment-baseline", "middle");

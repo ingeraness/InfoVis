@@ -26,13 +26,30 @@ function init() {
       createDropDownMenus();
       createChoroplethMap(false);
       createClevelandPlot(data, false);
+      showLabelBox();
     })
     .catch((error) => {
       console.log(error);
     });
 }
 
+function showLabelBox(){
+  if (
+    (chosenCountry1 == undefined || chosenCountry1 == "") &&
+    (chosenCountry2 == undefined || chosenCountry2 == "")
+  ) {  
+    d3.selectAll(".labelsBox")
+  .style("visibility", "hidden");
+}
+else{
+  d3.selectAll(".labelsBox")
+  .style("visibility", "visible");
+}
+}
+
 function saveDropdownCountry(i) {
+  d3.selectAll(".labelsBox")
+  .style("visibility", "visible");
   if (
     (document.getElementById("dropdown_country1").value == chosenCountry2 &&
       document.getElementById("dropdown_country1").value != "") ||
@@ -102,6 +119,9 @@ function saveDropdownYear(yearChanged, i) {
   //"Freedom Ranking Europe from " + chosenYear + " to " + chosenYear2;
   // Check if it should draw the lineChart or barChart
   removeCharts(showingBarChart, yearChanged);
+ 
+
+
   d3.csv("data/data.csv").then((data) => {
     createScatterPlot(data, true);
     createChoroplethMap(true);
@@ -124,6 +144,7 @@ function saveDropdownYear(yearChanged, i) {
 }
 
 function saveDropdownAttribute(i) {
+  
   if (
     document.getElementById("dropdown_attribute1").value == chosenAttributeY ||
     document.getElementById("dropdown_attribute2").value == chosenAttributeX
@@ -139,6 +160,11 @@ function saveDropdownAttribute(i) {
     .selectAll("svg")
     .selectAll("#removeOnUpdate")
     .remove(); //Remove old chart
+  d3
+  .select("div#scatterPlot-box")
+    .selectAll("p")
+    .remove(); //Remove old div
+ 
 
   d3.selectAll("div#clevelandPlot")
     .select("svg")
@@ -236,6 +262,9 @@ function removeCharts(showingBarChart, yearChanged) {
     .select("svg")
     .selectAll("circle#dotsClevelandYear1")
     .remove();
+  d3.selectAll("div#scatterPlot-box")
+    .selectAll("text#legendScatter")
+    .remove();
   d3.selectAll("div#clevelandPlot")
     .select("svg")
     .selectAll("text#axisLabelCleveland")
@@ -244,6 +273,7 @@ function removeCharts(showingBarChart, yearChanged) {
     .select("svg")
     .selectAll("g#clevelandYAxis")
     .remove();
+
 
   if (showingBarChart) {
     d3.select("div#lineChart1").select("svg").remove(); //Remove old chart
