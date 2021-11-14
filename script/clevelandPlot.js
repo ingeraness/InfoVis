@@ -205,5 +205,5 @@ function createClevelandPlot(data, update) {
 
   // Set header
   document.getElementById("headerClevelandPlot").innerHTML =
-    labelsDict[chosenAttributeX] + " from " + chosenYear + " to " + chosenYear2;
+    labelsDict[chosenAttributeX] + " for Bottom 20 Countries";
 }

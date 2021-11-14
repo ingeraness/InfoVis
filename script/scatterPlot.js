@@ -197,8 +197,8 @@ function createScatterPlot(data, update) {
 
 
 function updateScatterPlot(data) {
-  const width = 500;
-  const height = 500;
+  const width = 450;
+  const height = 450;
 
   const margin = { left: 40, top: 40, right: 40, bottom: 40 };
 
