@@ -21,6 +21,7 @@ h3 {
   width: max-content;
   height: min-content;
   position: absolute;
+  font-size: 10px;
 }
 
 /* .first-row {
