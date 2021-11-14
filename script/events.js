@@ -134,7 +134,7 @@ function handleMouseLeave(event, d) {
     d3.select("div#lineChart1")
       .select("svg")
       .selectAll(`circle#${event.path[0].id}`)
-      .style("fill", "green");
+      .style("fill", "DarkOrange");
   }
 
   if (event.path[0].id == "one") {
@@ -148,7 +148,7 @@ function handleMouseLeave(event, d) {
     d3.select("div#lineChart2")
       .select("svg")
       .selectAll(`circle#${event.path[0].id}`)
-      .style("fill", "green");
+      .style("fill", "DarkOrange");
   }
 
   d3.select("div#scatterPlot")
@@ -160,7 +160,7 @@ function handleMouseLeave(event, d) {
         return b;
       }
     })
-    .style("fill", (d) => (d.country == chosenCountry1 ? "purple" : "green"));
+    .style("fill", (d) => (d.country == chosenCountry1 ? "purple" : "DarkOrange"));
 
   d3.select("div#barChart")
     .select("svg")
@@ -171,7 +171,7 @@ function handleMouseLeave(event, d) {
     .select("svg")
     .selectAll("circle#dotsClevelandYear1")
     .filter((d) => d.year == chosenYear)
-    .style("fill", "#d39b63");
+    .style("fill", "YellowGreen");
 
   d3.select("div#clevelandPlot")
     .select("svg")
@@ -193,7 +193,7 @@ function handleMouseLeave(event, d) {
     })
     .style("stroke-width", 3)
     .style("stroke", (d) =>
-      d.properties.NAME == chosenCountry1 ? "purple" : "green"
+      d.properties.NAME == chosenCountry1 ? "purple" : "DarkOrange"
     );
 }
 
@@ -283,7 +283,9 @@ function markSelectedCountries() {
         return b;
       }
     })
-    .style("fill", (d) => (d.country == chosenCountry1 ? "purple" : "green"));
+    .style("fill", (d) => (d.country == chosenCountry1 ? "purple" : "DarkOrange"))
+    .style("opacity", 1)
+    .attr("r", 6);
 
   choroplethMap
     .selectAll(".country")
@@ -298,7 +300,7 @@ function markSelectedCountries() {
     })
     .style("stroke-width", 3)
     .style("stroke", (d) =>
-      d.properties.NAME == chosenCountry1 ? "purple" : "green"
+      d.properties.NAME == chosenCountry1 ? "purple" : "DarkOrange"
     );
 
     clevelandPlot
@@ -313,9 +315,9 @@ function markSelectedCountries() {
         return b;
       }
     })
-    .style("stroke-width", 2)
+    .style("stroke-width", 3)
     .style("stroke", (d) =>
-      d.country == chosenCountry1 ? "purple" : "green"
+      d.country == chosenCountry1 ? "purple" : "DarkOrange"
     );
 
     clevelandPlot
@@ -329,9 +331,9 @@ function markSelectedCountries() {
         return b;
       }
     })
-    .style("stroke-width", 2)
+    .style("stroke-width", 3)
     .style("stroke", (d) =>
-      d.country == chosenCountry1 ? "purple" : "green"
+      d.country == chosenCountry1 ? "purple" : "DarkOrange"
     );
 
     clevelandPlot
@@ -345,8 +347,8 @@ function markSelectedCountries() {
         return b;
       }
     })
-    .style("stroke-width", 2)
+    .style("stroke-width", 3)
     .style("stroke", (d) =>
-      d.country == chosenCountry1 ? "purple" : "green"
+      d.country == chosenCountry1 ? "purple" : "DarkOrange"
     );
 }

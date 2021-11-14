@@ -153,7 +153,7 @@ function createLineChart(data, update, attribute, div) {
     .append("path")
     .datum(dataC2)
     .attr("fill", "none")
-    .attr("stroke", "green")
+    .attr("stroke", "DarkOrange")
     .attr("stroke-width", 1.5)
     .attr("id", "lineLineChart")
     .attr("d", lineA1);
@@ -161,7 +161,7 @@ function createLineChart(data, update, attribute, div) {
   // dots for line for country 1, attribute 1
   svg
     .append("g")
-    .attr("fill", "green")
+    .attr("fill", "DarkOrange")
     .selectAll("circle")
     .data(dataC2, function (d) {
       return d;
@@ -176,7 +176,7 @@ function createLineChart(data, update, attribute, div) {
     .on("mouseleave", handleMouseLeave);
 
   var lineLabels = [chosenCountry1, chosenCountry2];
-  var colors = ["purple", "green"]; //This will be changed to other colors in CP5
+  var colors = ["purple", "DarkOrange"]; //This will be changed to other colors in CP5
 
   if (chosenCountry1 != undefined && chosenCountry1 != "") {
     // Add color dots for legends C1

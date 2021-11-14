@@ -152,7 +152,7 @@ function createClevelandPlot(data, update) {
       return y(d.ISO_code);
     })
     .attr("r", "6")
-    .style("fill", "#d39b63")
+    .style("fill", "YellowGreen")
     .attr("id", "dotsClevelandYear1")
     .on("mousemove", handleMouseMove)
     .on("mouseover", handleMouseOver)
@@ -194,7 +194,7 @@ function createClevelandPlot(data, update) {
     .attr("cx", width - 190)
     .attr("cy", 30)
     .attr("r", 3)
-    .style("fill", "#d39b63");
+    .style("fill", "YellowGreen");
 
   // Add labels for legends year 1
   svg

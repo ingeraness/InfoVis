@@ -152,7 +152,7 @@ function createScatterPlot(data, update) {
   markSelectedCountries(); //Mark the countries selected in the drop down menus
 
   var scatterLabels = ["" + chosenCountry1, "" + chosenCountry2];
-  var colorsScatter = ["purple", "green"]; //This will be changed to other colors in CP5
+  var colorsScatter = ["purple", "DarkOrange"]; //This will be changed to other colors in CP5
   if (chosenCountry1 != undefined && chosenCountry1 != "") {
     // Add color dots for legends for selected country 1
     svg
