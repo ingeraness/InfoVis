@@ -157,29 +157,13 @@ function createScatterPlot(data, update) {
     .remove(); //Remove old div
  
 
-  divbox1 = d3
+  divbox = d3
   .select("div#scatterPlot-box")
   .append("p")
   .attr("id", "#scatterCountry1")
   .append("svg")
-  .attr("width", 94)
-  .attr("height", 17);
-  //.selectAll('div')
-	//.data(data)
-  //.enter()
-  ;
-
-  divbox2 = d3
-  .select("div#scatterPlot-box")
-  .append("p")
-  .attr("id", "#scatterCountry2")
-  .append("svg")
-  .attr("width", 94)
-  .attr("height", 17);
-  //.selectAll('div')
-	//.data(data)
-  //.enter()
-  ;
+  .attr("width", 125)
+  .attr("height", 25);
 
 
 
@@ -188,7 +172,7 @@ function createScatterPlot(data, update) {
   var colorsScatter = ["purple", "green"]; //This will be changed to other colors in CP5
   if (chosenCountry1 != undefined && chosenCountry1 != "") {
     // Add color dots for legends for selected country 1
-    divbox1
+    divbox
       .append("circle")
       .attr("id", "legendScatter")
       .attr("cx", 10)
@@ -197,7 +181,7 @@ function createScatterPlot(data, update) {
       .style("fill", colorsScatter[0]);
 
     // Add labels for legends for selected country 1
-    divbox1
+    divbox
       .append("text")
       .attr("id", "legendScatter")
       .attr("x", 15)
@@ -208,21 +192,20 @@ function createScatterPlot(data, update) {
   }
   if (chosenCountry2 != undefined && chosenCountry2 != "") {
     //Dots for legends for selected country 2
-    divbox2
-
+    divbox
       .append("circle")
       .attr("id", "legendScatter")
       .attr("cx", 10)
-      .attr("cy", 10)
+      .attr("cy", 20)
       .attr("r", 3)
       .style("fill", colorsScatter[1]);
 
       // Add labels for legends for selected country 2
-    divbox2
+    divbox
       .append("text")
       .attr("id", "legendScatter")
       .attr("x", 15)
-      .attr("y", 10)
+      .attr("y", 20)
       .text(scatterLabels[1])
       .style("font-size", "10px")
       .attr("alignment-baseline", "middle");
