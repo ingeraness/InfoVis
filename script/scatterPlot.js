@@ -13,8 +13,6 @@ function createScatterPlot(data, update) {
     }
   });
 
-
-
   const keys = Object.keys(data[0]);
 
   let attributesDict = {
@@ -149,49 +147,78 @@ function createScatterPlot(data, update) {
 
   markSelectedCountries(); //Mark the countries selected in the drop down menus
 
-  svg1 = d3
+  d3
   .select("div#scatterPlot-box")
-  .select("svg")
-  .attr("width", width)
-  .attr("height", height);
+    .selectAll("p")
+    .remove(); //Remove old div
+ 
+
+  divbox1 = d3
+  .select("div#scatterPlot-box")
+  .append("p")
+  .attr("id", "#scatterCountry1")
+  .append("svg")
+  .attr("width", 94)
+  .attr("height", 17);
+  //.selectAll('div')
+	//.data(data)
+  //.enter()
+  ;
+
+  divbox2 = d3
+  .select("div#scatterPlot-box")
+  .append("p")
+  .attr("id", "#scatterCountry2")
+  .append("svg")
+  .attr("width", 94)
+  .attr("height", 17);
+  //.selectAll('div')
+	//.data(data)
+  //.enter()
+  ;
+
+
+
 
   var scatterLabels = ["" + chosenCountry1, "" + chosenCountry2];
   var colorsScatter = ["purple", "green"]; //This will be changed to other colors in CP5
   if (chosenCountry1 != undefined && chosenCountry1 != "") {
     // Add color dots for legends for selected country 1
-    svg
+    divbox1
       .append("circle")
-      .attr("id", "removeOnUpdate")
-      .attr("cx", 60)
-      .attr("cy", height - 115)
+      .attr("id", "legendScatter")
+      .attr("cx", 10)
+      .attr("cy", 10)
       .attr("r", 3)
       .style("fill", colorsScatter[0]);
 
     // Add labels for legends for selected country 1
-    svg
+    divbox1
       .append("text")
-      .attr("id", "removeOnUpdate")
-      .attr("x", 70)
-      .attr("y", height - 115).style("background-color", "red")
-      .text(scatterLabels[0])
+      .attr("id", "legendScatter")
+      .attr("x", 15)
+      .attr("y", 10)
+      .text(scatterLabels[0] + " \n ")
       .style("font-size", "10px")
       .attr("alignment-baseline", "middle");
   }
   if (chosenCountry2 != undefined && chosenCountry2 != "") {
     //Dots for legends for selected country 2
-    svg
+    divbox2
+
       .append("circle")
-      .attr("id", "removeOnUpdate")
-      .attr("cx", 60)
-      .attr("cy", height - 100)
+      .attr("id", "legendScatter")
+      .attr("cx", 10)
+      .attr("cy", 10)
       .attr("r", 3)
       .style("fill", colorsScatter[1]);
-    // Add labels for legends for selected country 2
-    svg
+
+      // Add labels for legends for selected country 2
+    divbox2
       .append("text")
-      .attr("id", "removeOnUpdate")
-      .attr("x", 70)
-      .attr("y", height - 100)
+      .attr("id", "legendScatter")
+      .attr("x", 15)
+      .attr("y", 10)
       .text(scatterLabels[1])
       .style("font-size", "10px")
       .attr("alignment-baseline", "middle");

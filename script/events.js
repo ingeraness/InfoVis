@@ -183,6 +183,8 @@ var chosenCountryNumber = 0;
 
 // Change selected country when bar is clicked on in bar chart
 function handleClickBarChart(event, d) {
+  d3.selectAll(".labelsBox")
+  .style("visibility", "visible");
   if (chosenCountry1 != d.country && chosenCountry2 != d.country) {
     if (chosenCountryNumber % 2 == 0) {
       chosenCountry1 = d.country;
@@ -200,28 +202,10 @@ function handleClickBarChart(event, d) {
 
 // Change selected country when circle is clicked on in scatterplot
 function handleClickScatterplot(event, d) {
-  d3.select(".scatterPlot-box")
-  .style("visibility", "visible")
-  .style("left",  60+"px")
-  .style("top", "115px")
-  .html(event.path[0]);
-  /*if(chosenCountry2=undefined){
-    d3.select(".scatterPlot-box")
-  .style("visibility", "visible")
-  .style("left",  60+"px")
-  .style("top", "115px")  
-  .style("font-size", "10px")
-  .html(chosenCountry1 )    
-  ;
-  }else{
-    d3.select(".scatterPlot-box")
-  .style("visibility", "visible")
-  .style("left",  60+"px")
-  .style("top", "115px")  
-  .style("font-size", "10px")
-  .html(chosenCountry1 + "</br>" + chosenCountry2)    
-  ;
-  }*/
+  d3.selectAll(".labelsBox")
+  .style("visibility", "visible");
+ 
+  
   if (chosenCountry1 != d.country && chosenCountry2 != d.country) {
     console.log(chosenCountry1);
     console.log(chosenCountry2);
@@ -243,6 +227,8 @@ function handleClickScatterplot(event, d) {
 
 // Change selected country when country is clicked on in choropleth
 function handleClickChoropleth(event, d) {
+  d3.selectAll(".labelsBox")
+  .style("visibility", "visible");
   if (
     chosenCountry1 != d.properties.NAME &&
     chosenCountry2 != d.properties.NAME
@@ -262,6 +248,8 @@ function handleClickChoropleth(event, d) {
 }
 
 function handleClickCleveland(event, d) {
+  d3.selectAll(".labelsBox")
+  .style("visibility", "visible");
   if (chosenCountry1 != d.country && chosenCountry2 != d.country) {
     if (chosenCountryNumber % 2 == 0) {
       chosenCountry1 = d.country;

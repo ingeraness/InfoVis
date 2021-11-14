@@ -174,20 +174,51 @@ function createLineChart(data, update, attribute, div) {
   ];
   var colors = ["purple", "green"]; //This will be changed to other colors in CP5
 
+  d3
+  .select("div#lineChart-box1")
+    .selectAll("p")
+    .remove(); //Remove old div
+  d3
+  .select("div#lineChart-box2")
+    .selectAll("p")
+    .remove(); //Remove old div
+   
+
+  divbox1 = d3
+  .select("div#lineChart-box1")
+  .append("p")
+  .attr("id", "#lineCountry1")
+  .append("svg")
+  .attr("width", 170)
+  .attr("height", 20);
+
+  divbox2 = d3
+  .select("div#lineChart-box1")
+  .append("p")
+  .attr("id", "#lineCountry2")
+  .append("svg")
+  .attr("width", 170)
+  .attr("height", 20);
+  
+ 
+ 
+  
+
+
   if (chosenCountry1 != undefined && chosenCountry1 != "") {
     // Add color dots for legends C1
-    svg
+    divbox1
       .append("circle")
-      .attr("cx", width - 200)
-      .attr("cy", 220)
+      .attr("cx", 10)
+      .attr("cy", 10)
       .attr("r", 3)
       .style("fill", colors[0]);
 
     // Add labels for legends C1
-    svg
+    divbox1
       .append("text")
-      .attr("x", width - 190)
-      .attr("y", 220)
+      .attr("x", 15)
+      .attr("y", 10)
       .text(lineLabels[0])
       .style("font-size", "10px")
       .attr("alignment-baseline", "middle");
@@ -195,18 +226,18 @@ function createLineChart(data, update, attribute, div) {
 
   if (chosenCountry2 != undefined && chosenCountry2 != "") {
     //Dots for legends C2
-    svg
+    divbox2
       .append("circle")
-      .attr("cx", width - 200)
-      .attr("cy", 235)
+      .attr("cx", 10)
+      .attr("cy", 10)
       .attr("r", 3)
       .style("fill", colors[1]);
 
     // Add labels for legends C2
-    svg
+    divbox2
       .append("text")
-      .attr("x", width - 190)
-      .attr("y", 235)
+      .attr("x", 15)
+      .attr("y", 10)
       .text(lineLabels[1])
       .style("font-size", "10px")
       .attr("alignment-baseline", "middle");
