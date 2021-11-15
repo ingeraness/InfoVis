@@ -70,16 +70,25 @@ function handleMouseOver(event, d) {
     .style("stroke-width", 2)
     .style("stroke", "red");
 
-  if (d.year == chosenYear) {
-    clevelandPlot
-      .selectAll("circle#dotsClevelandYear1")
-      .filter((b) => b.country == d.country)
-      .style("fill", "red");
-  } else {
-    clevelandPlot
-      .selectAll("circle#dotsClevelandYear2")
-      .filter((b) => b.country == d.country)
-      .style("fill", "red");
+  //Check if hovered plot is not chororplethMap
+  if (d.country != undefined) {
+    if (d.year == chosenYear) {
+      clevelandPlot
+        .selectAll("circle#dotsClevelandYear1")
+        .filter((b) => b.country == hoveredCountryName) 
+        .style("fill", "red");
+    } else {
+      clevelandPlot
+        .selectAll("circle#dotsClevelandYear2")
+        .filter((b) => b.country == hoveredCountryName)
+        .style("fill", "red");
+    }
+  }
+  else {
+      clevelandPlot
+        .selectAll("circle#dotsClevelandYear1")
+        .filter((b) => b.country == hoveredCountryName) 
+        .style("fill", "red");
   }
 
   //Check if hovered plot is not chororplethMap
