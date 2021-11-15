@@ -143,4 +143,6 @@ function choropleth(update) {
   }
   document.getElementById("header-choropleth").innerHTML =
     "Freedom index Europe " + chosenYear;
+
+    markSelectedCountries();
 }
