@@ -80,7 +80,6 @@ function createLineChart(data, update, attribute, div) {
         .axisBottom(x)
         .tickFormat((x) => x)
         .ticks(yearsChosen.length - 1)
-      //.tickSizeOuter(0)
     );
 
   yAxis = (g) =>

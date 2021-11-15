@@ -93,3 +93,51 @@ function createBarChart(data, update) {
 
   svg.append("g").attr("class", "yAxis").call(yAxis);
 }
+
+
+function updateBarChart(data) {
+
+  document.getElementById("headerBarChart").innerHTML =
+  labelsDict[chosenAttributeX] + " " + chosenYear;
+
+  const keys = Object.keys(data[0]);
+
+  let attributesDict = {
+    pf_ss: keys[8].valueOf(),
+    pf_ss_women: keys[9].valueOf(),
+    ef_legal_police: keys[10].valueOf(),
+    pf_ss_disappearances_violent: keys[6].valueOf(),
+    pf_religion_freedom: keys[7].valueOf(),
+    hf_score: keys[4].valueOf(),
+  };
+
+  var filtered_data = data
+    .filter(function (d) {
+      if (d.year == chosenYear.valueOf()) {
+        return d;
+      }
+    })
+    .sort((a, b) => {
+      return (
+        a[attributesDict[chosenAttributeX]] -
+        b[attributesDict[chosenAttributeX]]
+      );
+    });
+
+
+  var svg = d3.select("div#barChart").select("svg");
+
+  svg.select("g").selectAll("rect")
+  .transition()
+  .duration(750)
+  // .data(filtered_data, function (d) {
+  //   return d[attributesDict[chosenAttributeX]];
+  // })
+  .attr("x", (d, i) => x(d.ISO_code))
+  .attr("y", (d, i) => y(d[attributesDict[chosenAttributeX]]))
+  .attr(
+    "height",
+    (d) => height - margin.bottom - y(d[attributesDict[chosenAttributeX]])
+  )
+  .attr("width", x.bandwidth())
+}
