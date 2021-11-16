@@ -33,6 +33,7 @@ function createBarChart(data, update) {
         b[attributesDict[chosenAttributeX]]
       );
     });
+    console.log(filtered_data)
 
   y = d3
     .scaleLinear()
@@ -89,7 +90,7 @@ function createBarChart(data, update) {
     .on("mouseleave", handleMouseLeave)
     .on("click", handleClickBarChart);
 
-  svg.append("g").attr("class", "xAxis").call(xAxis);
+  svg.append("g").attr("class", "xAxis").attr("id", "xAxisScatterPlot").call(xAxis);
 
   svg.append("g").attr("class", "yAxis").call(yAxis);
 }
@@ -124,15 +125,35 @@ function updateBarChart(data) {
       );
     });
 
+    x = d3
+    .scaleBand()
+    .domain(
+      filtered_data.map(function (d) {
+        return d.ISO_code;
+      })
+    )
+    .rangeRound([margin.left, width - margin.right])
+    .padding(0.5);
 
+
+  function xAxis(g) {
+    g.attr("transform", `translate(0, ${height - margin.bottom})`)
+      .call(d3.axisBottom(x))
+      .selectAll("text")
+      .attr("transform", `translate(-10,0)rotate(-45)`)
+      .style("text-anchor", "end");
+  }
+  
+  
   var svg = d3.select("div#barChart").select("svg");
 
+  svg.selectAll("g#xAxisScatterPlot").transition().duration(750).call(xAxis)
+
+
   svg.select("g").selectAll("rect")
+  .data(filtered_data)
   .transition()
-  .duration(750)
-  // .data(filtered_data, function (d) {
-  //   return d[attributesDict[chosenAttributeX]];
-  // })
+  .duration(1250)
   .attr("x", (d, i) => x(d.ISO_code))
   .attr("y", (d, i) => y(d[attributesDict[chosenAttributeX]]))
   .attr(

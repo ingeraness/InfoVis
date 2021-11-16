@@ -71,9 +71,16 @@ function saveDropdownCountry(i) {
         d3.select("div#lineChart1").select("svg").remove(); //Remove old chart
         d3.select("div#lineChart2").select("svg").remove(); //Remove old chart
         clearHeaders(3);
-        createBarChart(data, false);
+        if(showingBarChart){
+          updateBarChart(data)
+        }
+        else{
+          createBarChart(data, false)
+        }
+        // createBarChart(data, false);
         showingBarChart = true;
       } else {
+        d3.select("div#barChart").select("svg").remove(); //Remove old chart
         showingBarChart = false;
         clearHeaders(3);
         d3.select(".tooltip").style("visibility", "hidden");
@@ -120,9 +127,16 @@ function saveDropdownYear(yearChanged, i) {
       d3.select(".labelsBox").style("visibility", "hidden");
 
       clearHeaders(3);
-      createBarChart(data, false);
+      if(showingBarChart){
+        updateBarChart(data)
+      }
+      else{
+        // updateBarChart(data)
+        createBarChart(data, false);
+      }
       showingBarChart = true;
     } else {
+      d3.select("div#barChart").select("svg").remove(); //Remove old chart
       clearHeaders(3);
       createLineChart(data, false, chosenAttributeX, 1);
       createLineChart(data, false, chosenAttributeY, 2);
@@ -198,6 +212,7 @@ function saveDropdownAttribute(i) {
         updateBarChart(data)
         showingBarChart = true;
       } else {
+        d3.select("div#barChart").select("svg").remove(); //Remove old chart
         clearHeaders(1);
         createLineChart(data, true, chosenAttributeX, 1);
         showingBarChart = false;
@@ -213,6 +228,7 @@ function saveDropdownAttribute(i) {
         updateBarChart(data)
         showingBarChart = true;
       } else {
+        d3.select("div#barChart").select("svg").remove(); //Remove old chart
         clearHeaders(2);
         createLineChart(data, true, chosenAttributeY, 2);
         showingBarChart = false;
@@ -274,7 +290,7 @@ function removeCharts(showingBarChart, yearChanged) {
   if (showingBarChart) {
     d3.select("div#lineChart1").select("svg").remove(); //Remove old chart
     d3.select("div#lineChart2").select("svg").remove(); //Remove old chart
-    d3.select("div#barChart").select("svg").remove(); //Remove old chart
+    // d3.select("div#barChart").select("svg").remove(); //Remove old chart
   } else {
     d3.select("div#lineChart1").select("svg").remove(); //Remove old chart
     d3.select("div#lineChart2").select("svg").remove(); //Remove old chart

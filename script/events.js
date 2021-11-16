@@ -301,6 +301,7 @@ function markSelectedCountries() {
   scatterPlot
     .selectAll("circle#dataScatter")
     .style("fill", "#2171b5")
+    .attr("r", 4)
     .filter(function (b) {
       if (b.country == chosenCountry1 || b.country == chosenCountry2) {
         return b;

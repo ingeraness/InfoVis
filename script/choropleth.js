@@ -121,7 +121,7 @@ function choropleth(update) {
         `translate(${l_margin + 170},${height - l_margin + 60})rotate(270)`
       );
 
-    var l_title = "Freedom index";
+    var l_title = "Freedom Index";
     svg
       .append("text")
       .text(l_title)
@@ -142,7 +142,7 @@ function choropleth(update) {
       .call(d3.axisLeft().scale(l_y));
   }
   document.getElementById("header-choropleth").innerHTML =
-    "Freedom index Europe " + chosenYear;
+    "Freedom Index Europe " + chosenYear;
 
     markSelectedCountries();
 }
