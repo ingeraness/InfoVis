@@ -12,13 +12,13 @@ The visualization can be viewed here: https://ingeraness.github.io/InfoVis/
 
 1. Navigate to the project folder in your terminal
 2. Write "python -m http.server 7800" in your terminal.
-3. Open [http://localhost:7800/](http://localhost:7800/) in Google Chrome in your preferred browser.
+3. Open [http://localhost:7800/](http://localhost:7800/) in Google Chrome or in your preferred browser.
 
 ### Using the Live Server in Visual Studio Code
 
 1. Open the code in Visual Studio Code
 2. Install the "Live Server" Extension if you do not have it installed already
-3. Click "Go Live".
+3. Click "Go Live" in the bottom right corner.
 4. The visualization will open automatically in your default browser, usually on url "http://127.0.0.1:5500/".
 
 ## Specifications
