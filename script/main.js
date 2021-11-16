@@ -58,7 +58,9 @@ function saveDropdownCountry(i) {
   removeCharts(showingBarChart, false);
   d3.csv("data/data.csv")
     .then((data) => {
-      createScatterPlot(data, true);
+      updateScatterPlot(data)
+
+      // createScatterPlot(data, true);
       createClevelandPlot(data, true);
       markSelectedCountries();
       if (
@@ -107,7 +109,8 @@ function saveDropdownYear(yearChanged, i) {
   removeCharts(showingBarChart, yearChanged);
 
   d3.csv("data/data.csv").then((data) => {
-    createScatterPlot(data, true);
+    updateScatterPlot(data)
+    // createScatterPlot(data, true);
     createChoroplethMap(true);
     createClevelandPlot(data, true);
     if (
@@ -233,10 +236,10 @@ function clearHeaders(i) {
 }
 
 function removeCharts(showingBarChart, yearChanged) {
-  d3.select("div#scatterPlot")
-    .selectAll("svg")
-    .selectAll("#removeOnUpdate")
-    .remove(); //Remove old chart
+  // d3.select("div#scatterPlot")
+  //   .selectAll("svg")
+  //   .selectAll("#removeOnUpdate")
+  //   .remove(); //Remove old chart
 
     d3.select("div#scatterPlot")
     .selectAll("svg")

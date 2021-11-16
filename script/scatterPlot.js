@@ -226,6 +226,8 @@ function updateScatterPlot(data) {
     }
   });
 
+  console.log(data)
+
   const keys = Object.keys(data[0]);
 
   let attributesDict = {
@@ -279,8 +281,9 @@ svg // text label for the y axis
 svg
   .select("g#removeOnUpdate")
   .selectAll("circle")
+  .data(data)
   .transition()
-  .duration(750)
+  .duration(1250)
   .attr("cx", function (d) {
     console.log(x(d[attributesDict[chosenAttributeX]]))
     return x(d[attributesDict[chosenAttributeX]]);
