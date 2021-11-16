@@ -234,9 +234,6 @@ function handleClickScatterplot(event, d) {
  
   
   if (chosenCountry1 != d.country && chosenCountry2 != d.country) {
-    console.log(chosenCountry1);
-    console.log(chosenCountry2);
-    console.log(event);
     if (chosenCountryNumber % 2 == 0) {
       chosenCountry1 = d.country;
       document.getElementById("dropdown_country1").value = chosenCountry1;

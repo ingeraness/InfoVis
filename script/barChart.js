@@ -33,7 +33,6 @@ function createBarChart(data, update) {
         b[attributesDict[chosenAttributeX]]
       );
     });
-    console.log(filtered_data)
 
   y = d3
     .scaleLinear()
